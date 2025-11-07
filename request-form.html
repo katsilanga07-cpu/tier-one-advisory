@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Form - Tier One Advisory Philippines Inc.</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+      .header-gradient {
+        background: linear-gradient(135deg, #0056a3 0%, #003d75 100%);
+      }
+      .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        
+        /* Vendor prefixes for better browser support */
+        display: -moz-box;
+        display: box;
+        line-clamp: 2;
+        box-orient: vertical;
+        text-overflow: ellipsis;
+      }
+      /* New background gradient */
+      .form-background {
+        background: linear-gradient(to right, #CBE5AE, #94B447);
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+
+  <body class="form-background">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+      <!-- Top Bar -->
+      <div class="bg-gray-800 text-white py-2">
+        <div class="container mx-auto px-4">
+          <div class="flex justify-between items-center text-sm">
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-globe mr-1"></i> Philippines</a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-phone mr-1"></i> Contact Us</a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-user mr-1"></i> Login</a>
+            </div>
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Navigation -->
+      <nav class="header-gradient text-white">
+        <div class="container mx-auto px-4">
+          <div class="flex items-center justify-between py-4">
+            <!-- Company Name -->
+            <div class="flex items-center space-x-8">
+              <a href="index.html" class="text-2xl font-bold text-white">
+                Tier One Advisory Philippines Inc.
+              </a>
+              
+              <!-- Main Menu -->
+              <div class="hidden md:flex space-x-6">
+                <a href="index.html" class="hover:text-blue-200 transition">Dashboard</a>
+                <a href="request-form.html" class="hover:text-blue-200 transition font-medium border-b-2 border-white">Request Form</a>
+                <a href="search.html" class="hover:text-blue-200 transition">Search</a>
+                <a href="monitoring.html" class="hover:text-blue-200 transition">Monitoring</a>
+              </div>
+            </div>
+
+            <!-- Right Side Actions -->
+            <div class="flex items-center space-x-4">
+              <button id="searchButton" class="hover:text-blue-200 transition">
+                <i class="fas fa-search"></i>
+              </button>
+              <button class="md:hidden hover:text-blue-200 transition">
+                <i class="fas fa-bars text-xl"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb -->
+      <div class="bg-gray-100 border-b">
+        <div class="container mx-auto px-4 py-2">
+          <nav class="text-sm">
+            <ol class="list-none p-0 inline-flex">
+              <li class="flex items-center">
+                <a href="index.html" class="text-blue-600 hover:text-blue-800">Home</a>
+                <span class="mx-2 text-gray-400">/</span>
+              </li>
+              <li class="flex items-center">
+                <a href="index.html" class="text-blue-600 hover:text-blue-800">Dashboard</a>
+                <span class="mx-2 text-gray-400">/</span>
+              </li>
+              <li class="text-gray-500">Request Form</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="min-h-screen flex items-center justify-center py-8">
+      <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
+        <h1 class="text-3xl font-bold text-center text-blue-700 mb-8">
+          📁 Request Form
+        </h1>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Dropdown 1 -->
+          <div>
+            <label for="clientDropdown" class="block text-gray-700 font-medium mb-2">
+              Client
+            </label>
+            <select
+              id="clientDropdown"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">-- Select Client --</option>
+            </select>
+          </div>
+
+          <!-- Dropdown 2 -->
+          <div>
+            <label for="subClientDropdown" class="block text-gray-700 font-medium mb-2">
+              Sub-Client
+            </label>
+            <select
+              id="subClientDropdown"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">-- Select Sub-Client --</option>
+            </select>
+          </div>
+
+          <!-- Dropdown 3 -->
+          <div>
+            <label for="categoryDropdown" class="block text-gray-700 font-medium mb-2">
+              Category
+            </label>
+            <select
+              id="categoryDropdown"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">-- Select Category --</option>
+            </select>
+          </div>
+
+          <!-- Dropdown 4 -->
+          <div>
+            <label for="documentDropdown" class="block text-gray-700 font-medium mb-2">
+              Document Type
+            </label>
+            <select
+              id="documentDropdown"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">-- Select Document Type --</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Notes and Date -->
+        <div class="mt-6">
+          <label for="notes" class="block text-gray-700 font-medium mb-2">Notes</label>
+          <textarea
+            id="notes"
+            rows="3"
+            placeholder="Enter notes here..."
+            class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          ></textarea>
+        </div>
+
+        <div class="mt-4">
+          <label for="date" class="block text-gray-700 font-medium mb-2">Date</label>
+          <input
+            type="date"
+            id="date"
+            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        <!-- Save button -->
+        <div class="mt-8 text-center">
+          <button
+            id="saveButton"
+            class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-medium"
+          >
+            <i class="fas fa-save mr-2"></i>Save Request
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+      <div class="flex items-center justify-center min-h-screen p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
+          <div class="p-6">
+            <div class="flex justify-between items-center mb-6">
+              <h3 class="text-2xl font-semibold text-gray-800">Search Requests</h3>
+              <button id="closeSearch" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-2xl"></i>
+              </button>
+            </div>
+            
+            <div class="relative mb-6">
+              <input 
+                type="text" 
+                id="searchInput"
+                placeholder="Search by client name, category, or document type..."
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              >
+              <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+            </div>
+            
+            <div id="searchResults" class="max-h-96 overflow-y-auto">
+              <div class="text-center text-gray-500 py-8">
+                <i class="fas fa-search text-3xl mb-3"></i>
+                <p>Enter search terms to find requests</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+      <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <h3 class="font-bold text-lg mb-4">Company</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-blue-300 transition">About Us</a></li>
+              <li><a href="#" class="hover:text-blue-300 transition">Leadership</a></li>
+              <li><a href="#" class="hover:text-blue-300 transition">Careers</a></li>
+              <li><a href="#" class="hover:text-blue-300 transition">News</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">Services</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-blue-300 transition">All Services</a></li>
+              <li><a href="#" class="hover:text-blue-300 transition">Industries</a></li>
+              <li><a href="#" class="hover:text-blue-300 transition">Locations</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">Support</h3>
+            <ul class="space-y-2">
+              <li><a href="#" class="hover:text-blue-300 transition">Contact Us</a></li>
+              <li><a href="#" class="hover:text-blue-300 transition">Help Center</a></li>
+              <li><a href="#" class="hover:text-blue-300 transition">Privacy Policy</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="font-bold text-lg mb-4">Connect</h3>
+            <div class="flex space-x-4">
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter text-xl"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook text-xl"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+          <p>&copy; 2024 Tier One Advisory Philippines Inc. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+      // Wait for DOM to be fully loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        // ✅ Elements - check each one individually
+        const elements = {
+          clientDropdown: document.getElementById("clientDropdown"),
+          subClientDropdown: document.getElementById("subClientDropdown"),
+          categoryDropdown: document.getElementById("categoryDropdown"),
+          documentDropdown: document.getElementById("documentDropdown"),
+          notesInput: document.getElementById("notes"),
+          dateInput: document.getElementById("date"),
+          saveButton: document.getElementById("saveButton"),
+          searchButton: document.getElementById('searchButton'),
+          searchModal: document.getElementById('searchModal'),
+          closeSearch: document.getElementById('closeSearch'),
+          searchInput: document.getElementById('searchInput'),
+          searchResults: document.getElementById('searchResults')
+        };
+
+        console.log('All form elements:', elements);
+
+        // Check which elements are missing
+        const missingElements = Object.entries(elements)
+          .filter(([name, element]) => !element)
+          .map(([name]) => name);
+
+        if (missingElements.length > 0) {
+          console.error('Missing elements:', missingElements);
+          
+          // Check if critical form elements exist
+          if (!elements.clientDropdown || !elements.saveButton) {
+            console.error('Required form elements not found');
+            return;
+          }
+        }
+
+        // Initialize Supabase (using global supabase from CDN)
+        const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // 🟢 Load Clients
+        async function loadClients() {
+          console.log("Fetching clients from Supabase...");
+          const { data, error } = await supabase.from("sub_client").select("clientList");
+          if (error) return console.error(error);
+
+          console.log("Client data:", data);
+          const uniqueClients = [...new Set(data.map((item) => item.clientList))];
+
+          uniqueClients.forEach((client) => {
+            const option = document.createElement("option");
+            option.value = client;
+            option.textContent = client;
+            elements.clientDropdown.appendChild(option);
+          });
+
+          console.log("Dropdown populated with clients.");
+        }
+
+        // 🟡 Load Sub-Clients
+        async function loadSubClients(selectedClient) {
+          const { data, error } = await supabase
+            .from("sub_client")
+            .select("subClientList")
+            .eq("clientList", selectedClient);
+          if (error) return console.error(error);
+
+          elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
+          data.forEach((row) => {
+            const option = document.createElement("option");
+            option.value = row.subClientList;
+            option.textContent = row.subClientList;
+            elements.subClientDropdown.appendChild(option);
+          });
+        }
+
+        // 🟣 Load Categories
+        async function loadCategories() {
+          console.log("Fetching categories from Supabase...");
+          const { data, error } = await supabase.from("category").select("categoryList");
+          if (error) return console.error(error);
+
+          const uniqueCategories = [...new Set(data.map((item) => item.categoryList))];
+          console.log("Category data:", uniqueCategories);
+
+          uniqueCategories.forEach((cat) => {
+            const option = document.createElement("option");
+            option.value = cat;
+            option.textContent = cat;
+            elements.categoryDropdown.appendChild(option);
+          });
+
+          console.log("Dropdown populated with categories.");
+        }
+
+        // 🔵 Load Documents
+        async function loadDocuments(selectedCategory) {
+          const { data, error } = await supabase
+            .from("category")
+            .select("documents")
+            .eq("categoryList", selectedCategory);
+
+          if (error) return console.error(error);
+
+          elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
+
+          data.forEach((row) => {
+            if (row.documents) {
+              const option = document.createElement("option");
+              option.value = row.documents;
+              option.textContent = row.documents;
+              elements.documentDropdown.appendChild(option);
+            }
+          });
+        }
+
+        // 💾 Save to tasks_database
+        async function saveTask() {
+          const client = elements.clientDropdown.value;
+          const subClient = elements.subClientDropdown.value;
+          const category = elements.categoryDropdown.value;
+          const documentType = elements.documentDropdown.value;
+          const notes = elements.notesInput.value;
+          const date = elements.dateInput.value;
+
+          if (!client || !category || !documentType || !date) {
+            alert("Please select all required fields before saving.");
+            return;
+          }
+
+          const { error } = await supabase.from("tasks_database").insert([
+            {
+              client,
+              subClient,
+              category,
+              documentType,
+              notes,
+              date,
+              status: 'pending',
+              created_at: new Date().toISOString(),
+            },
+          ]);
+
+          if (error) {
+            console.error(error);
+            alert("❌ Error saving task.");
+          } else {
+            alert("✅ Task saved successfully!");
+            resetForm();
+          }
+        }
+
+        function resetForm() {
+          elements.clientDropdown.value = '';
+          elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
+          elements.categoryDropdown.value = '';
+          elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
+          elements.notesInput.value = '';
+          
+          // Set default date to today
+          const today = new Date();
+          const formattedDate = today.toISOString().split('T')[0];
+          elements.dateInput.value = formattedDate;
+        }
+
+        // 🧭 Event Listeners for form
+        elements.clientDropdown.addEventListener("change", () => {
+          const selectedClient = elements.clientDropdown.value;
+          elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
+          if (selectedClient) loadSubClients(selectedClient);
+        });
+
+        elements.categoryDropdown.addEventListener("change", () => {
+          const selectedCategory = elements.categoryDropdown.value;
+          elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
+          if (selectedCategory) loadDocuments(selectedCategory);
+        });
+
+        elements.saveButton.addEventListener("click", saveTask);
+
+        // Search functionality
+        function initializeSearch() {
+          // Open search modal
+          elements.searchButton.addEventListener('click', function() {
+            elements.searchModal.classList.remove('hidden');
+            elements.searchInput.focus();
+          });
+
+          // Close search modal
+          elements.closeSearch.addEventListener('click', function() {
+            elements.searchModal.classList.add('hidden');
+            elements.searchInput.value = '';
+            elements.searchResults.innerHTML = `
+              <div class="text-center text-gray-500 py-8">
+                <i class="fas fa-search text-3xl mb-3"></i>
+                <p>Enter search terms to find requests</p>
+              </div>
+            `;
+          });
+
+          // Close modal when clicking outside
+          elements.searchModal.addEventListener('click', function(e) {
+            if (e.target === elements.searchModal) {
+              elements.searchModal.classList.add('hidden');
+              elements.searchInput.value = '';
+              elements.searchResults.innerHTML = `
+                <div class="text-center text-gray-500 py-8">
+                  <i class="fas fa-search text-3xl mb-3"></i>
+                  <p>Enter search terms to find requests</p>
+                </div>
+              `;
+            }
+          });
+
+          // Search functionality
+          elements.searchInput.addEventListener('input', debounce(function(e) {
+            const searchTerm = e.target.value.trim();
+            
+            if (searchTerm.length < 2) {
+              elements.searchResults.innerHTML = `
+                <div class="text-center text-gray-500 py-8">
+                  <i class="fas fa-search text-3xl mb-3"></i>
+                  <p>Enter at least 2 characters to search</p>
+                </div>
+              `;
+              return;
+            }
+            
+            performSearch(searchTerm);
+          }, 300));
+        }
+
+        // Debounce function to limit API calls
+        function debounce(func, wait) {
+          let timeout;
+          return function executedFunction(...args) {
+            const later = () => {
+              clearTimeout(timeout);
+              func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+          };
+        }
+
+        // Perform search in Supabase
+        async function performSearch(searchTerm) {
+          try {
+            elements.searchResults.innerHTML = `
+              <div class="text-center text-gray-500 py-8">
+                <i class="fas fa-spinner fa-spin text-blue-500 text-3xl mb-3"></i>
+                <p>Searching...</p>
+              </div>
+            `;
+
+            const { data: tasks, error } = await supabase
+              .from('tasks_database')
+              .select('*')
+              .or(`client.ilike.%${searchTerm}%,subClient.ilike.%${searchTerm}%,category.ilike.%${searchTerm}%,documentType.ilike.%${searchTerm}%,notes.ilike.%${searchTerm}%`)
+              .order('created_at', { ascending: false });
+
+            if (error) throw error;
+
+            displaySearchResults(tasks, searchTerm);
+          } catch (error) {
+            console.error('Search error:', error);
+            elements.searchResults.innerHTML = `
+              <div class="text-center text-red-500 py-8">
+                <i class="fas fa-exclamation-triangle text-2xl mb-3"></i>
+                <p>Error performing search</p>
+              </div>
+            `;
+          }
+        }
+
+        // Display search results
+        function displaySearchResults(tasks, searchTerm) {
+          if (!tasks || tasks.length === 0) {
+            elements.searchResults.innerHTML = `
+              <div class="text-center text-gray-500 py-8">
+                <i class="fas fa-search text-3xl mb-3"></i>
+                <p>No results found for "${searchTerm}"</p>
+              </div>
+            `;
+            return;
+          }
+
+          let resultsHtml = '<div class="space-y-4">';
+          
+          tasks.forEach(task => {
+            const statusColor = getStatusColor(task.status);
+            
+            resultsHtml += `
+              <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition">
+                <div class="flex justify-between items-start mb-2">
+                  <div>
+                    <h4 class="font-semibold text-gray-800">${task.client} - ${task.subClient || 'No Sub-Client'}</h4>
+                    <p class="text-sm text-gray-600">${new Date(task.date).toLocaleDateString()}</p>
+                  </div>
+                  <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">
+                    ${task.status}
+                  </span>
+                </div>
+                <div class="grid grid-cols-2 gap-2 text-sm">
+                  <div>
+                    <span class="text-gray-600">Category:</span>
+                    <span class="font-medium">${task.category}</span>
+                  </div>
+                  <div>
+                    <span class="text-gray-600">Document:</span>
+                    <span class="font-medium">${task.documentType}</span>
+                  </div>
+                </div>
+                ${task.notes ? `
+                  <div class="mt-2">
+                    <p class="text-sm text-gray-600">Notes:</p>
+                    <p class="text-sm text-gray-800 line-clamp-2">${task.notes}</p>
+                  </div>
+                ` : ''}
+              </div>
+            `;
+          });
+          
+          resultsHtml += '</div>';
+          elements.searchResults.innerHTML = resultsHtml;
+        }
+
+        // Get status badge color
+        function getStatusColor(status) {
+          switch(status) {
+            case 'pending': return 'bg-red-100 text-red-800';
+            case 'in-progress': return 'bg-yellow-100 text-yellow-800';
+            case 'completed': return 'bg-green-100 text-green-800';
+            default: return 'bg-red-100 text-red-800';
+          }
+        }
+
+        // Initialize everything
+        loadClients();
+        loadCategories();
+        initializeSearch();
+
+        // Set default date to today
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        elements.dateInput.value = formattedDate;
+      });
+    </script>
+  </body>
+</html>
