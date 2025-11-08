@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search - Tier One Advisory Philippines Inc.</title>
+    <title>Search - Tier One Advisory (Ph) Inc.</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -60,7 +60,7 @@
             <!-- Company Name -->
             <div class="flex items-center space-x-8">
               <a href="index.html" class="text-2xl font-bold text-white">
-                Tier One Advisory Philippines Inc.
+                Tier One Advisory (Ph) Inc.
               </a>
               
               <!-- Main Menu -->
@@ -307,7 +307,7 @@
           </div>
         </div>
         <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
-          <p>&copy; 2024 Tier One Advisory Philippines Inc. All rights reserved.</p>
+          <p>&copy; 2024 Tier One Advisory (Ph) Inc. All rights reserved.</p>
         </div>
       </div>
     </footer>
@@ -593,33 +593,208 @@
       function exportToPDF() {
           const { jsPDF } = window.jspdf;
           const doc = new jsPDF();
-          const tableRows = [];
-          const headers = [['Date', 'Client', 'Sub-Client', 'Category', 'Document Type', 'Status', 'Notes']];
           
+          // Get date range from filters
+          const fromDateValue = fromDate.value;
+          const toDateValue = toDate.value;
+          
+          // Format dates for title (MMM/DD/YYYY)
+          const formatDate = (dateString) => {
+              if (!dateString) return 'N/A';
+              const date = new Date(dateString);
+              return date.toLocaleDateString('en-US', { 
+                  month: 'short', 
+                  day: '2-digit', 
+                  year: 'numeric' 
+              });
+          };
+          
+          const fromFormatted = formatDate(fromDateValue);
+          const toFormatted = formatDate(toDateValue);
+          
+          // Get current data
           const rows = searchResults.querySelectorAll('tr');
+          const data = [];
+          
+          // Extract data from table rows
           rows.forEach(row => {
               const cells = row.querySelectorAll('td');
               if (cells.length > 0) {
-                  const rowData = Array.from(cells).map(cell => cell.textContent.trim());
-                  tableRows.push(rowData);
+                  data.push({
+                      date: cells[0].textContent.trim(),
+                      client: cells[1].textContent.trim(),
+                      subClient: cells[2].textContent.trim(),
+                      category: cells[3].textContent.trim(),
+                      documentType: cells[4].textContent.trim(),
+                      status: cells[5].textContent.trim(),
+                      notes: cells[6].textContent.trim()
+                  });
               }
           });
-
-          if (tableRows.length === 0) {
+          
+          if (data.length === 0) {
               alert('No data to export');
               return;
           }
-
-          doc.text('Request Search Results', 14, 15);
-          doc.autoTable({
-              head: headers,
-              body: tableRows,
-              startY: 20,
-              styles: { fontSize: 8 },
-              headStyles: { fillColor: [0, 102, 204] }
+          
+          // Group data by Client -> SubClient
+          const groupedData = {};
+          data.forEach(item => {
+              if (!groupedData[item.client]) {
+                  groupedData[item.client] = {};
+              }
+              if (!groupedData[item.client][item.subClient]) {
+                  groupedData[item.client][item.subClient] = [];
+              }
+              groupedData[item.client][item.subClient].push(item);
           });
-
-          doc.save('request-search-results.pdf');
+          
+          // Define client priority order
+          const clientPriority = [
+              'Tier One Advisory',
+              'Beyond Horizons', 
+              'Cagayan Group'
+          ];
+          
+          // Filter and sort clients according to priority order
+          const orderedClients = clientPriority.filter(client => groupedData[client]);
+          
+          // PDF Styling
+          const pageWidth = doc.internal.pageSize.getWidth();
+          const margin = 20;
+          let yPosition = margin;
+          
+          // Company Header
+          doc.setFillColor(0, 86, 163); // Blue from your theme
+          doc.rect(0, 0, pageWidth, 25, 'F');
+          
+          // Company Name
+          doc.setTextColor(255, 255, 255);
+          doc.setFontSize(16);
+          doc.setFont('helvetica', 'bold');
+          doc.text('Tier One Advisory (Ph) Inc.', pageWidth / 2, 12, { align: 'center' });
+          
+          // Report Title
+          doc.setFontSize(12);
+          doc.text('Legal Department', pageWidth / 2, 20, { align: 'center' });
+          
+          yPosition = 40;
+          
+          // Main Report Title
+          doc.setTextColor(0, 0, 0);
+          doc.setFontSize(14);
+          doc.setFont('helvetica', 'bold');
+          doc.text(`Legal Department Monthly Report`, margin, yPosition);
+          yPosition += 8;
+          
+          doc.setFontSize(11);
+          doc.setFont('helvetica', 'normal');
+          doc.text(`Report Period: ${fromFormatted} to ${toFormatted}`, margin, yPosition);
+          yPosition += 15;
+          
+          // Generate Date
+          const generatedDate = new Date().toLocaleDateString('en-US', { 
+              month: 'long', 
+              day: 'numeric', 
+              year: 'numeric' 
+          });
+          doc.setFontSize(9);
+          doc.setTextColor(100, 100, 100);
+          doc.text(`Generated on: ${generatedDate}`, margin, yPosition);
+          yPosition += 20;
+          
+          // Grouped Content by Client and SubClient (in priority order)
+          let clientNumber = 1;
+          
+          orderedClients.forEach(client => {
+              // Check for page break before adding new client section
+              if (yPosition > 250) {
+                  doc.addPage();
+                  yPosition = margin;
+              }
+              
+              // Client Header (e.g., "1. Tier One Advisory")
+              doc.setTextColor(0, 0, 0);
+              doc.setFontSize(12);
+              doc.setFont('helvetica', 'bold');
+              doc.text(`${clientNumber}. ${client}`, margin, yPosition);
+              yPosition += 8;
+              
+              const subClients = groupedData[client];
+              let subClientNumber = 1;
+              
+              // Process subclients for this client
+              Object.keys(subClients).forEach(subClient => {
+                  // Check for page break before adding new subclient section
+                  if (yPosition > 260) {
+                      doc.addPage();
+                      yPosition = margin;
+                  }
+                  
+                  // SubClient Header (e.g., "1.1 Sub Client Name")
+                  doc.setFontSize(11);
+                  doc.setFont('helvetica', 'bold');
+                  doc.text(`${clientNumber}.${subClientNumber} ${subClient}`, margin + 5, yPosition);
+                  yPosition += 6;
+                  
+                  const items = subClients[subClient];
+                  
+                  items.forEach((item, index) => {
+                      // Check for page break before adding new item
+                      if (yPosition > 270) {
+                          doc.addPage();
+                          yPosition = margin;
+                      }
+                      
+                      // Notes in bulleted format
+                      if (item.notes && item.notes !== '-' && item.notes.trim() !== '') {
+                          doc.setFontSize(10);
+                          doc.setFont('helvetica', 'normal');
+                          
+                          // Bullet point
+                          doc.text('•', margin + 10, yPosition);
+                          
+                          // Split notes into lines that fit page width
+                          const notesLines = doc.splitTextToSize(item.notes, pageWidth - margin - 20);
+                          
+                          // Add notes with justified alignment
+                          doc.text(notesLines, margin + 15, yPosition, {
+                              align: 'justify'
+                          });
+                          
+                          // Move Y position based on number of lines
+                          yPosition += (notesLines.length * 5) + 3;
+                          
+                          // Add small metadata for each note
+                          doc.setFontSize(8);
+                          doc.setTextColor(100, 100, 100);
+                          const metadata = `Date: ${item.date} | Category: ${item.category} | Status: ${item.status}`;
+                          doc.text(metadata, margin + 15, yPosition);
+                          yPosition += 8;
+                          
+                          doc.setTextColor(0, 0, 0); // Reset color for next item
+                      }
+                  });
+                  
+                  subClientNumber++;
+                  yPosition += 5; // Extra space between subclients
+              });
+              
+              clientNumber++;
+              yPosition += 10; // Extra space between clients
+          });
+          
+          // Add page numbers
+          const totalPages = doc.internal.getNumberOfPages();
+          for (let i = 1; i <= totalPages; i++) {
+              doc.setPage(i);
+              doc.setFontSize(8);
+              doc.setTextColor(100, 100, 100);
+              doc.text(`Page ${i} of ${totalPages}`, pageWidth - margin, doc.internal.pageSize.getHeight() - 10);
+          }
+          
+          // Save the PDF
+          doc.save(`Legal-Dept-Monthly-Report-${fromFormatted}-to-${toFormatted}.pdf`);
       }
 
       function printResults() {
