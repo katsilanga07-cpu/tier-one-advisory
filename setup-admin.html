@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup Admin - Tier One Advisory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="max-w-md w-full mx-4 bg-white rounded-xl shadow-lg p-8">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Setup Admin Account</h1>
+        <p class="text-gray-600 mb-6">Create your administrator account</p>
+        
+        <form id="adminForm" class="space-y-4">
+            <input type="email" id="email" placeholder="Your email" required class="w-full p-3 border rounded-lg">
+            <input type="password" id="password" placeholder="Password" required class="w-full p-3 border rounded-lg">
+            <input type="text" id="fullName" placeholder="Your full name" required class="w-full p-3 border rounded-lg">
+            <button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-lg">Create Admin Account</button>
+        </form>
+    </div>
+
+    <script>
+        const { createClient } = supabase;
+        const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        document.getElementById('adminForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const fullName = document.getElementById('fullName').value;
+            
+            try {
+                // Create auth user
+                const { data: authData, error: authError } = await supabaseClient.auth.signUp({
+                    email,
+                    password
+                });
+                
+                if (authError) throw authError;
+                
+                // Create admin profile
+                const { error: profileError } = await supabaseClient
+                    .from('user_profiles')
+                    .insert({
+                        id: authData.user.id,
+                        email: email,
+                        full_name: fullName,
+                        role: 'admin',
+                        department: 'Legal Department'
+                    });
+                
+                if (profileError) throw profileError;
+                
+                alert('Admin account created successfully! You can now login.');
+                window.location.href = 'login.html';
+                
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+    </script>
+</body>
+</html>
