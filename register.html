@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Access - Tier One Advisory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .header-gradient {
+            background: linear-gradient(135deg, #0056a3 0%, #003d75 100%);
+        }
+        body {
+            background: linear-gradient(135deg, #9dc183 0%, #7d9a68 100%);
+            min-height: 100vh;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="max-w-md w-full mx-4">
+        <!-- Company Header -->
+        <div class="text-center mb-8">
+            <div class="w-16 h-16 bg-white rounded-xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+                <span class="text-blue-600 font-bold text-2xl">T1</span>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800">Tier One Advisory</h1>
+            <p class="text-gray-600 mt-2">Request Access to System</p>
+        </div>
+
+        <!-- Registration Card -->
+        <div class="bg-white rounded-2xl shadow-xl p-8">
+            <h2 class="text-2xl font-bold text-gray-800 text-center mb-2">Request Account</h2>
+            <p class="text-gray-600 text-center mb-8">Fill out the form to request access</p>
+
+            <form id="registerForm" class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="fullName" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                           placeholder="John Smith">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="email" required
+                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                           placeholder="your.email@company.com">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Department</label>
+                    <select id="department" required
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
+                        <option value="">Select Department</option>
+                        <option value="Legal">Legal Department</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Operations">Operations</option>
+                        <option value="Compliance">Compliance</option>
+                        <option value="HR">Human Resources</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                    <input type="password" id="password" required minlength="6"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                           placeholder="Create a password (min. 6 characters)">
+                </div>
+
+                <button type="submit" id="registerButton"
+                        class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium flex items-center justify-center">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Request Access
+                </button>
+            </form>
+
+            <!-- Login Link -->
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">
+                    Already have an account?
+                    <a href="login.html" class="text-blue-600 hover:text-blue-700 font-medium">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const { createClient } = supabase;
+        const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Registration function
+        document.getElementById('registerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const department = document.getElementById('department').value;
+            const password = document.getElementById('password').value;
+            const button = document.getElementById('registerButton');
+            
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Creating Account...';
+            button.disabled = true;
+            
+            try {
+                // Sign up with Supabase Auth
+                const { data: authData, error: authError } = await supabaseClient.auth.signUp({
+                    email,
+                    password,
+                    options: {
+                        data: {
+                            full_name: fullName,
+                            department: department
+                        }
+                    }
+                });
+                
+                if (authError) throw authError;
+                
+                if (authData.user) {
+                    // Create user profile (this will work once we have the admin user set up)
+                    const { error: profileError } = await supabaseClient
+                        .from('user_profiles')
+                        .insert({
+                            id: authData.user.id,
+                            email: email,
+                            full_name: fullName,
+                            department: department,
+                            role: 'requester' // Default role
+                        });
+                    
+                    if (profileError) {
+                        console.error('Profile creation error:', profileError);
+                        // Continue anyway - admin can fix this later
+                    }
+                    
+                    alert('Account request submitted! An admin will review and activate your account.');
+                    window.location.href = 'login.html';
+                }
+                
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('Registration failed: ' + error.message);
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        });
+
+        // Check if user is already logged in
+        async function checkAuth() {
+            const { data: { user } } = await supabaseClient.auth.getUser();
+            if (user) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        checkAuth();
+    </script>
+</body>
+</html>
