@@ -423,6 +423,33 @@
         }
       });
 
+      // ==================== FIXED RESET FUNCTION ====================
+      function resetForm() {
+          // Reset form fields
+          document.getElementById('searchInput').value = '';
+          document.getElementById('statusFilter').value = '';
+          document.getElementById('fromDate').value = '';
+          document.getElementById('toDate').value = '';
+          
+          // Reset results
+          document.getElementById('searchResults').innerHTML = `
+              <tr>
+                  <td colspan="7" class="px-4 py-6 text-center text-gray-500">
+                      <i class="fas fa-search text-2xl mb-2 text-gray-300"></i>
+                      <p class="text-sm">Enter search criteria to find requests</p>
+                  </td>
+              </tr>
+          `;
+          
+          // Reset count
+          document.getElementById('resultCount').textContent = '0 records found';
+          
+          // Set default dates
+          setDefaultDates();
+          
+          console.log('Form reset successfully');
+      }
+
       // ==================== AUTHENTICATION & USER MANAGEMENT ====================
       let currentUserProfile = null;
 
