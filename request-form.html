@@ -34,74 +34,171 @@
         background: linear-gradient(to right, #CBE5AE, #94B447);
         min-height: 100vh;
       }
+
+      /* Improved Header Styles inspired by SGS */
+      .compact-header {
+        padding: 0.75rem 0;
+      }
+
+      .compact-nav {
+        padding: 0.5rem 0;
+      }
+
+      .tighter-margins {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      /* SGS-inspired navigation */
+      .nav-item {
+        position: relative;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        border-radius: 0.375rem;
+        transition: all 0.2s ease;
+        font-size: 0.875rem;
+      }
+
+      .nav-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .nav-item.active {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Compact spacing */
+      .compact-spacing {
+        margin-bottom: 1.5rem;
+      }
+
+      .section-padding {
+        padding: 1.5rem 0;
+      }
+
+      /* Improved mobile responsiveness */
+      @media (max-width: 768px) {
+        .tighter-margins {
+          padding: 0 1rem;
+        }
+        
+        .compact-header {
+          padding: 0.5rem 0;
+        }
+        
+        .nav-item {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Tighten up existing components */
+      .stats-card {
+        padding: 1rem;
+      }
+
+      .quick-action-card {
+        padding: 1.5rem;
+      }
     </style>
   </head>
 
   <body class="form-background">
-    <!-- Header -->
+    <!-- Enhanced Compact Header -->
     <header class="bg-white shadow-sm">
-      <!-- Top Bar -->
-      <div class="bg-gray-800 text-white py-2">
-        <div class="container mx-auto px-4">
-          <div class="flex justify-between items-center text-sm">
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-globe mr-1"></i> Philippines</a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-phone mr-1"></i> Contact Us</a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-user mr-1"></i> Login</a>
+      <!-- Top Bar - Made more compact -->
+      <div class="bg-gray-800 text-white py-1.5 text-xs">
+        <div class="tighter-margins px-4">
+          <div class="flex justify-between items-center">
+            <div class="flex space-x-3">
+              <a href="#" class="hover:text-blue-300 transition flex items-center">
+                <i class="fas fa-globe mr-1 text-xs"></i> Philippines
+              </a>
+              <a href="#" class="hover:text-blue-300 transition flex items-center">
+                <i class="fas fa-phone mr-1 text-xs"></i> Contact Us
+              </a>
+              <a href="#" onclick="logout()" class="hover:text-blue-300 transition cursor-pointer flex items-center">
+                <i class="fas fa-sign-out-alt mr-1 text-xs"></i> Logout
+              </a>
             </div>
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook"></i></a>
+            <div class="flex space-x-3">
+              <a href="#" class="hover:text-blue-300 transition">
+                <i class="fab fa-linkedin text-sm"></i>
+              </a>
+              <a href="#" class="hover:text-blue-300 transition">
+                <i class="fab fa-twitter text-sm"></i>
+              </a>
+              <a href="#" class="hover:text-blue-300 transition">
+                <i class="fab fa-facebook text-sm"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Main Navigation -->
-      <nav class="header-gradient text-white">
-        <div class="container mx-auto px-4">
-          <div class="flex items-center justify-between py-4">
-            <!-- Company Name -->
-            <div class="flex items-center space-x-8">
-              <a href="index.html" class="text-2xl font-bold text-white">
-                Tier One Advisory Philippines Inc.
+      <!-- Main Navigation - More compact like SGS -->
+      <nav class="header-gradient text-white shadow-lg compact-nav">
+        <div class="tighter-margins px-4">
+          <div class="flex items-center justify-between">
+            <!-- Company Logo & Name -->
+            <div class="flex items-center space-x-6">
+              <a href="dashboard.html" class="flex items-center space-x-2 text-xl font-bold text-white">
+                <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                  <span class="text-blue-600 font-bold text-sm">T1</span>
+                </div>
+                <span class="hidden sm:block">Tier One Advisory Philippines Inc.</span>
               </a>
               
-              <!-- Main Menu -->
-              <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="hover:text-blue-200 transition">Dashboard</a>
-                <a href="request-form.html" class="hover:text-blue-200 transition font-medium border-b-2 border-white">Request Form</a>
-                <a href="search.html" class="hover:text-blue-200 transition">Search</a>
-                <a href="monitoring.html" class="hover:text-blue-200 transition">Monitoring</a>
+              <!-- Main Menu - More compact -->
+              <div class="hidden md:flex space-x-0.5">
+                <a href="dashboard.html" class="nav-item">
+                  Dashboard
+                </a>
+                <a href="request-form.html" class="nav-item active">
+                  Request Form
+                </a>
+                <a href="search.html" class="nav-item">
+                  Search
+                </a>
+                <a href="monitoring.html" class="nav-item">
+                  Monitoring
+                </a>
+                <a href="admin-approval.html" class="nav-item">
+                  Approvals
+                </a>
               </div>
             </div>
 
-            <!-- Right Side Actions -->
-            <div class="flex items-center space-x-4">
-              <button id="searchButton" class="hover:text-blue-200 transition">
-                <i class="fas fa-search"></i>
+            <!-- Right Side Actions - More compact -->
+            <div class="flex items-center space-x-3">
+              <button id="searchButton" class="p-1.5 hover:bg-white/10 rounded transition-all duration-200">
+                <i class="fas fa-search text-sm"></i>
               </button>
-              <button class="md:hidden hover:text-blue-200 transition">
-                <i class="fas fa-bars text-xl"></i>
-              </button>
+              <div class="relative">
+                <button class="flex items-center space-x-1.5 p-1.5 hover:bg-white/10 rounded transition-all duration-200">
+                  <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-user text-xs"></i>
+                  </div>
+                  <span id="headerUserWelcome" class="text-xs font-medium hidden sm:block">Welcome!</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
-      <!-- Breadcrumb -->
-      <div class="bg-gray-100 border-b">
-        <div class="container mx-auto px-4 py-2">
-          <nav class="text-sm">
+      <!-- Compact Breadcrumb -->
+      <div class="bg-gray-100 border-b text-xs">
+        <div class="tighter-margins px-4 py-1.5">
+          <nav>
             <ol class="list-none p-0 inline-flex">
               <li class="flex items-center">
-                <a href="index.html" class="text-blue-600 hover:text-blue-800">Home</a>
-                <span class="mx-2 text-gray-400">/</span>
+                <a href="dashboard.html" class="text-blue-600 hover:text-blue-800">Home</a>
+                <span class="mx-1.5 text-gray-400">/</span>
               </li>
               <li class="flex items-center">
-                <a href="index.html" class="text-blue-600 hover:text-blue-800">Dashboard</a>
-                <span class="mx-2 text-gray-400">/</span>
+                <a href="dashboard.html" class="text-blue-600 hover:text-blue-800">Dashboard</a>
+                <span class="mx-1.5 text-gray-400">/</span>
               </li>
               <li class="text-gray-500">Request Form</li>
             </ol>
@@ -111,94 +208,103 @@
     </header>
 
     <!-- Main Content -->
-    <main class="min-h-screen flex items-center justify-center py-8">
-      <div class="bg-white shadow-xl rounded-2xl p-8 w-full max-w-3xl">
-        <h1 class="text-3xl font-bold text-center text-blue-700 mb-8">
-          📁 Request Form
-        </h1>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Dropdown 1 -->
-          <div>
-            <label for="clientDropdown" class="block text-gray-700 font-medium mb-2">
-              Client
-            </label>
-            <select
-              id="clientDropdown"
-              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">-- Select Client --</option>
-            </select>
-          </div>
-
-          <!-- Dropdown 2 -->
-          <div>
-            <label for="subClientDropdown" class="block text-gray-700 font-medium mb-2">
-              Sub-Client
-            </label>
-            <select
-              id="subClientDropdown"
-              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">-- Select Sub-Client --</option>
-            </select>
-          </div>
-
-          <!-- Dropdown 3 -->
-          <div>
-            <label for="categoryDropdown" class="block text-gray-700 font-medium mb-2">
-              Category
-            </label>
-            <select
-              id="categoryDropdown"
-              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">-- Select Category --</option>
-            </select>
-          </div>
-
-          <!-- Dropdown 4 -->
-          <div>
-            <label for="documentDropdown" class="block text-gray-700 font-medium mb-2">
-              Document Type
-            </label>
-            <select
-              id="documentDropdown"
-              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">-- Select Document Type --</option>
-            </select>
-          </div>
+    <main class="min-h-screen py-6">
+      <div class="tighter-margins px-4">
+        <!-- Page Header (like dashboard) -->
+        <div class="compact-spacing">
+          <h1 class="text-2xl font-bold text-gray-800">Request Form</h1>
+          <p id="welcomeMessage" class="text-gray-600 mt-1 text-sm">Welcome back!</p>
         </div>
 
-        <!-- Notes and Date -->
-        <div class="mt-6">
-          <label for="notes" class="block text-gray-700 font-medium mb-2">Notes</label>
-          <textarea
-            id="notes"
-            rows="3"
-            placeholder="Enter notes here..."
-            class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          ></textarea>
-        </div>
+        <!-- Form Card -->
+        <div class="bg-white shadow-lg rounded-xl p-6 w-full max-w-3xl mx-auto">
+          <h2 class="text-xl font-semibold text-center text-gray-800 mb-4">
+            Please enter your request below
+          </h2>
 
-        <div class="mt-4">
-          <label for="date" class="block text-gray-700 font-medium mb-2">Date</label>
-          <input
-            type="date"
-            id="date"
-            class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Dropdown 1 -->
+            <div>
+              <label for="clientDropdown" class="block text-gray-700 font-medium mb-2 text-sm">
+                Client
+              </label>
+              <select
+                id="clientDropdown"
+                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              >
+                <option value="">-- Select Client --</option>
+              </select>
+            </div>
 
-        <!-- Save button -->
-        <div class="mt-8 text-center">
-          <button
-            id="saveButton"
-            class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-medium"
-          >
-            <i class="fas fa-save mr-2"></i>Save Request
-          </button>
+            <!-- Dropdown 2 -->
+            <div>
+              <label for="subClientDropdown" class="block text-gray-700 font-medium mb-2 text-sm">
+                Sub-Client
+              </label>
+              <select
+                id="subClientDropdown"
+                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              >
+                <option value="">-- Select Sub-Client --</option>
+              </select>
+            </div>
+
+            <!-- Dropdown 3 -->
+            <div>
+              <label for="categoryDropdown" class="block text-gray-700 font-medium mb-2 text-sm">
+                Category
+              </label>
+              <select
+                id="categoryDropdown"
+                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              >
+                <option value="">-- Select Category --</option>
+              </select>
+            </div>
+
+            <!-- Dropdown 4 -->
+            <div>
+              <label for="documentDropdown" class="block text-gray-700 font-medium mb-2 text-sm">
+                Document Type
+              </label>
+              <select
+                id="documentDropdown"
+                class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              >
+                <option value="">-- Select Document Type --</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Notes and Date -->
+          <div class="mt-4">
+            <label for="notes" class="block text-gray-700 font-medium mb-2 text-sm">Notes</label>
+            <textarea
+              id="notes"
+              rows="3"
+              placeholder="Enter notes here..."
+              class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            ></textarea>
+          </div>
+
+          <div class="mt-3">
+            <label for="date" class="block text-gray-700 font-medium mb-2 text-sm">Date</label>
+            <input
+              type="date"
+              id="date"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            />
+          </div>
+
+          <!-- Save button -->
+          <div class="mt-6 text-center">
+            <button
+              id="saveButton"
+              class="bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-700 transition font-medium text-sm"
+            >
+              <i class="fas fa-save mr-2"></i>Save Request
+            </button>
+          </div>
         </div>
       </div>
     </main>
@@ -208,27 +314,27 @@
       <div class="flex items-center justify-center min-h-screen p-4">
         <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
           <div class="p-6">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-2xl font-semibold text-gray-800">Search Requests</h3>
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-semibold text-gray-800">Search Requests</h3>
               <button id="closeSearch" class="text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times text-2xl"></i>
+                <i class="fas fa-times text-xl"></i>
               </button>
             </div>
             
-            <div class="relative mb-6">
+            <div class="relative mb-4">
               <input 
                 type="text" 
                 id="searchInput"
                 placeholder="Search by client name, category, or document type..."
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
               >
               <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
             </div>
             
             <div id="searchResults" class="max-h-96 overflow-y-auto">
-              <div class="text-center text-gray-500 py-8">
-                <i class="fas fa-search text-3xl mb-3"></i>
-                <p>Enter search terms to find requests</p>
+              <div class="text-center text-gray-500 py-6">
+                <i class="fas fa-search text-2xl mb-2"></i>
+                <p class="text-sm">Enter search terms to find requests</p>
               </div>
             </div>
           </div>
@@ -236,13 +342,13 @@
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-12">
-      <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Footer - More compact -->
+    <footer class="bg-gray-800 text-white mt-8">
+      <div class="tighter-margins px-4 py-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div>
-            <h3 class="font-bold text-lg mb-4">Company</h3>
-            <ul class="space-y-2">
+            <h3 class="font-bold text-base mb-3">Company</h3>
+            <ul class="space-y-1 text-sm">
               <li><a href="#" class="hover:text-blue-300 transition">About Us</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Leadership</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Careers</a></li>
@@ -250,31 +356,31 @@
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-4">Services</h3>
-            <ul class="space-y-2">
+            <h3 class="font-bold text-base mb-3">Services</h3>
+            <ul class="space-y-1 text-sm">
               <li><a href="#" class="hover:text-blue-300 transition">All Services</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Industries</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Locations</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-4">Support</h3>
-            <ul class="space-y-2">
+            <h3 class="font-bold text-base mb-3">Support</h3>
+            <ul class="space-y-1 text-sm">
               <li><a href="#" class="hover:text-blue-300 transition">Contact Us</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Help Center</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Privacy Policy</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-4">Connect</h3>
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter text-xl"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook text-xl"></i></a>
+            <h3 class="font-bold text-base mb-3">Connect</h3>
+            <div class="flex space-x-3">
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook"></i></a>
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+        <div class="border-t border-gray-700 mt-6 pt-4 text-center text-xs text-gray-400">
           <p>&copy; 2024 Tier One Advisory Philippines Inc. All rights reserved.</p>
         </div>
       </div>
@@ -317,88 +423,216 @@
           }
         }
 
-        // Initialize Supabase (using global supabase from CDN)
+        // Initialize Supabase with tracking prevention fixes
         const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+          auth: {
+            persistSession: false,
+            autoRefreshToken: false,
+            detectSessionInUrl: false
+          }
+        });
+
+        // Load user info from localStorage and display in header
+        function loadUserInfo() {
+          const userData = localStorage.getItem('currentUser');
+          if (userData) {
+            try {
+              const user = JSON.parse(userData);
+              document.getElementById('headerUserWelcome').textContent = `Welcome, ${user.full_name}`;
+              return user;
+            } catch (e) {
+              console.error('Error parsing user data:', e);
+              return null;
+            }
+          }
+          return null;
+        }
+
+        // Display welcome message with user name
+        function displayWelcomeMessage() {
+          const userData = localStorage.getItem('currentUser');
+          if (userData) {
+            const user = JSON.parse(userData);
+            document.getElementById('welcomeMessage').textContent = `Welcome back, ${user.full_name}`;
+          }
+        }
+
+        // Logout function
+        async function logout() {
+          try {
+            await supabase.auth.signOut();
+          } catch (error) {
+            console.log('Logout error:', error);
+          }
+          localStorage.removeItem('currentUser');
+          window.location.href = 'index.html';
+        }
+
+        // Check if user is logged in (for page protection)
+        function checkAuth() {
+          const user = loadUserInfo();
+          if (!user) {
+            console.log('No user found in localStorage, redirecting to login...');
+            window.location.href = 'index.html';
+            return false;
+          }
+          console.log('User authenticated:', user.full_name, 'Role:', user.role);
+          return user;
+        }
+
+        // Test Supabase connection
+        async function testConnection() {
+          try {
+            console.log("Testing Supabase connection...");
+            const { data, error } = await supabase.from('sub_client').select('count', { count: 'exact', head: true });
+            
+            if (error) {
+              console.error("❌ Supabase connection failed:", error);
+              return false;
+            }
+            
+            console.log("✅ Supabase connection successful");
+            return true;
+          } catch (err) {
+            console.error("❌ Connection test exception:", err);
+            return false;
+          }
+        }
 
         // 🟢 Load Clients
         async function loadClients() {
           console.log("Fetching clients from Supabase...");
-          const { data, error } = await supabase.from("sub_client").select("clientList");
-          if (error) return console.error(error);
+          try {
+            const { data, error } = await supabase.from("sub_client").select("clientList");
+            
+            if (error) {
+              console.error("Error fetching clients:", error);
+              return;
+            }
 
-          console.log("Client data:", data);
-          const uniqueClients = [...new Set(data.map((item) => item.clientList))];
+            console.log("Client data:", data);
+            
+            if (!data || data.length === 0) {
+              console.warn("No client data found");
+              return;
+            }
 
-          uniqueClients.forEach((client) => {
-            const option = document.createElement("option");
-            option.value = client;
-            option.textContent = client;
-            elements.clientDropdown.appendChild(option);
-          });
+            const uniqueClients = [...new Set(data.map((item) => item.clientList))];
+            
+            // Clear existing options first
+            elements.clientDropdown.innerHTML = '<option value="">-- Select Client --</option>';
+            
+            uniqueClients.forEach((client) => {
+              const option = document.createElement("option");
+              option.value = client;
+              option.textContent = client;
+              elements.clientDropdown.appendChild(option);
+            });
 
-          console.log("Dropdown populated with clients.");
+            console.log("Dropdown populated with clients.");
+          } catch (err) {
+            console.error("Exception in loadClients:", err);
+          }
         }
 
         // 🟡 Load Sub-Clients
         async function loadSubClients(selectedClient) {
-          const { data, error } = await supabase
-            .from("sub_client")
-            .select("subClientList")
-            .eq("clientList", selectedClient);
-          if (error) return console.error(error);
+          try {
+            const { data, error } = await supabase
+              .from("sub_client")
+              .select("subClientList")
+              .eq("clientList", selectedClient);
+              
+            if (error) {
+              console.error("Error loading sub-clients:", error);
+              return;
+            }
 
-          elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
-          data.forEach((row) => {
-            const option = document.createElement("option");
-            option.value = row.subClientList;
-            option.textContent = row.subClientList;
-            elements.subClientDropdown.appendChild(option);
-          });
+            elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
+            
+            if (data && data.length > 0) {
+              data.forEach((row) => {
+                const option = document.createElement("option");
+                option.value = row.subClientList;
+                option.textContent = row.subClientList;
+                elements.subClientDropdown.appendChild(option);
+              });
+            }
+          } catch (err) {
+            console.error("Exception in loadSubClients:", err);
+          }
         }
 
         // 🟣 Load Categories
         async function loadCategories() {
           console.log("Fetching categories from Supabase...");
-          const { data, error } = await supabase.from("category").select("categoryList");
-          if (error) return console.error(error);
+          try {
+            const { data, error } = await supabase.from("category").select("categoryList");
+            
+            if (error) {
+              console.error("Error fetching categories:", error);
+              return;
+            }
 
-          const uniqueCategories = [...new Set(data.map((item) => item.categoryList))];
-          console.log("Category data:", uniqueCategories);
+            console.log("Category data:", data);
+            
+            if (!data || data.length === 0) {
+              console.warn("No category data found");
+              return;
+            }
 
-          uniqueCategories.forEach((cat) => {
-            const option = document.createElement("option");
-            option.value = cat;
-            option.textContent = cat;
-            elements.categoryDropdown.appendChild(option);
-          });
+            const uniqueCategories = [...new Set(data.map((item) => item.categoryList))];
 
-          console.log("Dropdown populated with categories.");
+            // Clear existing options first
+            elements.categoryDropdown.innerHTML = '<option value="">-- Select Category --</option>';
+            
+            uniqueCategories.forEach((cat) => {
+              const option = document.createElement("option");
+              option.value = cat;
+              option.textContent = cat;
+              elements.categoryDropdown.appendChild(option);
+            });
+
+            console.log("Dropdown populated with categories.");
+          } catch (err) {
+            console.error("Exception in loadCategories:", err);
+          }
         }
 
         // 🔵 Load Documents
         async function loadDocuments(selectedCategory) {
-          const { data, error } = await supabase
-            .from("category")
-            .select("documents")
-            .eq("categoryList", selectedCategory);
+          try {
+            const { data, error } = await supabase
+              .from("category")
+              .select("documents")
+              .eq("categoryList", selectedCategory);
 
-          if (error) return console.error(error);
-
-          elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
-
-          data.forEach((row) => {
-            if (row.documents) {
-              const option = document.createElement("option");
-              option.value = row.documents;
-              option.textContent = row.documents;
-              elements.documentDropdown.appendChild(option);
+            if (error) {
+              console.error("Error loading documents:", error);
+              return;
             }
-          });
+
+            elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
+
+            if (data && data.length > 0) {
+              data.forEach((row) => {
+                if (row.documents) {
+                  const option = document.createElement("option");
+                  option.value = row.documents;
+                  option.textContent = row.documents;
+                  elements.documentDropdown.appendChild(option);
+                }
+              });
+            }
+          } catch (err) {
+            console.error("Exception in loadDocuments:", err);
+          }
         }
 
-        // 💾 Save to tasks_database
+        // 💾 Save task - SIMPLIFIED SINGLE-TABLE APPROACH
         async function saveTask() {
           const client = elements.clientDropdown.value;
           const subClient = elements.subClientDropdown.value;
@@ -412,25 +646,44 @@
             return;
           }
 
-          const { error } = await supabase.from("tasks_database").insert([
-            {
-              client,
-              subClient,
-              category,
-              documentType,
-              notes,
-              date,
-              status: 'pending',
-              created_at: new Date().toISOString(),
-            },
-          ]);
+          try {
+            // Get current user from localStorage
+            const userData = localStorage.getItem('currentUser');
+            if (!userData) {
+              alert("❌ Please log in to submit requests.");
+              window.location.href = 'index.html';
+              return;
+            }
 
-          if (error) {
-            console.error(error);
-            alert("❌ Error saving task.");
-          } else {
-            alert("✅ Task saved successfully!");
-            resetForm();
+            const user = JSON.parse(userData);
+
+            // SINGLE-TABLE APPROACH: Everyone saves directly to tasks_database
+            const taskData = {
+              client: client,
+              subClient: subClient || null,
+              category: category,
+              documentType: documentType,
+              notes: notes || null,
+              date: date,
+              status: 'pending', // Everyone starts as pending
+              created_at: new Date().toISOString(),
+              requester_id: user.id,
+              requester: user.full_name,
+              approved_by: null // No approval needed in single-table workflow
+            };
+
+            const { error } = await supabase.from("tasks_database").insert([taskData]);
+
+            if (error) {
+              console.error('Error saving to tasks_database:', error);
+              alert("❌ Error saving task: " + error.message);
+            } else {
+              alert("✅ Request submitted successfully!");
+              resetForm();
+            }
+          } catch (err) {
+            console.error("Exception in saveTask:", err);
+            alert("❌ Error saving task. Please check console for details.");
           }
         }
 
@@ -475,9 +728,9 @@
             elements.searchModal.classList.add('hidden');
             elements.searchInput.value = '';
             elements.searchResults.innerHTML = `
-              <div class="text-center text-gray-500 py-8">
-                <i class="fas fa-search text-3xl mb-3"></i>
-                <p>Enter search terms to find requests</p>
+              <div class="text-center text-gray-500 py-6">
+                <i class="fas fa-search text-2xl mb-2"></i>
+                <p class="text-sm">Enter search terms to find requests</p>
               </div>
             `;
           });
@@ -488,9 +741,9 @@
               elements.searchModal.classList.add('hidden');
               elements.searchInput.value = '';
               elements.searchResults.innerHTML = `
-                <div class="text-center text-gray-500 py-8">
-                  <i class="fas fa-search text-3xl mb-3"></i>
-                  <p>Enter search terms to find requests</p>
+                <div class="text-center text-gray-500 py-6">
+                  <i class="fas fa-search text-2xl mb-2"></i>
+                  <p class="text-sm">Enter search terms to find requests</p>
                 </div>
               `;
             }
@@ -502,9 +755,9 @@
             
             if (searchTerm.length < 2) {
               elements.searchResults.innerHTML = `
-                <div class="text-center text-gray-500 py-8">
-                  <i class="fas fa-search text-3xl mb-3"></i>
-                  <p>Enter at least 2 characters to search</p>
+                <div class="text-center text-gray-500 py-6">
+                  <i class="fas fa-search text-2xl mb-2"></i>
+                  <p class="text-sm">Enter at least 2 characters to search</p>
                 </div>
               `;
               return;
@@ -531,9 +784,9 @@
         async function performSearch(searchTerm) {
           try {
             elements.searchResults.innerHTML = `
-              <div class="text-center text-gray-500 py-8">
-                <i class="fas fa-spinner fa-spin text-blue-500 text-3xl mb-3"></i>
-                <p>Searching...</p>
+              <div class="text-center text-gray-500 py-6">
+                <i class="fas fa-spinner fa-spin text-blue-500 text-2xl mb-2"></i>
+                <p class="text-sm">Searching...</p>
               </div>
             `;
 
@@ -549,9 +802,9 @@
           } catch (error) {
             console.error('Search error:', error);
             elements.searchResults.innerHTML = `
-              <div class="text-center text-red-500 py-8">
-                <i class="fas fa-exclamation-triangle text-2xl mb-3"></i>
-                <p>Error performing search</p>
+              <div class="text-center text-red-500 py-6">
+                <i class="fas fa-exclamation-triangle text-xl mb-2"></i>
+                <p class="text-sm">Error performing search</p>
               </div>
             `;
           }
@@ -561,31 +814,31 @@
         function displaySearchResults(tasks, searchTerm) {
           if (!tasks || tasks.length === 0) {
             elements.searchResults.innerHTML = `
-              <div class="text-center text-gray-500 py-8">
-                <i class="fas fa-search text-3xl mb-3"></i>
-                <p>No results found for "${searchTerm}"</p>
+              <div class="text-center text-gray-500 py-6">
+                <i class="fas fa-search text-2xl mb-2"></i>
+                <p class="text-sm">No results found for "${searchTerm}"</p>
               </div>
             `;
             return;
           }
 
-          let resultsHtml = '<div class="space-y-4">';
+          let resultsHtml = '<div class="space-y-3">';
           
           tasks.forEach(task => {
             const statusColor = getStatusColor(task.status);
             
             resultsHtml += `
-              <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition">
+              <div class="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition">
                 <div class="flex justify-between items-start mb-2">
                   <div>
-                    <h4 class="font-semibold text-gray-800">${task.client} - ${task.subClient || 'No Sub-Client'}</h4>
-                    <p class="text-sm text-gray-600">${new Date(task.date).toLocaleDateString()}</p>
+                    <h4 class="font-semibold text-gray-800 text-sm">${task.client} - ${task.subClient || 'No Sub-Client'}</h4>
+                    <p class="text-xs text-gray-600">${new Date(task.date).toLocaleDateString()}</p>
                   </div>
                   <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">
                     ${task.status}
                   </span>
                 </div>
-                <div class="grid grid-cols-2 gap-2 text-sm">
+                <div class="grid grid-cols-2 gap-2 text-xs">
                   <div>
                     <span class="text-gray-600">Category:</span>
                     <span class="font-medium">${task.category}</span>
@@ -597,8 +850,8 @@
                 </div>
                 ${task.notes ? `
                   <div class="mt-2">
-                    <p class="text-sm text-gray-600">Notes:</p>
-                    <p class="text-sm text-gray-800 line-clamp-2">${task.notes}</p>
+                    <p class="text-xs text-gray-600">Notes:</p>
+                    <p class="text-xs text-gray-800 line-clamp-2">${task.notes}</p>
                   </div>
                 ` : ''}
               </div>
@@ -620,14 +873,50 @@
         }
 
         // Initialize everything
-        loadClients();
-        loadCategories();
-        initializeSearch();
+        async function initializeApp() {
+          // Check if user is logged in using our localStorage method
+          const user = checkAuth(); // This will redirect to login if not authenticated
+          if (!user) return;
 
-        // Set default date to today
-        const today = new Date();
-        const formattedDate = today.toISOString().split('T')[0];
-        elements.dateInput.value = formattedDate;
+          console.log("User logged in:", user.full_name, "Role:", user.role);
+          // In initializeApp() function, add this:
+          displayWelcomeMessage();
+          // Test Supabase connection but don't block if it fails
+          try {
+            const connectionOk = await testConnection();
+            if (connectionOk) {
+              await loadClients();
+              await loadCategories();
+              initializeSearch();
+              
+              // Set default date to today
+              const today = new Date();
+              const formattedDate = today.toISOString().split('T')[0];
+              elements.dateInput.value = formattedDate;
+              
+              console.log("✅ App initialized successfully");
+            } else {
+              console.error("❌ Connection issues, but continuing with limited functionality");
+              // Still allow form access even if DB connection fails
+              await loadClients();
+              await loadCategories();
+              initializeSearch();
+              
+              const today = new Date();
+              const formattedDate = today.toISOString().split('T')[0];
+              elements.dateInput.value = formattedDate;
+            }
+          } catch (error) {
+            console.error("Error during initialization:", error);
+            // Still allow form access even if initialization fails
+            const today = new Date();
+            const formattedDate = today.toISOString().split('T')[0];
+            elements.dateInput.value = formattedDate;
+          }
+        }
+        
+        // Initialize the application
+        initializeApp();
       });
     </script>
   </body>
