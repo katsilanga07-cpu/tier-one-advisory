@@ -32,7 +32,7 @@
         left: 50%;
         transform: translate(-50%, -50%);
         background: white;
-        padding: 2rem;
+        padding: 1.5rem;
         border-radius: 12px;
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
       }
@@ -61,62 +61,197 @@
       .card-bg-10 { background-color: #6366f1; color: white; } /* Indigo */
       .card-bg-11 { background-color: #14b8a6; color: white; } /* Teal */
       .card-bg-12 { background-color: #fbbf24; color: black; } /* Amber */
+      /* Search Modal */
+      .search-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+      }
+      .search-modal-content {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
+      }
+
+      /* Improved Header Styles inspired by SGS */
+      .compact-header {
+        padding: 0.75rem 0;
+      }
+
+      .compact-nav {
+        padding: 0.5rem 0;
+      }
+
+      .tighter-margins {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      /* SGS-inspired navigation */
+      .nav-item {
+        position: relative;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        border-radius: 0.375rem;
+        transition: all 0.2s ease;
+        font-size: 0.875rem;
+      }
+
+      .nav-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .nav-item.active {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Compact spacing */
+      .compact-spacing {
+        margin-bottom: 1.5rem;
+      }
+
+      .section-padding {
+        padding: 1.5rem 0;
+      }
+
+      /* Improved mobile responsiveness */
+      @media (max-width: 768px) {
+        .tighter-margins {
+          padding: 0 1rem;
+        }
+        
+        .compact-header {
+          padding: 0.5rem 0;
+        }
+        
+        .nav-item {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Tighten up existing components */
+      .stats-card {
+        padding: 1rem;
+      }
+
+      .quick-action-card {
+        padding: 1.5rem;
+      }
     </style>
   </head>
 
   <body class="bg-gradient-to-br from-[#9dc183] to-[#7d9a68]">
-    <!-- Header -->
+    <!-- Search Modal -->
+    <div id="searchModal" class="search-modal">
+      <div class="search-modal-content">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-semibold text-gray-800">Search Requests</h3>
+          <button id="closeSearch" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        <div class="relative">
+          <input type="text" id="globalSearch" placeholder="Search by client, category, document type..." 
+                 class="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+          <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+        </div>
+        <div class="mt-4">
+          <button onclick="performGlobalSearch()" class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition-all duration-200 font-medium">
+            <i class="fas fa-search mr-2"></i>Search
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Enhanced Compact Header -->
     <header class="bg-white shadow-sm">
-      <!-- Top Bar -->
-      <div class="bg-gray-800 text-white py-2">
-        <div class="container mx-auto px-4">
-          <div class="flex justify-between items-center text-sm">
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-globe mr-1"></i> Philippines</a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-phone mr-1"></i> Contact Us</a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-user mr-1"></i> Login</a>
+      <!-- Top Bar - Made more compact -->
+      <div class="bg-gray-800 text-white py-1.5 text-xs">
+        <div class="tighter-margins px-4">
+          <div class="flex justify-between items-center">
+            <div class="flex space-x-3">
+              <a href="#" class="hover:text-blue-300 transition flex items-center">
+                <i class="fas fa-globe mr-1 text-xs"></i> Philippines
+              </a>
+              <a href="#" class="hover:text-blue-300 transition flex items-center">
+                <i class="fas fa-phone mr-1 text-xs"></i> Contact Us
+              </a>
+              <a href="#" onclick="logout()" class="hover:text-blue-300 transition cursor-pointer flex items-center">
+                <i class="fas fa-sign-out-alt mr-1 text-xs"></i> Logout
+              </a>
             </div>
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook"></i></a>
+            <div class="flex space-x-3">
+              <a href="#" class="hover:text-blue-300 transition">
+                <i class="fab fa-linkedin text-sm"></i>
+              </a>
+              <a href="#" class="hover:text-blue-300 transition">
+                <i class="fab fa-twitter text-sm"></i>
+              </a>
+              <a href="#" class="hover:text-blue-300 transition">
+                <i class="fab fa-facebook text-sm"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Enhanced Main Navigation -->
-      <nav class="header-gradient text-white shadow-lg">
-        <div class="container mx-auto px-4">
-          <div class="flex items-center justify-between py-4">
+      <!-- Main Navigation - More compact like SGS -->
+      <nav class="header-gradient text-white shadow-lg compact-nav">
+        <div class="tighter-margins px-4">
+          <div class="flex items-center justify-between">
             <!-- Company Logo & Name -->
-            <div class="flex items-center space-x-8">
-              <a href="index.html" class="flex items-center space-x-3 text-2xl font-bold text-white">
-                <div class="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-                  <span class="text-blue-600 font-bold text-lg">T1</span>
+            <div class="flex items-center space-x-6">
+              <a href="dashboard.html" class="flex items-center space-x-2 text-xl font-bold text-white">
+                <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                  <span class="text-blue-600 font-bold text-sm">T1</span>
                 </div>
-                <span>Tier One Advisory</span>
+                <span class="hidden sm:block">Tier One Advisory Philippines Inc.</span>
               </a>
               
-              <!-- Main Menu -->
-              <div class="hidden md:flex space-x-1">
-                <a href="index.html" class="px-4 py-2 rounded-lg hover:bg-white/10 transition-all duration-200">Dashboard</a>
-                <a href="request-form.html" class="px-4 py-2 rounded-lg hover:bg-white/10 transition-all duration-200">Request Form</a>
-                <a href="search.html" class="px-4 py-2 rounded-lg hover:bg-white/10 transition-all duration-200">Search</a>
-                <a href="monitoring.html" class="px-4 py-2 rounded-lg bg-white/20 font-semibold transition-all duration-200">Monitoring</a>
+              <!-- Main Menu - More compact -->
+              <div class="hidden md:flex space-x-0.5">
+                <a href="dashboard.html" class="nav-item">
+                  Dashboard
+                </a>
+                <a href="request-form.html" class="nav-item">
+                  Request Form
+                </a>
+                <a href="search.html" class="nav-item">
+                  Search
+                </a>
+                <a href="monitoring.html" class="nav-item active">
+                  Monitoring
+                </a>
+                <a href="#" id="approvalsLink" class="nav-item">
+                  Approvals
+                </a>
               </div>
             </div>
 
-            <!-- Right Side Actions -->
-            <div class="flex items-center space-x-4">
-              <a href="search.html" class="p-2 hover:bg-white/10 rounded-lg transition-all duration-200">
-                <i class="fas fa-search"></i>
-              </a>
+            <!-- Right Side Actions - More compact -->
+            <div class="flex items-center space-x-3">
+              <button id="searchButton" class="p-1.5 hover:bg-white/10 rounded transition-all duration-200">
+                <i class="fas fa-search text-sm"></i>
+              </button>
               <div class="relative">
-                <button class="flex items-center space-x-2 p-2 hover:bg-white/10 rounded-lg transition-all duration-200">
-                  <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
-                    <i class="fas fa-user text-sm"></i>
+                <button class="flex items-center space-x-1.5 p-1.5 hover:bg-white/10 rounded transition-all duration-200">
+                  <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-user text-xs"></i>
                   </div>
+                  <span id="userWelcome" class="text-xs font-medium hidden sm:block">Welcome!</span>
                 </button>
               </div>
             </div>
@@ -124,18 +259,14 @@
         </div>
       </nav>
 
-      <!-- Breadcrumb -->
-      <div class="bg-gray-100 border-b">
-        <div class="container mx-auto px-4 py-2">
-          <nav class="text-sm">
+      <!-- Compact Breadcrumb -->
+      <div class="bg-gray-100 border-b text-xs">
+        <div class="tighter-margins px-4 py-1.5">
+          <nav>
             <ol class="list-none p-0 inline-flex">
               <li class="flex items-center">
-                <a href="index.html" class="text-blue-600 hover:text-blue-800">Home</a>
-                <span class="mx-2 text-gray-400">/</span>
-              </li>
-              <li class="flex items-center">
-                <a href="index.html" class="text-blue-600 hover:text-blue-800">Dashboard</a>
-                <span class="mx-2 text-gray-400">/</span>
+                <a href="dashboard.html" class="text-blue-600 hover:text-blue-800">Home</a>
+                <span class="mx-1.5 text-gray-400">/</span>
               </li>
               <li class="text-gray-500">Monitoring</li>
             </ol>
@@ -145,94 +276,99 @@
     </header>
 
     <!-- Monitoring Content -->
-    <main class="container mx-auto px-4 py-8">
-      <!-- Page Header -->
-      <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Request Monitoring</h1>
-        <p class="text-gray-600">Track and update request status in real-time</p>
+    <main class="tighter-margins px-4 py-6">
+      <!-- Page Header with Refresh Button -->
+      <div class="flex justify-between items-center compact-spacing">
+        <div>
+          <h1 class="text-2xl font-bold text-gray-800 mb-1" id="pageTitle">Request Monitoring</h1>
+          <p class="text-gray-600 text-sm" id="pageSubtitle">Track and update request status in real-time</p>
+        </div>
+        <button id="refreshButton" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-all duration-200 font-medium flex items-center space-x-1.5 text-sm">
+          <i class="fas fa-sync-alt"></i>
+          <span>Refresh Data</span>
+        </button>
       </div>
 
-      <!-- Stats Overview -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-red-500">
-          <div class="flex items-center">
-            <div class="p-3 bg-red-100 rounded-lg">
-              <i class="fas fa-clock text-red-600 text-xl"></i>
+<!-- Stats Overview - Larger Fonts -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-red-500">
+        <div class="flex items-center">
+            <div class="p-2 bg-red-100 rounded">
+                <i class="fas fa-clock text-red-600 text-lg"></i>
             </div>
-            <div class="ml-4">
-              <p class="text-sm text-gray-600">Pending</p>
-              <h3 class="text-2xl font-bold text-gray-800" id="pendingCount">0</h3>
+            <div class="ml-3 flex-1 min-w-0">
+                <p class="text-xs text-gray-600 truncate">Pending</p>
+                <h3 class="text-3xl font-bold text-gray-800 truncate" id="pendingCount">0</h3>
             </div>
-          </div>
         </div>
+    </div>
 
-        <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-yellow-500">
-          <div class="flex items-center">
-            <div class="p-3 bg-yellow-100 rounded-lg">
-              <i class="fas fa-spinner text-yellow-600 text-xl"></i>
+    <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-yellow-500">
+        <div class="flex items-center">
+            <div class="p-2 bg-yellow-100 rounded">
+                <i class="fas fa-spinner text-yellow-600 text-lg"></i>
             </div>
-            <div class="ml-4">
-              <p class="text-sm text-gray-600">In Progress</p>
-              <h3 class="text-2xl font-bold text-gray-800" id="inProgressCount">0</h3>
+            <div class="ml-3 flex-1 min-w-0">
+                <p class="text-xs text-gray-600 truncate">In Progress</p>
+                <h3 class="text-3xl font-bold text-gray-800 truncate" id="inProgressCount">0</h3>
             </div>
-          </div>
         </div>
+    </div>
 
-        <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
-          <div class="flex items-center">
-            <div class="p-3 bg-green-100 rounded-lg">
-              <i class="fas fa-check-circle text-green-600 text-xl"></i>
+    <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-green-500">
+        <div class="flex items-center">
+            <div class="p-2 bg-green-100 rounded">
+                <i class="fas fa-check-circle text-green-600 text-lg"></i>
             </div>
-            <div class="ml-4">
-              <p class="text-sm text-gray-600">Completed</p>
-              <h3 class="text-2xl font-bold text-gray-800" id="completedCount">0</h3>
+            <div class="ml-3 flex-1 min-w-0">
+                <p class="text-xs text-gray-600 truncate">Completed</p>
+                <h3 class="text-3xl font-bold text-gray-800 truncate" id="completedCount">0</h3>
             </div>
-          </div>
         </div>
-      </div>
-
+    </div>
+</div>
       <!-- Tasks Container -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-          <h2 class="text-xl font-semibold text-gray-800">All Requests</h2>
-          <div class="flex items-center space-x-4">
-            <span class="text-sm text-gray-600" id="paginationInfo">Showing 0-0 of 0</span>
-            <div class="flex space-x-2">
-              <button id="prevPage" class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
+          <h2 class="text-lg font-semibold text-gray-800">All Requests</h2>
+          <div class="flex items-center space-x-3">
+            <span class="text-xs text-gray-600" id="paginationInfo">Showing 0-0 of 0</span>
+            <div class="flex space-x-1">
+              <button id="prevPage" class="px-2 py-1 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-xs">
                 <i class="fas fa-chevron-left"></i>
               </button>
-              <button id="nextPage" class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed">
+              <button id="nextPage" class="px-2 py-1 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-xs">
                 <i class="fas fa-chevron-right"></i>
               </button>
             </div>
           </div>
         </div>
         
-        <div id="tasksContainer" class="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div id="tasksContainer" class="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           <!-- Tasks will be loaded here -->
-          <div class="col-span-full text-center text-gray-500 py-8">
-            <i class="fas fa-spinner fa-spin text-blue-500 text-3xl mb-3"></i>
-            <p>Loading requests...</p>
+          <div class="col-span-full text-center text-gray-500 py-6">
+            <i class="fas fa-spinner fa-spin text-blue-500 text-2xl mb-2"></i>
+            <p class="text-sm">Loading requests...</p>
           </div>
         </div>
 
         <!-- Pagination Controls -->
-        <div class="px-6 py-4 border-t border-gray-200 flex justify-between items-center">
-          <span class="text-sm text-gray-600" id="pageInfo">Page 1 of 1</span>
-          <div class="flex space-x-2">
-            <button id="firstPage" class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+        <div class="px-4 py-3 border-t border-gray-200 flex justify-between items-center">
+          <span class="text-xs text-gray-600" id="pageInfo">Page 1 of 1</span>
+          <div class="flex space-x-1">
+            <button id="firstPage" class="px-2 py-1 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-xs" disabled>
               <i class="fas fa-angle-double-left"></i>
             </button>
-            <button id="prevPageBottom" class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+            <button id="prevPageBottom" class="px-2 py-1 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-xs" disabled>
               <i class="fas fa-chevron-left"></i>
             </button>
             <div id="pageNumbers" class="flex space-x-1">
               <!-- Page numbers will be generated here -->
             </div>
-            <button id="nextPageBottom" class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+            <button id="nextPageBottom" class="px-2 py-1 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-xs" disabled>
               <i class="fas fa-chevron-right"></i>
             </button>
-            <button id="lastPage" class="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+            <button id="lastPage" class="px-2 py-1 border border-gray-300 rounded hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-xs" disabled>
               <i class="fas fa-angle-double-right"></i>
             </button>
           </div>
@@ -242,17 +378,17 @@
 
     <!-- Status Update Lightbox -->
     <div id="statusLightbox" class="lightbox">
-      <div class="lightbox-content w-full max-w-md">
+      <div class="lightbox-content w-full max-w-sm">
         <div class="text-center">
-          <i class="fas fa-sync-alt text-blue-600 text-3xl mb-4"></i>
-          <h3 class="text-xl font-semibold text-gray-800 mb-2" id="lightboxTitle">Update Status</h3>
-          <p class="text-gray-600 mb-6" id="lightboxMessage">Are you sure you want to update the status?</p>
+          <i class="fas fa-sync-alt text-blue-600 text-2xl mb-3"></i>
+          <h3 class="text-lg font-semibold text-gray-800 mb-2" id="lightboxTitle">Update Status</h3>
+          <p class="text-gray-600 text-sm mb-4" id="lightboxMessage">Are you sure you want to update the status?</p>
           
-          <div class="flex space-x-4 justify-center">
-            <button id="confirmUpdate" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+          <div class="flex space-x-3 justify-center">
+            <button id="confirmUpdate" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm">
               Yes, Update
             </button>
-            <button id="cancelUpdate" class="bg-gray-500 text-white px-6 py-2 rounded-lg hover:bg-gray-600 transition">
+            <button id="cancelUpdate" class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition text-sm">
               Cancel
             </button>
           </div>
@@ -260,13 +396,13 @@
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-12">
-      <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Footer - More compact -->
+    <footer class="bg-gray-800 text-white mt-8">
+      <div class="tighter-margins px-4 py-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div>
-            <h3 class="font-bold text-lg mb-4">Company</h3>
-            <ul class="space-y-2">
+            <h3 class="font-bold text-base mb-3">Company</h3>
+            <ul class="space-y-1 text-sm">
               <li><a href="#" class="hover:text-blue-300 transition">About Us</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Leadership</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Careers</a></li>
@@ -274,31 +410,31 @@
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-4">Services</h3>
-            <ul class="space-y-2">
+            <h3 class="font-bold text-base mb-3">Services</h3>
+            <ul class="space-y-1 text-sm">
               <li><a href="#" class="hover:text-blue-300 transition">All Services</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Industries</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Locations</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-4">Support</h3>
-            <ul class="space-y-2">
+            <h3 class="font-bold text-base mb-3">Support</h3>
+            <ul class="space-y-1 text-sm">
               <li><a href="#" class="hover:text-blue-300 transition">Contact Us</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Help Center</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Privacy Policy</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-4">Connect</h3>
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter text-xl"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook text-xl"></i></a>
+            <h3 class="font-bold text-base mb-3">Connect</h3>
+            <div class="flex space-x-3">
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook"></i></a>
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+        <div class="border-t border-gray-700 mt-6 pt-4 text-center text-xs text-gray-400">
           <p>&copy; 2024 Tier One Advisory Philippines Inc. All rights reserved.</p>
         </div>
       </div>
@@ -310,31 +446,198 @@
       const { createClient } = supabase;
       const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
       const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
-      const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+      // Use session persistence for auth
+      const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: false
+        }
+      });
 
       let currentTaskId = null;
       let currentNewStatus = null;
       let allTasks = [];
       let currentPage = 1;
       const tasksPerPage = 12;
+      let currentUser = null;
+      let isRefreshing = false;
 
-      // Load all tasks
+      // ===== AUTHENTICATION & USER MANAGEMENT =====
+      async function checkAuth() {
+        try {
+          console.log('Checking authentication...');
+          
+          // First check if we have a session
+          const { data: { session }, error: sessionError } = await supabaseClient.auth.getSession();
+          
+          if (sessionError) {
+            console.error('Session error:', sessionError);
+            redirectToLogin();
+            return;
+          }
+          
+          if (!session) {
+            console.log('No active session found');
+            redirectToLogin();
+            return;
+          }
+
+          console.log('Session found for user:', session.user.email);
+          
+          // Get user profile
+          const { data: profile, error: profileError } = await supabaseClient
+            .from('user_profiles')
+            .select('*')
+            .eq('id', session.user.id)
+            .single();
+          
+          if (profileError) {
+            console.error('Profile error:', profileError);
+            // Try to get user by email as fallback
+            const { data: profileByEmail, error: emailError } = await supabaseClient
+              .from('user_profiles')
+              .select('*')
+              .eq('email', session.user.email)
+              .single();
+              
+            if (emailError || !profileByEmail) {
+              console.error('No profile found for user');
+              redirectToLogin();
+              return;
+            }
+            
+            currentUser = { ...session.user, ...profileByEmail };
+          } else {
+            currentUser = { ...session.user, ...profile };
+          }
+
+          console.log('Current user:', currentUser);
+          
+          // Check if user is approved
+          if (currentUser.status !== 'approved') {
+            console.log('User not approved, status:', currentUser.status);
+            alert('❌ Your account is not approved. Please contact administrator.');
+            await supabaseClient.auth.signOut();
+            redirectToLogin();
+            return;
+          }
+
+          // Update UI with user info
+          updateUIForUserRole();
+          
+          // Load monitoring data
+          loadTasks();
+          
+        } catch (error) {
+          console.error('Authentication failed:', error);
+          redirectToLogin();
+        }
+      }
+
+      function redirectToLogin() {
+        console.log('Redirecting to login...');
+        window.location.href = 'index.html';
+      }
+
+      async function logout() {
+        try {
+          await supabaseClient.auth.signOut();
+          redirectToLogin();
+        } catch (error) {
+          console.error('Logout error:', error);
+          redirectToLogin();
+        }
+      }
+
+      function updateUIForUserRole() {
+        // Update user welcome message
+        const userWelcome = document.getElementById('userWelcome');
+        if (userWelcome) {
+          userWelcome.textContent = `Welcome, ${currentUser.full_name || currentUser.email}!`;
+        }
+
+        // Update page title and subtitle
+        const pageTitle = document.getElementById('pageTitle');
+        const pageSubtitle = document.getElementById('pageSubtitle');
+        
+        if (currentUser.role === 'admin') {
+          if (pageTitle) pageTitle.textContent = 'Admin Monitoring';
+          if (pageSubtitle) pageSubtitle.textContent = `Track and manage all requests - ${currentUser.full_name || 'Administrator'}`;
+        } else {
+          if (pageTitle) pageTitle.textContent = 'My Request Monitoring';
+          if (pageSubtitle) pageSubtitle.textContent = `Track your requests - ${currentUser.full_name || currentUser.email}`;
+        }
+        
+        // Setup approvals link protection
+        setupApprovalsLink();
+      }
+
+      function setupApprovalsLink() {
+        const approvalsLink = document.getElementById('approvalsLink');
+        if (approvalsLink) {
+          approvalsLink.addEventListener('click', function(e) {
+            if (currentUser && currentUser.role === 'admin') {
+              // Admin can access approvals
+              window.location.href = 'admin-approval.html';
+            } else {
+              // Non-admin gets error message
+              e.preventDefault();
+              alert('❌ Access Denied: Only administrators can access the Approvals page.');
+            }
+          });
+        }
+      }
+
+      // ===== SEARCH MODAL FUNCTIONALITY =====
+      document.getElementById('searchButton').addEventListener('click', function() {
+        document.getElementById('searchModal').style.display = 'block';
+      });
+
+      document.getElementById('closeSearch').addEventListener('click', function() {
+        document.getElementById('searchModal').style.display = 'none';
+      });
+
+      document.getElementById('searchModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+        }
+      });
+
+      function performGlobalSearch() {
+        const searchTerm = document.getElementById('globalSearch').value.trim();
+        if (searchTerm) {
+          window.location.href = `search.html?q=${encodeURIComponent(searchTerm)}`;
+        } else {
+          window.location.href = 'search.html';
+        }
+      }
+
+      // ===== EXISTING MONITORING FUNCTIONALITY =====
+      // Load all tasks with better error handling
       async function loadTasks() {
         try {
+          console.log('Loading tasks from Supabase...');
           const { data: tasks, error } = await supabaseClient
             .from('tasks_database')
             .select('*')
             .order('created_at', { ascending: false });
 
-          if (error) throw error;
+          if (error) {
+            console.error('Supabase error loading tasks:', error);
+            showError('Error loading tasks: ' + error.message);
+            return;
+          }
 
-          allTasks = tasks;
-          updateStats(tasks);
+          console.log('Tasks loaded successfully:', tasks?.length || 0);
+          allTasks = tasks || [];
+          updateStats(allTasks);
           displayPage(1);
+          
         } catch (error) {
-          console.error('Error loading tasks:', error);
-          document.getElementById('tasksContainer').innerHTML = 
-            '<div class="col-span-full text-center text-red-500 py-8"><i class="fas fa-exclamation-triangle text-2xl mb-3"></i><p>Error loading tasks</p></div>';
+          console.error('Unexpected error loading tasks:', error);
+          showError('Unexpected error loading tasks: ' + error.message);
         }
       }
 
@@ -349,12 +652,12 @@
         updatePagination();
       }
 
-      // Display tasks as cards in grid
+      // Display tasks as cards in grid - UPDATED LAYOUT
       function displayTasks(tasks) {
         const container = document.getElementById('tasksContainer');
         
         if (!tasks || tasks.length === 0) {
-          container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-8"><i class="fas fa-inbox text-3xl mb-3"></i><p>No requests found</p></div>';
+          container.innerHTML = '<div class="col-span-full text-center text-gray-500 py-6"><i class="fas fa-inbox text-2xl mb-2"></i><p class="text-sm">No requests found</p></div>';
           return;
         }
 
@@ -363,39 +666,63 @@
           const statusColor = getStatusColor(task.status);
           const randomBgClass = getRandomBackgroundClass(index);
           
+          // Safe property access with fallbacks
+          const client = task.client || 'No Client';
+          const subClient = task.subClient || 'General';
+          const category = task.category || 'No Category';
+          const documentType = task.documentType || 'No Type';
+          const notes = task.notes || 'No additional notes';
+          const status = task.status || 'pending';
+          const requester = task.requester || 'System User';
+          
+          // Safe date formatting
+          let formattedDate = 'No date';
+          if (task.date) {
+            try {
+              const date = new Date(task.date);
+              formattedDate = isNaN(date.getTime()) ? 'Invalid date' : date.toLocaleDateString();
+            } catch (e) {
+              formattedDate = 'Invalid date';
+            }
+          }
+          
           tasksHtml += `
-            <div class="task-card rounded-lg p-4 shadow-sm ${randomBgClass}" data-task-id="${task.id}">
-              <div class="flex justify-between items-start mb-3">
-                <div class="flex-1">
-                  <h3 class="text-md font-semibold truncate" title="${task.client} - ${task.subClient || 'No Sub-Client'}">${task.client} - ${task.subClient || 'No Sub-Client'}</h3>
-                  <p class="text-xs opacity-80 mt-1">${new Date(task.date).toLocaleDateString()}</p>
-                </div>
-                <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor} ml-2 flex-shrink-0">
-                  ${task.status || 'pending'}
+            <div class="task-card rounded-lg p-3 shadow-sm ${randomBgClass}" data-task-id="${task.id}">
+              <!-- STATUS AT THE TOP -->
+              <div class="flex justify-between items-center mb-2">
+                <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">
+                  ${status.toUpperCase()}
                 </span>
               </div>
               
-              <div class="space-y-2 mb-3">
+              <!-- CLIENT & SUBCLIENT - TIGHTER -->
+              <div class="mb-2">
+                <h3 class="text-sm font-semibold truncate" title="${client} - ${subClient}">${client} - ${subClient}</h3>
+                <p class="text-xs opacity-80 mt-1">${formattedDate} • By: ${requester}</p>
+              </div>
+              
+              <!-- CATEGORY & DOCUMENT TYPE - TIGHTER -->
+              <div class="grid grid-cols-2 gap-1 mb-3">
                 <div>
                   <p class="text-xs opacity-80">Category</p>
-                  <p class="font-medium text-sm truncate">${task.category}</p>
+                  <p class="font-medium text-xs truncate">${category}</p>
                 </div>
                 <div>
-                  <p class="text-xs opacity-80">Document Type</p>
-                  <p class="font-medium text-sm truncate">${task.documentType}</p>
+                  <p class="text-xs opacity-80">Document</p>
+                  <p class="font-medium text-xs truncate">${documentType}</p>
                 </div>
               </div>
               
-              ${task.notes ? `
-                <div class="mb-3">
-                  <p class="text-xs opacity-80">Notes</p>
-                  <p class="text-sm line-clamp-2">${task.notes}</p>
-                </div>
-              ` : ''}
+              <!-- LARGER NOTES SECTION -->
+              <div class="mb-3">
+                <p class="text-xs opacity-80 mb-1">Notes</p>
+                <p class="text-sm line-clamp-3 min-h-[3rem]">${notes}</p>
+              </div>
               
+              <!-- UPDATE BUTTON - SAME LOCATION -->
               <div class="flex justify-end">
-                <button onclick="showStatusUpdate('${task.id}', '${task.status}')" 
-                        class="bg-white bg-opacity-20 backdrop-blur-sm px-3 py-1 rounded-lg hover:bg-opacity-30 transition text-xs font-medium">
+                <button onclick="showStatusUpdate('${task.id}', '${status}')" 
+                        class="bg-white bg-opacity-20 backdrop-blur-sm px-3 py-1 rounded hover:bg-opacity-30 transition text-xs font-medium">
                   <i class="fas fa-sync-alt mr-1"></i>Update
                 </button>
               </div>
@@ -469,7 +796,7 @@
         
         for (let i = startPage; i <= endPage; i++) {
           const pageButton = document.createElement('button');
-          pageButton.className = `px-3 py-1 border rounded-lg ${
+          pageButton.className = `px-2 py-1 border rounded text-xs ${
             i === currentPage 
               ? 'bg-blue-600 text-white border-blue-600' 
               : 'border-gray-300 hover:bg-gray-50'
@@ -478,6 +805,73 @@
           pageButton.addEventListener('click', () => displayPage(i));
           pageNumbersContainer.appendChild(pageButton);
         }
+      }
+
+      // Show status update lightbox
+      function showStatusUpdate(taskId, currentStatus) {
+        currentTaskId = taskId;
+        
+        let nextStatus, title, message;
+        
+        if (currentStatus === 'pending') {
+          nextStatus = 'in-progress';
+          title = 'Start Progress';
+          message = 'Move this task from Pending to In Progress?';
+        } else if (currentStatus === 'in-progress') {
+          nextStatus = 'completed';
+          title = 'Complete Task';
+          message = 'Mark this task as Completed?';
+        } else {
+          return; // No further updates for completed tasks
+        }
+        
+        currentNewStatus = nextStatus;
+        
+        document.getElementById('lightboxTitle').textContent = title;
+        document.getElementById('lightboxMessage').textContent = message;
+        document.getElementById('statusLightbox').style.display = 'block';
+      }
+
+      // Update task status with detailed error handling
+      async function updateTaskStatus() {
+        if (!currentTaskId || !currentNewStatus) return;
+
+        try {
+          console.log('Updating task:', currentTaskId, 'to status:', currentNewStatus);
+          
+          const { error } = await supabaseClient
+            .from('tasks_database')
+            .update({ 
+              status: currentNewStatus,
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', currentTaskId);
+
+          if (error) {
+            console.error('Detailed update error:', error);
+            throw new Error(`Database error: ${error.message} (Code: ${error.code})`);
+          }
+
+          // Close lightbox and reload tasks
+          document.getElementById('statusLightbox').style.display = 'none';
+          console.log('Task updated successfully, reloading...');
+          loadTasks();
+          
+        } catch (error) {
+          console.error('Error updating task:', error);
+          // Show detailed error to user
+          alert('Error updating task status: ' + error.message);
+        }
+      }
+
+      // Show error message
+      function showError(message) {
+        const container = document.getElementById('tasksContainer');
+        container.innerHTML = 
+          '<div class="col-span-full text-center text-red-500 py-6">' +
+          '<i class="fas fa-exclamation-triangle text-xl mb-2"></i>' +
+          '<p class="text-sm">' + message + '</p>' +
+          '</div>';
       }
 
       // Pagination event listeners
@@ -505,57 +899,7 @@
         displayPage(Math.ceil(allTasks.length / tasksPerPage));
       });
 
-      // Show status update lightbox
-      function showStatusUpdate(taskId, currentStatus) {
-        currentTaskId = taskId;
-        
-        let nextStatus, title, message;
-        
-        if (currentStatus === 'pending') {
-          nextStatus = 'in-progress';
-          title = 'Start Progress';
-          message = 'Move this task from Pending to In Progress?';
-        } else if (currentStatus === 'in-progress') {
-          nextStatus = 'completed';
-          title = 'Complete Task';
-          message = 'Mark this task as Completed?';
-        } else {
-          return; // No further updates for completed tasks
-        }
-        
-        currentNewStatus = nextStatus;
-        
-        document.getElementById('lightboxTitle').textContent = title;
-        document.getElementById('lightboxMessage').textContent = message;
-        document.getElementById('statusLightbox').style.display = 'block';
-      }
-
-      // Update task status
-      async function updateTaskStatus() {
-        if (!currentTaskId || !currentNewStatus) return;
-
-        try {
-          const { error } = await supabaseClient
-            .from('tasks_database')
-            .update({ 
-              status: currentNewStatus,
-              updated_at: new Date().toISOString()
-            })
-            .eq('id', currentTaskId);
-
-          if (error) throw error;
-
-          // Close lightbox and reload tasks
-          document.getElementById('statusLightbox').style.display = 'none';
-          loadTasks();
-          
-        } catch (error) {
-          console.error('Error updating task:', error);
-          alert('Error updating task status');
-        }
-      }
-
-      // Event listeners
+      // Event listeners for update confirmation
       document.getElementById('confirmUpdate').addEventListener('click', updateTaskStatus);
       document.getElementById('cancelUpdate').addEventListener('click', function() {
         document.getElementById('statusLightbox').style.display = 'none';
@@ -568,8 +912,82 @@
         }
       });
 
-      // Initialize
-      document.addEventListener('DOMContentLoaded', loadTasks);
+      // Refresh button functionality
+      document.getElementById('refreshButton').addEventListener('click', async function() {
+        if (isRefreshing) return;
+        
+        isRefreshing = true;
+        const button = this;
+        const originalHtml = button.innerHTML;
+        
+        button.innerHTML = '<i class="fas fa-sync-alt refresh-spin"></i><span>Refreshing...</span>';
+        button.disabled = true;
+        
+        try {
+          await loadTasks();
+          showNotification('Monitoring data refreshed successfully!', 'success');
+        } catch (error) {
+          console.error('Error refreshing data:', error);
+          showNotification('Error refreshing data', 'error');
+        } finally {
+          setTimeout(() => {
+            button.innerHTML = originalHtml;
+            button.disabled = false;
+            isRefreshing = false;
+          }, 1000);
+        }
+      });
+
+      function showNotification(message, type = "info") {
+        const existingNotification = document.querySelector('.custom-notification');
+        if (existingNotification) {
+          existingNotification.remove();
+        }
+
+        const notification = document.createElement('div');
+        notification.className = `custom-notification fixed top-4 right-4 z-50 px-6 py-4 rounded-xl shadow-lg border-l-4 transform transition-all duration-300 ${
+          type === 'success' 
+            ? 'bg-green-50 text-green-800 border-green-400' 
+            : type === 'error'
+            ? 'bg-red-50 text-red-800 border-red-400'
+            : 'bg-blue-50 text-blue-800 border-blue-400'
+        }`;
+        
+        notification.innerHTML = `
+          <div class="flex items-center">
+            <i class="fas ${
+              type === 'success' ? 'fa-check-circle' :
+              type === 'error' ? 'fa-exclamation-circle' :
+              'fa-info-circle'
+            } mr-3"></i>
+            <span>${message}</span>
+          </div>
+        `;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+          notification.classList.add('translate-x-0', 'opacity-100');
+        }, 10);
+
+        setTimeout(() => {
+          notification.classList.remove('translate-x-0', 'opacity-100');
+          notification.classList.add('translate-x-full', 'opacity-0');
+          setTimeout(() => {
+            if (notification.parentNode) {
+              notification.remove();
+            }
+          }, 300);
+        }, 5000);
+      }
+
+      // Initialize with authentication check
+      document.addEventListener('DOMContentLoaded', checkAuth);
+
+      // Auto-refresh every 2 minutes
+      setInterval(() => {
+        loadTasks();
+      }, 120000);
     </script>
   </body>
 </html>
