@@ -29,74 +29,169 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
+      /* Sage Green Background Gradient */
+      body {
+        background: linear-gradient(135deg, #9dc183 0%, #7d9a68 100%);
+        min-height: 100vh;
+      }
+
+      /* Improved Header Styles inspired by SGS */
+      .compact-header {
+        padding: 0.75rem 0;
+      }
+
+      .compact-nav {
+        padding: 0.5rem 0;
+      }
+
+      .tighter-margins {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      /* SGS-inspired navigation */
+      .nav-item {
+        position: relative;
+        padding: 0.5rem 1rem;
+        font-weight: 500;
+        border-radius: 0.375rem;
+        transition: all 0.2s ease;
+        font-size: 0.875rem;
+      }
+
+      .nav-item:hover {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .nav-item.active {
+        background: rgba(255, 255, 255, 0.2);
+      }
+
+      /* Compact spacing */
+      .compact-spacing {
+        margin-bottom: 1.5rem;
+      }
+
+      .section-padding {
+        padding: 1.5rem 0;
+      }
+
+      /* Improved mobile responsiveness */
+      @media (max-width: 768px) {
+        .tighter-margins {
+          padding: 0 1rem;
+        }
+        
+        .compact-header {
+          padding: 0.5rem 0;
+        }
+        
+        .nav-item {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      /* Tighten up existing components */
+      .stats-card {
+        padding: 1rem;
+      }
+
+      .quick-action-card {
+        padding: 1.5rem;
+      }
     </style>
   </head>
 
-  <body class="bg-gray-100">
-    <!-- Header -->
+  <body class="bg-gradient-to-br from-[#9dc183] to-[#7d9a68]">
+    <!-- Enhanced Compact Header -->
     <header class="bg-white shadow-sm">
-      <!-- Top Bar -->
-      <div class="bg-gray-800 text-white py-2">
-        <div class="container mx-auto px-4">
-          <div class="flex justify-between items-center text-sm">
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-globe mr-1"></i> Philippines</a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-phone mr-1"></i> Contact Us</a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fas fa-user mr-1"></i> Login</a>
+      <!-- Top Bar - Made more compact -->
+      <div class="bg-gray-800 text-white py-1.5 text-xs">
+        <div class="tighter-margins px-4">
+          <div class="flex justify-between items-center">
+            <div class="flex space-x-3">
+              <a href="#" class="hover:text-blue-300 transition flex items-center">
+                <i class="fas fa-globe mr-1 text-xs"></i> Philippines
+              </a>
+              <a href="#" class="hover:text-blue-300 transition flex items-center">
+                <i class="fas fa-phone mr-1 text-xs"></i> Contact Us
+              </a>
+              <a href="#" onclick="logout()" class="hover:text-blue-300 transition cursor-pointer flex items-center">
+                <i class="fas fa-sign-out-alt mr-1 text-xs"></i> Logout
+              </a>
             </div>
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook"></i></a>
+            <div class="flex space-x-3">
+              <a href="#" class="hover:text-blue-300 transition">
+                <i class="fab fa-linkedin text-sm"></i>
+              </a>
+              <a href="#" class="hover:text-blue-300 transition">
+                <i class="fab fa-twitter text-sm"></i>
+              </a>
+              <a href="#" class="hover:text-blue-300 transition">
+                <i class="fab fa-facebook text-sm"></i>
+              </a>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Main Navigation -->
-      <nav class="header-gradient text-white">
-        <div class="container mx-auto px-4">
-          <div class="flex items-center justify-between py-4">
-            <!-- Company Name -->
-            <div class="flex items-center space-x-8">
-              <a href="index.html" class="text-2xl font-bold text-white">
-                Tier One Advisory (Ph) Inc.
+      <!-- Main Navigation - More compact like SGS -->
+      <nav class="header-gradient text-white shadow-lg compact-nav">
+        <div class="tighter-margins px-4">
+          <div class="flex items-center justify-between">
+            <!-- Company Logo & Name -->
+            <div class="flex items-center space-x-6">
+              <a href="dashboard.html" class="flex items-center space-x-2 text-xl font-bold text-white">
+                <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                  <span class="text-blue-600 font-bold text-sm">T1</span>
+                </div>
+                <span class="hidden sm:block">Tier One Advisory Philippines Inc.</span>
               </a>
               
-              <!-- Main Menu -->
-              <div class="hidden md:flex space-x-6">
-                <a href="index.html" class="hover:text-blue-200 transition">Dashboard</a>
-                <a href="request-form.html" class="hover:text-blue-200 transition">Request Form</a>
-                <a href="search.html" class="hover:text-blue-200 transition font-medium border-b-2 border-white">Search</a>
-                <a href="monitoring.html" class="hover:text-blue-200 transition">Monitoring</a>
+              <!-- Main Menu - More compact -->
+              <div class="hidden md:flex space-x-0.5">
+                <a href="dashboard.html" class="nav-item">
+                  Dashboard
+                </a>
+                <a href="request-form.html" class="nav-item">
+                  Request Form
+                </a>
+                <a href="search.html" class="nav-item active">
+                  Search
+                </a>
+                <a href="monitoring.html" class="nav-item">
+                  Monitoring
+                </a>
+                <a href="#" id="approvalsLink" class="nav-item">
+                  Approvals
+                </a>
               </div>
             </div>
 
-            <!-- Right Side Actions -->
-            <div class="flex items-center space-x-4">
-              <button id="searchButton" class="hover:text-blue-200 transition">
-                <i class="fas fa-search"></i>
-              </button>
-              <button class="md:hidden hover:text-blue-200 transition">
-                <i class="fas fa-bars text-xl"></i>
-              </button>
+            <!-- Right Side Actions - More compact -->
+            <div class="flex items-center space-x-3">
+              <div class="relative">
+                <button class="flex items-center space-x-1.5 p-1.5 hover:bg-white/10 rounded transition-all duration-200">
+                  <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-user text-xs"></i>
+                  </div>
+                  <span id="headerUserWelcome" class="text-xs font-medium hidden sm:block">Welcome!</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </nav>
 
-      <!-- Breadcrumb -->
-      <div class="bg-gray-100 border-b">
-        <div class="container mx-auto px-4 py-2">
-          <nav class="text-sm">
+      <!-- Compact Breadcrumb -->
+      <div class="bg-gray-100 border-b text-xs">
+        <div class="tighter-margins px-4 py-1.5">
+          <nav>
             <ol class="list-none p-0 inline-flex">
               <li class="flex items-center">
-                <a href="index.html" class="text-blue-600 hover:text-blue-800">Home</a>
-                <span class="mx-2 text-gray-400">/</span>
-              </li>
-              <li class="flex items-center">
-                <a href="index.html" class="text-blue-600 hover:text-blue-800">Dashboard</a>
-                <span class="mx-2 text-gray-400">/</span>
+                <a href="dashboard.html" class="text-blue-600 hover:text-blue-800">Home</a>
+                <span class="mx-1.5 text-gray-400">/</span>
               </li>
               <li class="text-gray-500">Search</li>
             </ol>
@@ -106,16 +201,16 @@
     </header>
 
     <!-- Search Content -->
-    <main class="container mx-auto px-4 py-8">
+    <main class="tighter-margins px-4 py-6">
       <!-- Page Title -->
-      <div class="mb-8">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">Search Requests</h1>
-        <p class="text-gray-600">Find and filter document requests</p>
+      <div class="compact-spacing">
+        <h1 class="text-2xl font-bold text-gray-800 mb-1">Search Requests</h1>
+        <p class="text-gray-600 text-sm">Find and filter document requests</p>
       </div>
 
       <!-- Search Form -->
-      <div class="bg-white rounded-xl shadow-md p-6 mb-8">
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+      <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
           <!-- Omnibar Search -->
           <div class="lg:col-span-2">
             <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -125,14 +220,14 @@
               type="text" 
               id="searchInput"
               placeholder="Search by client, category, document type, notes..."
-              class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             >
           </div>
 
           <!-- Status Filter -->
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
-            <select id="statusFilter" class="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <select id="statusFilter" class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
               <option value="">All Status</option>
               <option value="pending">Pending</option>
               <option value="completed">Completed</option>
@@ -142,13 +237,13 @@
         </div>
 
         <!-- Date Range -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">From Date</label>
             <input 
               type="date" 
               id="fromDate"
-              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             >
           </div>
           <div>
@@ -156,45 +251,45 @@
             <input 
               type="date" 
               id="toDate"
-              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             >
           </div>
           <div class="flex items-end">
             <button 
               id="clearDates"
-              class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition w-full"
+              class="bg-gray-500 text-white px-3 py-2 rounded-lg hover:bg-gray-600 transition w-full text-sm"
             >
-              <i class="fas fa-times mr-2"></i>Clear Dates
+              <i class="fas fa-times mr-1"></i>Clear Dates
             </button>
           </div>
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-between">
-          <div class="flex gap-4">
+        <div class="flex flex-col sm:flex-row gap-3 justify-between">
+          <div class="flex gap-3">
             <button 
               id="searchButtonMain"
-              class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-medium"
+              class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-sm"
             >
               <i class="fas fa-search mr-2"></i>Search
             </button>
             <button 
               id="resetButton"
-              class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition font-medium"
+              class="bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition font-medium text-sm"
             >
               <i class="fas fa-redo mr-2"></i>Reset
             </button>
           </div>
-          <div class="flex gap-4">
+          <div class="flex gap-3">
             <button 
               id="exportPdfButton"
-              class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition font-medium"
+              class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition font-medium text-sm"
             >
               <i class="fas fa-file-pdf mr-2"></i>Export PDF
             </button>
             <button 
               id="printButton"
-              class="bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition font-medium"
+              class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition font-medium text-sm"
             >
               <i class="fas fa-print mr-2"></i>Print
             </button>
@@ -203,30 +298,30 @@
       </div>
 
       <!-- Search Results -->
-      <div class="bg-white rounded-xl shadow-md overflow-hidden">
-        <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-          <h2 class="text-xl font-semibold text-gray-800">Search Results</h2>
-          <div id="resultCount" class="text-sm text-gray-600">0 records found</div>
+      <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+        <div class="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
+          <h2 class="text-lg font-semibold text-gray-800">Search Results</h2>
+          <div id="resultCount" class="text-xs text-gray-600">0 records found</div>
         </div>
         
         <div class="search-results">
           <table class="w-full">
             <thead class="bg-gray-50">
               <tr>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sub-Client</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Document Type</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
+                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Client</th>
+                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sub-Client</th>
+                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Document Type</th>
+                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Notes</th>
               </tr>
             </thead>
             <tbody id="searchResults" class="bg-white divide-y divide-gray-200">
               <tr>
-                <td colspan="7" class="px-6 py-8 text-center text-gray-500">
-                  <i class="fas fa-search text-3xl mb-3 text-gray-300"></i>
-                  <p>Enter search criteria to find requests</p>
+                <td colspan="7" class="px-4 py-6 text-center text-gray-500">
+                  <i class="fas fa-search text-2xl mb-2 text-gray-300"></i>
+                  <p class="text-sm">Enter search criteria to find requests</p>
                 </td>
               </tr>
             </tbody>
@@ -239,28 +334,28 @@
     <div id="searchModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
       <div class="flex items-center justify-center min-h-screen p-4">
         <div class="bg-white rounded-xl shadow-2xl max-w-2xl w-full">
-          <div class="p-6">
-            <div class="flex justify-between items-center mb-6">
-              <h3 class="text-2xl font-semibold text-gray-800">Quick Search</h3>
+          <div class="p-4">
+            <div class="flex justify-between items-center mb-4">
+              <h3 class="text-xl font-semibold text-gray-800">Quick Search</h3>
               <button id="closeSearch" class="text-gray-500 hover:text-gray-700">
-                <i class="fas fa-times text-2xl"></i>
+                <i class="fas fa-times text-xl"></i>
               </button>
             </div>
             
-            <div class="relative mb-6">
+            <div class="relative mb-4">
               <input 
                 type="text" 
                 id="quickSearchInput"
                 placeholder="Search by client name, category, or document type..."
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
               >
               <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
             </div>
             
             <div id="quickSearchResults" class="max-h-96 overflow-y-auto">
-              <div class="text-center text-gray-500 py-8">
-                <i class="fas fa-search text-3xl mb-3"></i>
-                <p>Enter search terms to find requests</p>
+              <div class="text-center text-gray-500 py-6">
+                <i class="fas fa-search text-2xl mb-2"></i>
+                <p class="text-sm">Enter search terms to find requests</p>
               </div>
             </div>
           </div>
@@ -268,13 +363,13 @@
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white mt-12">
-      <div class="container mx-auto px-4 py-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <!-- Footer - More compact -->
+    <footer class="bg-gray-800 text-white mt-8">
+      <div class="tighter-margins px-4 py-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
           <div>
-            <h3 class="font-bold text-lg mb-4">Company</h3>
-            <ul class="space-y-2">
+            <h3 class="font-bold text-base mb-3">Company</h3>
+            <ul class="space-y-1 text-sm">
               <li><a href="#" class="hover:text-blue-300 transition">About Us</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Leadership</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Careers</a></li>
@@ -282,31 +377,31 @@
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-4">Services</h3>
-            <ul class="space-y-2">
+            <h3 class="font-bold text-base mb-3">Services</h3>
+            <ul class="space-y-1 text-sm">
               <li><a href="#" class="hover:text-blue-300 transition">All Services</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Industries</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Locations</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-4">Support</h3>
-            <ul class="space-y-2">
+            <h3 class="font-bold text-base mb-3">Support</h3>
+            <ul class="space-y-1 text-sm">
               <li><a href="#" class="hover:text-blue-300 transition">Contact Us</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Help Center</a></li>
               <li><a href="#" class="hover:text-blue-300 transition">Privacy Policy</a></li>
             </ul>
           </div>
           <div>
-            <h3 class="font-bold text-lg mb-4">Connect</h3>
-            <div class="flex space-x-4">
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter text-xl"></i></a>
-              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook text-xl"></i></a>
+            <h3 class="font-bold text-base mb-3">Connect</h3>
+            <div class="flex space-x-3">
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook"></i></a>
             </div>
           </div>
         </div>
-        <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+        <div class="border-t border-gray-700 mt-6 pt-4 text-center text-xs text-gray-400">
           <p>&copy; 2024 Tier One Advisory (Ph) Inc. All rights reserved.</p>
         </div>
       </div>
@@ -318,7 +413,95 @@
 
       const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
       const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
-      const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+      
+      // Use consistent Supabase configuration
+      const supabase = createClient(SUPABASE_URL, SUPABASE_KEY, {
+        auth: {
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: false
+        }
+      });
+
+      // ==================== AUTHENTICATION & USER MANAGEMENT ====================
+      let currentUserProfile = null;
+
+      async function checkAuth() {
+        try {
+          const { data: { session }, error } = await supabase.auth.getSession();
+          
+          if (error) {
+            console.error('Auth error:', error);
+            window.location.href = 'index.html';
+            return false;
+          }
+          
+          if (!session) {
+            window.location.href = 'index.html';
+            return false;
+          }
+
+          const { data: profile, error: profileError } = await supabase
+            .from('user_profiles')
+            .select('*')
+            .eq('id', session.user.id)
+            .single();
+
+          if (profileError || !profile) {
+            console.error('User profile not found');
+            window.location.href = 'index.html';
+            return false;
+          }
+
+          if (profile.status !== 'approved') {
+            alert('❌ Your account is not approved. Please contact administrator.');
+            window.location.href = 'index.html';
+            return false;
+          }
+
+          currentUserProfile = profile;
+          updateUserInterface();
+          
+          return true;
+          
+        } catch (error) {
+          console.error('Authentication failed:', error);
+          window.location.href = 'index.html';
+          return false;
+        }
+      }
+
+      function updateUserInterface() {
+        if (currentUserProfile) {
+          document.getElementById('headerUserWelcome').textContent = `Welcome, ${currentUserProfile.full_name}`;
+          
+          // Setup approvals link protection
+          setupApprovalsLink();
+        }
+      }
+
+      // Setup approvals link protection
+      function setupApprovalsLink() {
+        const approvalsLink = document.getElementById('approvalsLink');
+        if (approvalsLink) {
+          approvalsLink.addEventListener('click', function(e) {
+            if (currentUserProfile && currentUserProfile.role === 'admin') {
+              // Admin can access approvals
+              window.location.href = 'admin-approval.html';
+            } else {
+              // Non-admin gets error message
+              e.preventDefault();
+              alert('❌ Access Denied: Only administrators can access the Approvals page.');
+            }
+          });
+        }
+      }
+
+      // Global logout function for onclick attribute
+      async function logout() {
+        await supabase.auth.signOut();
+        window.location.href = 'index.html';
+      }
 
       // Main search page elements
       const searchInput = document.getElementById('searchInput');
@@ -334,7 +517,6 @@
       const resultCount = document.getElementById('resultCount');
 
       // Quick search modal elements
-      const searchButton = document.getElementById('searchButton');
       const searchModal = document.getElementById('searchModal');
       const closeSearch = document.getElementById('closeSearch');
       const quickSearchInput = document.getElementById('quickSearchInput');
@@ -342,20 +524,14 @@
 
       // Quick Search Functionality
       function initializeQuickSearch() {
-        // Open search modal
-        searchButton.addEventListener('click', function() {
-          searchModal.classList.remove('hidden');
-          quickSearchInput.focus();
-        });
-
         // Close search modal
         closeSearch.addEventListener('click', function() {
           searchModal.classList.add('hidden');
           quickSearchInput.value = '';
           quickSearchResults.innerHTML = `
-            <div class="text-center text-gray-500 py-8">
-              <i class="fas fa-search text-3xl mb-3"></i>
-              <p>Enter search terms to find requests</p>
+            <div class="text-center text-gray-500 py-6">
+              <i class="fas fa-search text-2xl mb-2"></i>
+              <p class="text-sm">Enter search terms to find requests</p>
             </div>
           `;
         });
@@ -366,9 +542,9 @@
             searchModal.classList.add('hidden');
             quickSearchInput.value = '';
             quickSearchResults.innerHTML = `
-              <div class="text-center text-gray-500 py-8">
-                <i class="fas fa-search text-3xl mb-3"></i>
-                <p>Enter search terms to find requests</p>
+              <div class="text-center text-gray-500 py-6">
+                <i class="fas fa-search text-2xl mb-2"></i>
+                <p class="text-sm">Enter search terms to find requests</p>
               </div>
             `;
           }
@@ -380,9 +556,9 @@
           
           if (searchTerm.length < 2) {
             quickSearchResults.innerHTML = `
-              <div class="text-center text-gray-500 py-8">
-                <i class="fas fa-search text-3xl mb-3"></i>
-                <p>Enter at least 2 characters to search</p>
+              <div class="text-center text-gray-500 py-6">
+                <i class="fas fa-search text-2xl mb-2"></i>
+                <p class="text-sm">Enter at least 2 characters to search</p>
               </div>
             `;
             return;
@@ -411,9 +587,9 @@
         
         try {
           quickSearchResults.innerHTML = `
-            <div class="text-center text-gray-500 py-8">
-              <i class="fas fa-spinner fa-spin text-blue-500 text-3xl mb-3"></i>
-              <p>Searching...</p>
+            <div class="text-center text-gray-500 py-6">
+              <i class="fas fa-spinner fa-spin text-blue-500 text-2xl mb-2"></i>
+              <p class="text-sm">Searching...</p>
             </div>
           `;
 
@@ -429,9 +605,9 @@
         } catch (error) {
           console.error('Quick search error:', error);
           quickSearchResults.innerHTML = `
-            <div class="text-center text-red-500 py-8">
-              <i class="fas fa-exclamation-triangle text-2xl mb-3"></i>
-              <p>Error performing search</p>
+            <div class="text-center text-red-500 py-6">
+              <i class="fas fa-exclamation-triangle text-xl mb-2"></i>
+              <p class="text-sm">Error performing search</p>
             </div>
           `;
         }
@@ -443,31 +619,31 @@
         
         if (!tasks || tasks.length === 0) {
           quickSearchResults.innerHTML = `
-            <div class="text-center text-gray-500 py-8">
-              <i class="fas fa-search text-3xl mb-3"></i>
-              <p>No results found for "${searchTerm}"</p>
+            <div class="text-center text-gray-500 py-6">
+              <i class="fas fa-search text-2xl mb-2"></i>
+              <p class="text-sm">No results found for "${searchTerm}"</p>
             </div>
           `;
           return;
         }
 
-        let resultsHtml = '<div class="space-y-4">';
+        let resultsHtml = '<div class="space-y-3">';
         
         tasks.forEach(task => {
           const statusColor = getStatusColor(task.status);
           
           resultsHtml += `
-            <div class="border border-gray-200 rounded-lg p-4 hover:border-blue-300 transition">
+            <div class="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition">
               <div class="flex justify-between items-start mb-2">
                 <div>
-                  <h4 class="font-semibold text-gray-800">${task.client} - ${task.subClient || 'No Sub-Client'}</h4>
-                  <p class="text-sm text-gray-600">${new Date(task.date).toLocaleDateString()}</p>
+                  <h4 class="font-semibold text-gray-800 text-sm">${task.client} - ${task.subClient || 'No Sub-Client'}</h4>
+                  <p class="text-xs text-gray-600">${new Date(task.date).toLocaleDateString()}</p>
                 </div>
                 <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">
                   ${task.status}
                 </span>
               </div>
-              <div class="grid grid-cols-2 gap-2 text-sm">
+              <div class="grid grid-cols-2 gap-2 text-xs">
                 <div>
                   <span class="text-gray-600">Category:</span>
                   <span class="font-medium">${task.category}</span>
@@ -479,8 +655,8 @@
               </div>
               ${task.notes ? `
                 <div class="mt-2">
-                  <p class="text-sm text-gray-600">Notes:</p>
-                  <p class="text-sm text-gray-800 line-clamp-2">${task.notes}</p>
+                  <p class="text-xs text-gray-600">Notes:</p>
+                  <p class="text-xs text-gray-800 line-clamp-2">${task.notes}</p>
                 </div>
               ` : ''}
             </div>
@@ -549,14 +725,14 @@
               displayResults(data);
           } catch (error) {
               console.error('Search error:', error);
-              searchResults.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-red-500"><i class="fas fa-exclamation-triangle text-2xl mb-3"></i><p>Error loading results</p></td></tr>';
+              searchResults.innerHTML = '<tr><td colspan="7" class="px-4 py-6 text-center text-red-500"><i class="fas fa-exclamation-triangle text-xl mb-2"></i><p class="text-sm">Error loading results</p></td></tr>';
               resultCount.textContent = 'Error loading results';
           }
       }
 
       function displayResults(data) {
           if (!data || data.length === 0) {
-              searchResults.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-gray-500"><i class="fas fa-inbox text-3xl mb-3 text-gray-300"></i><p>No requests found</p></td></tr>';
+              searchResults.innerHTML = '<tr><td colspan="7" class="px-4 py-6 text-center text-gray-500"><i class="fas fa-inbox text-2xl mb-2 text-gray-300"></i><p class="text-sm">No requests found</p></td></tr>';
               resultCount.textContent = '0 records found';
               return;
           }
@@ -576,13 +752,13 @@
               const notes = item.notes || '-';
               
               resultsHtml += '<tr class="hover:bg-gray-50">';
-              resultsHtml += '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">' + date + '</td>';
-              resultsHtml += '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">' + client + '</td>';
-              resultsHtml += '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">' + subClient + '</td>';
-              resultsHtml += '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">' + category + '</td>';
-              resultsHtml += '<td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">' + documentType + '</td>';
-              resultsHtml += '<td class="px-6 py-4 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ' + statusClass + '">' + status + '</span></td>';
-              resultsHtml += '<td class="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">' + notes + '</td>';
+              resultsHtml += '<td class="px-4 py-3 whitespace-nowrap text-xs text-gray-900">' + date + '</td>';
+              resultsHtml += '<td class="px-4 py-3 whitespace-nowrap text-xs text-gray-900">' + client + '</td>';
+              resultsHtml += '<td class="px-4 py-3 whitespace-nowrap text-xs text-gray-900">' + subClient + '</td>';
+              resultsHtml += '<td class="px-4 py-3 whitespace-nowrap text-xs text-gray-900">' + category + '</td>';
+              resultsHtml += '<td class="px-4 py-3 whitespace-nowrap text-xs text-gray-900">' + documentType + '</td>';
+              resultsHtml += '<td class="px-4 py-3 whitespace-nowrap"><span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ' + statusClass + '">' + status + '</span></td>';
+              resultsHtml += '<td class="px-4 py-3 text-xs text-gray-900 max-w-xs truncate">' + notes + '</td>';
               resultsHtml += '</tr>';
           });
 
@@ -797,35 +973,184 @@
           doc.save(`Legal-Dept-Monthly-Report-${fromFormatted}-to-${toFormatted}.pdf`);
       }
 
-      function printResults() {
-          const printWindow = window.open('', '_blank');
-          const tableHtml = document.querySelector('.search-results').innerHTML;
-          const currentDate = new Date().toLocaleString();
-          
-          let printContent = '<html><head><title>Request Search Results</title><style>';
-          printContent += 'body{font-family:Arial,sans-serif;margin:20px}';
-          printContent += 'table{width:100%;border-collapse:collapse}';
-          printContent += 'th,td{border:1px solid #ddd;padding:8px;text-align:left}';
-          printContent += 'th{background-color:#f8f9fa}';
-          printContent += 'tr:nth-child(even){background-color:#f2f2f2}';
-          printContent += '.header{text-align:center;margin-bottom:20px}';
-          printContent += '</style></head><body>';
-          printContent += '<div class="header"><h1>Request Search Results</h1><p>Generated on ' + currentDate + '</p></div>';
-          printContent += '<table>' + tableHtml + '</table>';
-          printContent += '</body></html>';
-          
-          printWindow.document.write(printContent);
-          printWindow.document.close();
-          printWindow.print();
-      }
-
-      function resetForm() {
-          searchInput.value = '';
-          statusFilter.value = '';
-          setDefaultDates();
-          searchResults.innerHTML = '<tr><td colspan="7" class="px-6 py-8 text-center text-gray-500"><i class="fas fa-search text-3xl mb-3 text-gray-300"></i><p>Enter search criteria to find requests</p></td></tr>';
-          resultCount.textContent = '0 records found';
-      }
+function printResults() {
+    const printWindow = window.open('', '_blank');
+    const currentDate = new Date().toLocaleString();
+    
+    // Get search criteria for the header
+    const searchTerm = document.getElementById('searchInput').value;
+    const statusFilter = document.getElementById('statusFilter').value;
+    const fromDate = document.getElementById('fromDate').value;
+    const toDate = document.getElementById('toDate').value;
+    
+    // Get table data
+    const table = document.querySelector('.search-results table');
+    const rows = table.querySelectorAll('tbody tr');
+    
+    let printContent = `
+    <html>
+    <head>
+        <title>Request Search Results - Tier One Advisory</title>
+        <style>
+            body { 
+                font-family: Arial, sans-serif; 
+                margin: 20px; 
+                color: #333;
+            }
+            .header { 
+                text-align: center; 
+                margin-bottom: 30px;
+                border-bottom: 2px solid #0056a3;
+                padding-bottom: 20px;
+            }
+            .company-header {
+                background: #0056a3;
+                color: white;
+                padding: 20px;
+                margin: -20px -20px 20px -20px;
+                text-align: center;
+            }
+            .search-criteria {
+                background: #f8f9fa;
+                padding: 15px;
+                margin: 20px 0;
+                border-left: 4px solid #0056a3;
+                font-size: 14px;
+            }
+            .criteria-item {
+                margin: 5px 0;
+            }
+            table { 
+                width: 100%; 
+                border-collapse: collapse; 
+                margin-top: 20px;
+                font-size: 12px;
+            }
+            th { 
+                background-color: #f8f9fa; 
+                color: #333;
+                font-weight: bold;
+                padding: 12px 8px;
+                text-align: left;
+                border-bottom: 2px solid #dee2e6;
+                text-transform: uppercase;
+                font-size: 11px;
+                letter-spacing: 0.5px;
+            }
+            td { 
+                padding: 10px 8px; 
+                border-bottom: 1px solid #dee2e6;
+                vertical-align: top;
+            }
+            tr:nth-child(even) { 
+                background-color: #f8f9fa; 
+            }
+            .status-badge {
+                padding: 4px 8px;
+                border-radius: 12px;
+                font-size: 10px;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+            .status-pending { background-color: #fef2f2; color: #dc2626; }
+            .status-in-progress { background-color: #fffbeb; color: #d97706; }
+            .status-completed { background-color: #f0fdf4; color: #16a34a; }
+            .footer {
+                margin-top: 30px;
+                text-align: center;
+                font-size: 11px;
+                color: #6b7280;
+                border-top: 1px solid #e5e7eb;
+                padding-top: 15px;
+            }
+            @media print {
+                body { margin: 0.5in; }
+                .company-header { margin: -0.5in -0.5in 20px -0.5in; }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="company-header">
+            <h1 style="margin: 0; font-size: 24px;">Tier One Advisory Philippines Inc.</h1>
+            <p style="margin: 5px 0 0 0; font-size: 14px; opacity: 0.9;">Legal Department</p>
+        </div>
+        
+        <div class="header">
+            <h2 style="margin: 0 0 10px 0; color: #0056a3;">Request Search Results</h2>
+            <p style="margin: 0; color: #6b7280;">Generated on: ${currentDate}</p>
+        </div>
+        
+        <div class="search-criteria">
+            <h3 style="margin: 0 0 10px 0; color: #0056a3;">Search Criteria</h3>
+            <div class="criteria-item"><strong>Search Term:</strong> ${searchTerm || 'All'}</div>
+            <div class="criteria-item"><strong>Status:</strong> ${statusFilter ? statusFilter.charAt(0).toUpperCase() + statusFilter.slice(1) : 'All'}</div>
+            <div class="criteria-item"><strong>Date Range:</strong> ${fromDate ? new Date(fromDate).toLocaleDateString() : 'Any'} to ${toDate ? new Date(toDate).toLocaleDateString() : 'Any'}</div>
+            <div class="criteria-item"><strong>Total Records:</strong> ${rows.length} record${rows.length === 1 ? '' : 's'}</div>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Client</th>
+                    <th>Sub-Client</th>
+                    <th>Category</th>
+                    <th>Document Type</th>
+                    <th>Status</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>`;
+    
+    // Add table rows with proper formatting
+    rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        if (cells.length > 0) {
+            const date = cells[0].textContent.trim();
+            const client = cells[1].textContent.trim();
+            const subClient = cells[2].textContent.trim();
+            const category = cells[3].textContent.trim();
+            const documentType = cells[4].textContent.trim();
+            const status = cells[5].textContent.trim();
+            const notes = cells[6].textContent.trim();
+            
+            // Determine status class
+            let statusClass = 'status-pending';
+            if (status.toLowerCase().includes('progress')) statusClass = 'status-in-progress';
+            if (status.toLowerCase().includes('complete')) statusClass = 'status-completed';
+            
+            printContent += `
+                <tr>
+                    <td>${date}</td>
+                    <td>${client}</td>
+                    <td>${subClient}</td>
+                    <td>${category}</td>
+                    <td>${documentType}</td>
+                    <td><span class="status-badge ${statusClass}">${status}</span></td>
+                    <td>${notes}</td>
+                </tr>`;
+        }
+    });
+    
+    printContent += `
+            </tbody>
+        </table>
+        
+        <div class="footer">
+            <p>&copy; 2024 Tier One Advisory Philippines Inc. - Confidential Document</p>
+            <p>Generated from Request Management System</p>
+        </div>
+    </body>
+    </html>`;
+    
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    
+    // Wait for content to load before printing
+    printWindow.onload = function() {
+        printWindow.print();
+    };
+}
 
       // Event Listeners for main search
       searchButtonMain.addEventListener('click', performSearch);
@@ -842,7 +1167,11 @@
       });
 
       // Initialize everything
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', async function() {
+          // Check authentication first
+          const isAuthenticated = await checkAuth();
+          if (!isAuthenticated) return;
+          
           setDefaultDates();
           initializeQuickSearch();
       });
