@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Approvals - Tier One Advisory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .header-gradient {
+            background: linear-gradient(135deg, #0056a3 0%, #003d75 100%);
+        }
+        .sage-bg {
+            background: linear-gradient(135deg, #9dc183 0%, #7d9a68 100%);
+            min-height: 100vh;
+        }
+
+        /* Improved Header Styles inspired by SGS */
+        .compact-header {
+            padding: 0.75rem 0;
+        }
+
+        .compact-nav {
+            padding: 0.5rem 0;
+        }
+
+        .tighter-margins {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* SGS-inspired navigation */
+        .nav-item {
+            position: relative;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease;
+            font-size: 0.875rem;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Compact spacing */
+        .compact-spacing {
+            margin-bottom: 1.5rem;
+        }
+
+        .section-padding {
+            padding: 1.5rem 0;
+        }
+
+        /* Improved mobile responsiveness */
+        @media (max-width: 768px) {
+            .tighter-margins {
+                padding: 0 1rem;
+            }
+            
+            .compact-header {
+                padding: 0.5rem 0;
+            }
+            
+            .nav-item {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Tighten up existing components */
+        .stats-card {
+            padding: 1rem;
+        }
+
+        .quick-action-card {
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+<body class="sage-bg">
+    <!-- Enhanced Compact Header -->
+    <header class="bg-white shadow-sm">
+        <!-- Top Bar - Made more compact -->
+        <div class="bg-gray-800 text-white py-1.5 text-xs">
+            <div class="tighter-margins px-4">
+                <div class="flex justify-between items-center">
+                    <div class="flex space-x-3">
+                        <a href="#" class="hover:text-blue-300 transition flex items-center">
+                            <i class="fas fa-globe mr-1 text-xs"></i> Philippines
+                        </a>
+                        <a href="#" class="hover:text-blue-300 transition flex items-center">
+                            <i class="fas fa-phone mr-1 text-xs"></i> Contact Us
+                        </a>
+                        <a href="#" onclick="logout()" class="hover:text-blue-300 transition cursor-pointer flex items-center">
+                            <i class="fas fa-sign-out-alt mr-1 text-xs"></i> Logout
+                        </a>
+                    </div>
+                    <div class="flex space-x-3">
+                        <a href="#" class="hover:text-blue-300 transition">
+                            <i class="fab fa-linkedin text-sm"></i>
+                        </a>
+                        <a href="#" class="hover:text-blue-300 transition">
+                            <i class="fab fa-twitter text-sm"></i>
+                        </a>
+                        <a href="#" class="hover:text-blue-300 transition">
+                            <i class="fab fa-facebook text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation - More compact like SGS -->
+        <nav class="header-gradient text-white shadow-lg compact-nav">
+            <div class="tighter-margins px-4">
+                <div class="flex items-center justify-between">
+                    <!-- Company Logo & Name -->
+                    <div class="flex items-center space-x-6">
+                        <a href="dashboard.html" class="flex items-center space-x-2 text-xl font-bold text-white">
+                            <div class="w-8 h-8 bg-white rounded flex items-center justify-center">
+                                <span class="text-blue-600 font-bold text-sm">T1</span>
+                            </div>
+                            <span class="hidden sm:block">Tier One Advisory Philippines Inc.</span>
+                        </a>
+                        
+                        <!-- Main Menu - More compact -->
+                        <div class="hidden md:flex space-x-0.5">
+                            <a href="dashboard.html" class="nav-item">
+                                Dashboard
+                            </a>
+                            <a href="request-form.html" class="nav-item">
+                                Request Form
+                            </a>
+                            <a href="search.html" class="nav-item">
+                                Search
+                            </a>
+                            <a href="monitoring.html" class="nav-item">
+                                Monitoring
+                            </a>
+                            <a href="admin-approval.html" class="nav-item active">
+                                Approvals
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Side Actions - More compact -->
+                    <div class="flex items-center space-x-3">
+                        <!-- User Welcome in Header -->
+                        <div class="flex items-center space-x-1.5 bg-white/10 px-2 py-1 rounded">
+                            <div class="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-xs text-white"></i>
+                            </div>
+                            <span id="headerUserWelcome" class="text-xs font-medium text-white hidden sm:block">Welcome!</span>
+                        </div>
+                        
+                        <!-- Add Admin Setup Link - Clean icon-only -->
+                        <a href="setup-admin.html" 
+                           class="p-1.5 hover:bg-white/10 rounded transition-all duration-200 flex items-center text-yellow-300"
+                           title="Setup Additional Admin">
+                            <i class="fas fa-user-shield text-sm"></i>
+                            <span class="hidden md:block text-xs ml-1">Add Admin</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Compact Breadcrumb -->
+        <div class="bg-gray-100 border-b text-xs">
+            <div class="tighter-margins px-4 py-1.5">
+                <nav>
+                    <ol class="list-none p-0 inline-flex">
+                        <li class="flex items-center">
+                            <a href="dashboard.html" class="text-blue-600 hover:text-blue-800">Home</a>
+                            <span class="mx-1.5 text-gray-400">/</span>
+                        </li>
+                        <li class="text-gray-500">User Approvals</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="tighter-margins px-4 py-6">
+        <!-- Page Header -->
+        <div class="bg-white rounded-lg shadow-sm p-4 mb-4">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">User Approval Panel</h1>
+                    <p class="text-gray-600 mt-1 text-sm">Approve or reject user access requests</p>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <span id="userWelcome" class="text-gray-700 text-sm"></span>
+                    <button onclick="refreshData()" class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1.5 rounded-lg transition flex items-center text-sm">
+                        <i class="fas fa-sync-alt mr-1"></i>Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center">
+                    <div class="p-2 bg-yellow-100 rounded mr-3">
+                        <i class="fas fa-clock text-yellow-600 text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-600">Pending Users</p>
+                        <h3 id="pendingUsersCount" class="text-xl font-bold text-gray-800">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center">
+                    <div class="p-2 bg-green-100 rounded mr-3">
+                        <i class="fas fa-check-circle text-green-600 text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-600">Approved Users</p>
+                        <h3 id="approvedUsersCount" class="text-xl font-bold text-gray-800">0</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex items-center">
+                    <div class="p-2 bg-red-100 rounded mr-3">
+                        <i class="fas fa-times-circle text-red-600 text-lg"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-600">Rejected Users</p>
+                        <h3 id="rejectedUsersCount" class="text-xl font-bold text-gray-800">0</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Approval Section -->
+        <div class="space-y-4">
+            <!-- Pending Users -->
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold text-gray-800">Pending User Registrations</h2>
+                    <span id="pendingUsersBadge" class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full text-xs font-medium">
+                        0 pending
+                    </span>
+                </div>
+                <div id="pendingUsers" class="space-y-3 max-h-96 overflow-y-auto">
+                    <div class="text-center py-6">
+                        <i class="fas fa-spinner fa-spin text-blue-500 text-xl mb-2"></i>
+                        <p class="text-gray-500 text-sm">Loading pending users...</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Approved Users -->
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-semibold text-gray-800">Approved Users</h2>
+                    <span id="approvedUsersBadge" class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
+                        0 approved
+                    </span>
+                </div>
+                <div id="approvedUsers" class="space-y-3 max-h-96 overflow-y-auto">
+                    <div class="text-center py-3">
+                        <p class="text-gray-500 text-sm">No approved users yet</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-4 text-center">
+            <i class="fas fa-spinner fa-spin text-blue-500 text-xl mb-2"></i>
+            <p class="text-gray-700 text-sm">Processing...</p>
+        </div>
+    </div>
+
+    <script>
+        const { createClient } = supabase;
+        const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
+        
+        // Use consistent Supabase client configuration
+        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY, {
+            auth: {
+                persistSession: false,
+                autoRefreshToken: false,
+                detectSessionInUrl: false
+            }
+        });
+
+        let currentAdmin = null;
+
+        // Check if user is admin - USING CONSISTENT APPROACH
+        async function checkAdmin() {
+            showLoading();
+            try {
+                // Use localStorage approach like other pages
+                const userData = localStorage.getItem('currentUser');
+                
+                if (!userData) {
+                    hideLoading();
+                    window.location.href = 'index.html';
+                    return false;
+                }
+
+                const user = JSON.parse(userData);
+                
+                if (user.role !== 'admin') {
+                    hideLoading();
+                    alert('❌ Admin access required');
+                    window.location.href = 'dashboard.html';
+                    return false;
+                }
+
+                currentAdmin = user;
+                document.getElementById('userWelcome').textContent = `Welcome, ${user.full_name}`;
+                document.getElementById('headerUserWelcome').textContent = `Welcome, ${user.full_name}`;
+                return true;
+                
+            } catch (error) {
+                console.error('Error in checkAdmin:', error);
+                hideLoading();
+                window.location.href = 'index.html';
+                return false;
+            }
+        }
+
+        // Load user data only
+        async function loadUserData() {
+            showLoading();
+            try {
+                const { data: users, error } = await supabaseClient
+                    .from('user_profiles')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                const pending = users.filter(u => u.status === 'pending');
+                const approved = users.filter(u => u.status === 'approved');
+                const rejected = users.filter(u => u.status === 'rejected');
+
+                // Update badges and counts
+                document.getElementById('pendingUsersBadge').textContent = `${pending.length} pending`;
+                document.getElementById('approvedUsersBadge').textContent = `${approved.length} approved`;
+                document.getElementById('pendingUsersCount').textContent = pending.length;
+                document.getElementById('approvedUsersCount').textContent = approved.length;
+                document.getElementById('rejectedUsersCount').textContent = rejected.length;
+
+                // Display users
+                displayPendingUsers(pending);
+                displayApprovedUsers(approved);
+
+            } catch (error) {
+                console.error('Error loading user data:', error);
+                alert('Error loading user data: ' + error.message);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Display pending users
+        function displayPendingUsers(users) {
+            const container = document.getElementById('pendingUsers');
+            
+            if (users.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-6">
+                        <i class="fas fa-check-circle text-green-500 text-xl mb-2"></i>
+                        <p class="text-gray-500 text-sm">No pending user registration requests</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = users.map(user => `
+                <div class="border border-yellow-200 bg-yellow-50 rounded-lg p-3 hover:shadow-md transition">
+                    <div class="flex justify-between items-start">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800 text-sm">${user.full_name}</h3>
+                            <p class="text-gray-600 text-xs">${user.email}</p>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded text-xs">${user.department || 'No Department'}</span>
+                                <span class="bg-gray-100 text-gray-800 px-1.5 py-0.5 rounded text-xs">${user.role}</span>
+                                <span class="bg-yellow-100 text-yellow-800 px-1.5 py-0.5 rounded text-xs">Requested: ${formatDate(user.created_at)}</span>
+                            </div>
+                        </div>
+                        <div class="flex flex-col space-y-1 ml-3">
+                            <button onclick="approveUser('${user.id}', '${user.full_name}')" 
+                                    class="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded transition flex items-center text-xs">
+                                <i class="fas fa-check mr-1"></i>Approve
+                            </button>
+                            <button onclick="rejectUser('${user.id}', '${user.full_name}')" 
+                                    class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded transition flex items-center text-xs">
+                                <i class="fas fa-times mr-1"></i>Reject
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Display approved users
+        function displayApprovedUsers(users) {
+            const container = document.getElementById('approvedUsers');
+            
+            if (users.length === 0) {
+                container.innerHTML = '<div class="text-center py-3"><p class="text-gray-500 text-sm">No approved users yet</p></div>';
+                return;
+            }
+
+            container.innerHTML = users.map(user => `
+                <div class="border border-green-200 bg-green-50 rounded-lg p-3">
+                    <div class="flex justify-between items-center">
+                        <div class="flex-1">
+                            <h3 class="font-semibold text-gray-800 text-sm">${user.full_name}</h3>
+                            <p class="text-gray-600 text-xs">${user.email}</p>
+                            <div class="flex flex-wrap gap-1 mt-2">
+                                <span class="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded text-xs">${user.department || 'No Department'}</span>
+                                <span class="bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded text-xs">${user.role}</span>
+                                <span class="bg-green-100 text-green-800 px-1.5 py-0.5 rounded text-xs">Approved: ${user.approved_at ? formatDate(user.approved_at) : 'N/A'}</span>
+                            </div>
+                        </div>
+                        <span class="bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-xs font-medium ml-3">
+                            Approved
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Approve user
+        async function approveUser(userId, userName) {
+            if (!confirm(`Are you sure you want to approve ${userName}?`)) return;
+
+            showLoading();
+            try {
+                const { error } = await supabaseClient
+                    .from('user_profiles')
+                    .update({ 
+                        status: 'approved',
+                        approved_at: new Date().toISOString()
+                    })
+                    .eq('id', userId);
+
+                if (error) throw error;
+
+                alert(`✅ ${userName} approved successfully! They can now login to the system.`);
+                await loadUserData();
+            } catch (error) {
+                alert('Error approving user: ' + error.message);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Reject user
+        async function rejectUser(userId, userName) {
+            if (!confirm(`Are you sure you want to reject ${userName}? This action cannot be undone.`)) return;
+
+            showLoading();
+            try {
+                const { error } = await supabaseClient
+                    .from('user_profiles')
+                    .update({ status: 'rejected' })
+                    .eq('id', userId);
+
+                if (error) throw error;
+
+                alert(`❌ ${userName} has been rejected.`);
+                await loadUserData();
+            } catch (error) {
+                alert('Error rejecting user: ' + error.message);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Logout function - CONSISTENT WITH OTHER PAGES
+        async function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Refresh data
+        function refreshData() {
+            loadUserData();
+        }
+
+        // Utility functions
+        function formatDate(dateString) {
+            return new Date(dateString).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        }
+
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.add('hidden');
+        }
+
+        // Initialize
+        async function initialize() {
+            const isAdmin = await checkAdmin();
+            if (isAdmin) {
+                await loadUserData();
+                
+                // Set up auto-refresh every 30 seconds
+                setInterval(loadUserData, 30000);
+            }
+        }
+
+        // Start the application
+        initialize();
+    </script>
+</body>
+</html>
