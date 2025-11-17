@@ -8,9 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .hero-section {
-            background-image: url('https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/565175434_122135794016930781_2049289648576906859_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=aa7b47&_nc_eui2=AeHe_woezfchnLK9KPxW9EuwV7gmNvyVwnBXuCY2_JXCcEvkV8sSojtbauMAXCu_Gk5wGKwdVaJD0rTTM7Mh_xLF&_nc_ohc=zNkhCzHYTUQQ7kNvwEQDqKp&_nc_oc=Adlexal2K5QikWjpiOQovB4RbEarA58yjikMDx4NxdWoa4rxWD4-X1a2XUwY0wfiT7k&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=-tNiOK3F3x8n2S02wIZyMw&oh=00_Afjd1XY538QR4jThWG8lFCJdikGAU0KMS653nkdQo7oqZw&oe=6918E334');
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/thumb/4/4f/Philippine_Stock_Exchange_-_ground_level_%28BGC%2C_Taguig%29%282018-06-04%29.jpg/960px-Philippine_Stock_Exchange_-_ground_level_%28BGC%2C_Taguig%29%282018-06-04%29.jpg?20180608034706');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             background-attachment: fixed;
         }
         .header-gradient {
@@ -40,6 +41,11 @@
         .button-glow:hover {
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
         }
+        /* Ensure content is readable over the background */
+        .content-overlay {
+            background: rgba(0, 0, 0, 0.4);
+            min-height: 100vh;
+        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -62,92 +68,94 @@
 
     <!-- Main Content -->
     <main class="flex-1 hero-section">
-        <div class="container mx-auto px-4 py-16">
-            <div class="max-w-4xl mx-auto">
-                <!-- Hero Section -->
-                <div class="glass-card rounded-2xl shadow-2xl p-8 md:p-12 mb-12 text-center">
-                    <h1 class="text-4xl md:text-5xl font-bold text-light mb-4">
-                        Request Management System
-                    </h1>
-                    <p class="text-xl text-light-secondary mb-8 max-w-2xl mx-auto">
-                        Streamlined request submission and tracking for Tier One Advisory teams
-                    </p>
-                    
-                    <!-- CTA Buttons -->
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-                        <a href="register.html" 
-                           class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 button-glow">
-                            <i class="fas fa-user-plus mr-3"></i>
-                            Request Access
-                        </a>
-                        <a href="index.html" 
-                           class="bg-transparent border-2 border-white hover:bg-white text-white hover:text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                            <i class="fas fa-sign-in-alt mr-3"></i>
-                            Existing User Login
-                        </a>
-                    </div>
-
-                    <p class="text-sm text-light-tertiary">
-                        New users require administrator approval before accessing the system
-                    </p>
-                </div>
-
-                <!-- Features -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                    <div class="feature-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
-                        <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-file-alt text-white text-xl"></i>
-                        </div>
-                        <h3 class="font-semibold text-light mb-2 text-lg">Submit Requests</h3>
-                        <p class="text-light-secondary text-sm">Easily submit and track document and service requests</p>
-                    </div>
-                    <div class="feature-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
-                        <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-search text-white text-xl"></i>
-                        </div>
-                        <h3 class="font-semibold text-light mb-2 text-lg">Track Progress</h3>
-                        <p class="text-light-secondary text-sm">Monitor request status and updates in real-time</p>
-                    </div>
-                    <div class="feature-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
-                        <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-chart-line text-white text-xl"></i>
-                        </div>
-                        <h3 class="font-semibold text-light mb-2 text-lg">Manage Workflow</h3>
-                        <p class="text-light-secondary text-sm">Streamlined approval and processing workflow</p>
-                    </div>
-                </div>
-
-                <!-- Info Box -->
-                <div class="glass-card rounded-xl p-6 max-w-2xl mx-auto border-l-4 border-blue-400">
-                    <h3 class="font-semibold text-light mb-3 flex items-center justify-center text-lg">
-                        <i class="fas fa-info-circle mr-2"></i>Access Information
-                    </h3>
-                    <div class="text-center">
-                        <p class="text-light-secondary mb-2">
-                            This system is for authorized Tier One Advisory personnel only.
+        <div class="content-overlay flex items-center justify-center">
+            <div class="container mx-auto px-4 py-16">
+                <div class="max-w-4xl mx-auto">
+                    <!-- Hero Section -->
+                    <div class="glass-card rounded-2xl shadow-2xl p-8 md:p-12 mb-12 text-center">
+                        <h1 class="text-4xl md:text-5xl font-bold text-light mb-4">
+                            Request Management System
+                        </h1>
+                        <p class="text-xl text-light-secondary mb-8 max-w-2xl mx-auto">
+                            Streamlined request submission and tracking for Tier One Advisory teams
                         </p>
-                        <p class="text-light-tertiary text-sm">
-                            New account requests are typically approved within 24 hours during business days.
-                            For urgent access, please contact your department administrator.
+                        
+                        <!-- CTA Buttons -->
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+                            <a href="register.html" 
+                               class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1 button-glow">
+                                <i class="fas fa-user-plus mr-3"></i>
+                                Request Access
+                            </a>
+                            <a href="index.html" 
+                               class="bg-transparent border-2 border-white hover:bg-white text-white hover:text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                                <i class="fas fa-sign-in-alt mr-3"></i>
+                                Existing User Login
+                            </a>
+                        </div>
+
+                        <p class="text-sm text-light-tertiary">
+                            New users require administrator approval before accessing the system
                         </p>
                     </div>
-                </div>
 
-                <!-- Additional Info -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-                    <div class="feature-card rounded-xl p-6 text-center">
-                        <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-3 mx-auto">
-                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                    <!-- Features -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                        <div class="feature-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-file-alt text-white text-xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-light mb-2 text-lg">Submit Requests</h3>
+                            <p class="text-light-secondary text-sm">Easily submit and track document and service requests</p>
                         </div>
-                        <h4 class="font-semibold text-light mb-2">Secure & Protected</h4>
-                        <p class="text-light-secondary text-sm">Enterprise-grade security for all your data and requests</p>
+                        <div class="feature-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-search text-white text-xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-light mb-2 text-lg">Track Progress</h3>
+                            <p class="text-light-secondary text-sm">Monitor request status and updates in real-time</p>
+                        </div>
+                        <div class="feature-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
+                            <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
+                                <i class="fas fa-chart-line text-white text-xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-light mb-2 text-lg">Manage Workflow</h3>
+                            <p class="text-light-secondary text-sm">Streamlined approval and processing workflow</p>
+                        </div>
                     </div>
-                    <div class="feature-card rounded-xl p-6 text-center">
-                        <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-3 mx-auto">
-                            <i class="fas fa-clock text-white text-xl"></i>
+
+                    <!-- Info Box -->
+                    <div class="glass-card rounded-xl p-6 max-w-2xl mx-auto border-l-4 border-blue-400">
+                        <h3 class="font-semibold text-light mb-3 flex items-center justify-center text-lg">
+                            <i class="fas fa-info-circle mr-2"></i>Access Information
+                        </h3>
+                        <div class="text-center">
+                            <p class="text-light-secondary mb-2">
+                                This system is for authorized Tier One Advisory personnel only.
+                            </p>
+                            <p class="text-light-tertiary text-sm">
+                                New account requests are typically approved within 24 hours during business days.
+                                For urgent access, please contact your department administrator.
+                            </p>
                         </div>
-                        <h4 class="font-semibold text-light mb-2">24/7 Availability</h4>
-                        <p class="text-light-secondary text-sm">Access the system anytime from any device</p>
+                    </div>
+
+                    <!-- Additional Info -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+                        <div class="feature-card rounded-xl p-6 text-center">
+                            <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-3 mx-auto">
+                                <i class="fas fa-shield-alt text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-light mb-2">Secure & Protected</h4>
+                            <p class="text-light-secondary text-sm">Enterprise-grade security for all your data and requests</p>
+                        </div>
+                        <div class="feature-card rounded-xl p-6 text-center">
+                            <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-3 mx-auto">
+                                <i class="fas fa-clock text-white text-xl"></i>
+                            </div>
+                            <h4 class="font-semibold text-light mb-2">24/7 Availability</h4>
+                            <p class="text-light-secondary text-sm">Access the system anytime from any device</p>
+                        </div>
                     </div>
                 </div>
             </div>
