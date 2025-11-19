@@ -1203,6 +1203,15 @@ function printResults() {
           initializeQuickSearch();
       });
     </script>
+    <!-- Add this right before the closing </body> tag, after your module script -->
+<script>
+// Global logout function
+async function logout() {
+  // Since supabase is inside the module, we'll use a different approach
+  window.location.href = 'logout.html'; // Create a simple logout page
+}
+</script>
   </body>
 </html>
+
 
