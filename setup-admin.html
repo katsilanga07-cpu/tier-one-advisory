@@ -87,7 +87,7 @@
                     </div>
                     <span class="text-xl font-bold">Tier One Advisory Philippines Inc.</span>
                 </div>
-                <!-- MODIFIED: Changed href from index.html to setup-admin.html -->
+                <!-- Login button - this should work now -->
                 <a href="login.html" class="hover:text-blue-200 transition flex items-center bg-white/10 px-4 py-2 rounded-lg">
                     <i class="fas fa-sign-in-alt mr-2"></i>Login
                 </a>
@@ -232,10 +232,12 @@
     </footer>
 
     <script>
-        const { createClient } = supabase;
+        // FIXED: Remove the destructuring - supabase is already the client constructor
         const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
-        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        // FIXED: Use supabase.createClient directly
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         document.getElementById('adminForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -311,7 +313,7 @@
                 if (profileError) throw profileError;
                 
                 alert('✅ Admin account created successfully! Please check your email to verify your account, then you can login.');
-                window.location.href = 'index.html';
+                window.location.href = 'login.html';
                 
             } catch (error) {
                 console.error('Setup error:', error);
