@@ -464,6 +464,7 @@
         async function logout() {
           try {
             await supabase.auth.signOut();
+            window.location.href = 'login.html';
           } catch (error) {
             console.log('Logout error:', error);
           }
@@ -921,3 +922,4 @@
     </script>
   </body>
 </html>
+
