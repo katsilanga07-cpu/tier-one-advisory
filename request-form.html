@@ -460,7 +460,7 @@
           }
         }
 
-        // Logout function
+        // Logout function - UPDATED TO login.html
         async function logout() {
           try {
             await supabase.auth.signOut();
@@ -468,15 +468,15 @@
             console.log('Logout error:', error);
           }
           localStorage.removeItem('currentUser');
-          window.location.href = 'index.html';
+          window.location.href = 'login.html';  // ← CHANGED TO login.html
         }
 
-        // Check if user is logged in (for page protection)
+        // Check if user is logged in (for page protection) - UPDATED TO login.html
         function checkAuth() {
           const user = loadUserInfo();
           if (!user) {
             console.log('No user found in localStorage, redirecting to login...');
-            window.location.href = 'index.html';
+            window.location.href = 'login.html';  // ← CHANGED TO login.html
             return false;
           }
           console.log('User authenticated:', user.full_name, 'Role:', user.role);
@@ -651,7 +651,7 @@
             const userData = localStorage.getItem('currentUser');
             if (!userData) {
               alert("❌ Please log in to submit requests.");
-              window.location.href = 'index.html';
+              window.location.href = 'login.html';  // ← CHANGED TO login.html
               return;
             }
 
