@@ -460,12 +460,16 @@
           }
         }
 
-        // Logout function - UPDATED TO login.html
+        // Logout function
         async function logout() {
           try {
             await supabase.auth.signOut();
-            window.location.href = 'login.html';
+          } catch (error) {
+            console.log('Logout error:', error);
           }
+          localStorage.removeItem('currentUser');
+          window.location.href = 'login.html';
+        }
 
         // Check if user is logged in (for page protection) - UPDATED TO login.html
         function checkAuth() {
@@ -917,5 +921,6 @@
     </script>
   </body>
 </html>
+
 
 
