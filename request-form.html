@@ -465,12 +465,7 @@
           try {
             await supabase.auth.signOut();
             window.location.href = 'login.html';
-          } catch (error) {
-            console.log('Logout error:', error);
           }
-          localStorage.removeItem('currentUser');
-          window.location.href = 'login.html';  // ← CHANGED TO login.html
-        }
 
         // Check if user is logged in (for page protection) - UPDATED TO login.html
         function checkAuth() {
@@ -922,4 +917,5 @@
     </script>
   </body>
 </html>
+
 
