@@ -117,7 +117,8 @@
               <a href="#" class="hover:text-blue-300 transition flex items-center">
                 <i class="fas fa-phone mr-1 text-xs"></i> Contact Us
               </a>
-              <a href="#" onclick="logout()" class="hover:text-blue-300 transition cursor-pointer flex items-center">
+              <!-- CHANGED: Removed onclick and added id -->
+              <a href="#" id="logoutButton" class="hover:text-blue-300 transition cursor-pointer flex items-center">
                 <i class="fas fa-sign-out-alt mr-1 text-xs"></i> Logout
               </a>
             </div>
@@ -388,6 +389,29 @@
 
     <!-- JavaScript -->
     <script>
+      // Global logout function
+      async function logout() {
+        try {
+          const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
+          const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
+          
+          // FIXED: Use supabase.createClient directly
+          const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+            auth: {
+              persistSession: false,
+              autoRefreshToken: false,
+              detectSessionInUrl: false
+            }
+          });
+          
+          await supabase.auth.signOut();
+        } catch (error) {
+          console.log('Logout error:', error);
+        }
+        localStorage.removeItem('currentUser');
+        window.location.href = 'login.html';
+      }
+
       // Wait for DOM to be fully loaded
       document.addEventListener('DOMContentLoaded', function() {
         // ✅ Elements - check each one individually
@@ -403,7 +427,8 @@
           searchModal: document.getElementById('searchModal'),
           closeSearch: document.getElementById('closeSearch'),
           searchInput: document.getElementById('searchInput'),
-          searchResults: document.getElementById('searchResults')
+          searchResults: document.getElementById('searchResults'),
+          logoutButton: document.getElementById('logoutButton') // ADDED: Logout button
         };
 
         console.log('All form elements:', elements);
@@ -427,6 +452,7 @@
         const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
         
+        // FIXED: Use supabase.createClient directly
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
           auth: {
             persistSession: false,
@@ -460,23 +486,12 @@
           }
         }
 
-        // Logout function
-        async function logout() {
-          try {
-            await supabase.auth.signOut();
-          } catch (error) {
-            console.log('Logout error:', error);
-          }
-          localStorage.removeItem('currentUser');
-          window.location.href = 'login.html';
-        }
-
-        // Check if user is logged in (for page protection) - UPDATED TO login.html
+        // Check if user is logged in (for page protection)
         function checkAuth() {
           const user = loadUserInfo();
           if (!user) {
             console.log('No user found in localStorage, redirecting to login...');
-            window.location.href = 'login.html';  // ← CHANGED TO login.html
+            window.location.href = 'login.html';
             return false;
           }
           console.log('User authenticated:', user.full_name, 'Role:', user.role);
@@ -651,7 +666,7 @@
             const userData = localStorage.getItem('currentUser');
             if (!userData) {
               alert("❌ Please log in to submit requests.");
-              window.location.href = 'login.html';  // ← CHANGED TO login.html
+              window.location.href = 'login.html';
               return;
             }
 
@@ -714,6 +729,9 @@
         });
 
         elements.saveButton.addEventListener("click", saveTask);
+
+        // ADDED: Logout button event listener
+        elements.logoutButton.addEventListener('click', logout);
 
         // Search functionality
         function initializeSearch() {
@@ -879,8 +897,8 @@
           if (!user) return;
 
           console.log("User logged in:", user.full_name, "Role:", user.role);
-          // In initializeApp() function, add this:
           displayWelcomeMessage();
+          
           // Test Supabase connection but don't block if it fails
           try {
             const connectionOk = await testConnection();
@@ -921,6 +939,3 @@
     </script>
   </body>
 </html>
-
-
-
