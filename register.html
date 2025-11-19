@@ -19,13 +19,11 @@
         }
         .glass-card {
             background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #ffffff;
         }
         .feature-card {
             background: rgba(255, 255, 255, 0.12);
-            backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #ffffff;
         }
@@ -45,7 +43,6 @@
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.3);
             color: #ffffff;
-            backdrop-filter: blur(10px);
         }
         .form-input::placeholder {
             color: rgba(255, 255, 255, 0.7);
@@ -220,10 +217,10 @@
     </footer>
 
     <script>
-        const { createClient } = supabase;
+        // FIXED: Use supabase.createClient directly instead of destructuring
         const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
-        const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         // Registration function
         document.getElementById('registerForm').addEventListener('submit', async function(e) {
