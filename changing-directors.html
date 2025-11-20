@@ -69,7 +69,7 @@
             background: rgba(0, 0, 0, 0.4);
         }
         
-        /* Fullscreen styles */
+        /* Fullscreen styles - ENHANCED FOR BETTER READABILITY */
         .fullscreen-mode {
             position: fixed;
             top: 0;
@@ -79,44 +79,88 @@
             background: white;
             z-index: 1000;
             overflow-y: auto;
-            padding: 2rem;
+            padding: 1rem;
         }
         
         .fullscreen-slide-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.5); /* 50% transparency */
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(10px);
-            border-radius: 1rem;
-            padding: 3rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
-            min-height: calc(100vh - 4rem);
+            border-radius: 1.5rem;
+            padding: 4rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            min-height: calc(100vh - 2rem);
             border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .exit-fullscreen-btn {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 25px;
+            right: 25px;
             z-index: 1001;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.8);
             color: white;
             border: none;
             border-radius: 50%;
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 1.5rem;
         }
         
         .exit-fullscreen-btn:hover {
-            background: rgba(0, 0, 0, 0.9);
-            transform: scale(1.1);
+            background: rgba(0, 0, 0, 1);
+            transform: scale(1.15);
         }
         
+        /* ENHANCED TEXT SIZES FOR FULLSCREEN */
+        .fullscreen-title {
+            font-size: 3.5rem !important;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            text-align: center;
+            line-height: 1.2;
+        }
+        
+        .fullscreen-subtitle {
+            font-size: 2.2rem !important;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            line-height: 1.3;
+        }
+        
+        .fullscreen-body {
+            font-size: 1.8rem !important;
+            color: #374151;
+            line-height: 1.7;
+        }
+        
+        .fullscreen-body p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .fullscreen-list {
+            font-size: 1.7rem !important;
+            line-height: 1.6;
+        }
+        
+        .fullscreen-step {
+            font-size: 1.7rem !important;
+            line-height: 1.6;
+        }
+        
+        .fullscreen-caption {
+            font-size: 1.4rem !important;
+        }
+        
+        /* Regular slide styles */
         .slide-title {
             font-size: 1.8rem;
             font-weight: bold;
@@ -146,15 +190,16 @@
         
         .step-number {
             display: inline-block;
-            width: 24px;
-            height: 24px;
+            width: 32px;
+            height: 32px;
             background-color: #3b82f6;
             color: white;
             border-radius: 50%;
             text-align: center;
-            line-height: 24px;
-            margin-right: 8px;
-            font-size: 0.8rem;
+            line-height: 32px;
+            margin-right: 12px;
+            font-size: 1rem;
+            font-weight: bold;
         }
         
         /* Document Image Styles with Magnifier */
@@ -175,6 +220,10 @@
             object-fit: contain;
             cursor: crosshair;
             transition: all 0.3s ease;
+        }
+        
+        .fullscreen-document-image {
+            max-height: 600px !important;
         }
         
         .document-caption {
@@ -1191,8 +1240,24 @@ function initializeMagnifier() {
             currentSlideContent.innerHTML = slide.content;
             slideNotes.textContent = slide.notes;
             
-            // Also load content for fullscreen mode
-            fullscreenSlideContent.innerHTML = slide.content;
+            // Load enhanced content for fullscreen mode
+            let fullscreenContent = slide.content;
+            
+            // Enhance text sizes for fullscreen mode
+            fullscreenContent = fullscreenContent
+                .replace(/text-4xl/g, 'fullscreen-title')
+                .replace(/text-3xl/g, 'fullscreen-title')
+                .replace(/text-2xl/g, 'fullscreen-subtitle')
+                .replace(/text-xl/g, 'fullscreen-body')
+                .replace(/text-lg/g, 'fullscreen-body')
+                .replace(/text-sm/g, 'fullscreen-list')
+                .replace(/text-xs/g, 'fullscreen-caption')
+                .replace(/slide-body/g, 'slide-body fullscreen-body')
+                .replace(/document-image/g, 'document-image fullscreen-document-image')
+                .replace(/step-number/g, 'step-number')
+                .replace(/text-gray-700/g, 'text-gray-800 fullscreen-step');
+            
+            fullscreenSlideContent.innerHTML = fullscreenContent;
             
             // Update progress
             const progress = ((index + 1) / presentation.totalSlides) * 100;
@@ -1224,6 +1289,7 @@ function initializeMagnifier() {
             document.body.style.overflow = 'hidden';
             // Set the background for the current slide
             fullscreenContainer.className = `fullscreen-mode slide-bg-${currentSlideIndex + 1}`;
+            loadSlide(currentSlideIndex); // Reload to apply fullscreen styles
         }
 
         function exitFullscreen() {
