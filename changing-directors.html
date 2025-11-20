@@ -85,7 +85,7 @@
         .fullscreen-slide-content {
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.5); /* 50% transparency */
             backdrop-filter: blur(10px);
             border-radius: 1rem;
             padding: 3rem;
@@ -223,111 +223,111 @@
             opacity: 1;
         }
         
-        /* Background images for fullscreen slides */
+        /* Background images for fullscreen slides with reduced gradient */
         .slide-bg-1 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-2.fna.fbcdn.net/v/t39.30808-6/476159816_122218897844157169_3900929231001105782_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHqgiLEO1WGZ21NovvmkszgI_42y1FXX5kj_jbLUVdfmZvBE4bms3G1KJyhjbmdK_LgOGDjsuoxSyw9g_f8SRfJ&_nc_ohc=yF2LI_H7I9QQ7kNvwGfD6t0&_nc_oc=AdkYrdMvXFoqHvLPjvPMggfYjzBHzvMQl6oXBRG4dbg7YmSS6vLsXIFGQeH6mRydxl8&_nc_zt=23&_nc_ht=scontent.fmnl9-2.fna&_nc_gid=rTh7R0cKzNz31g9u-12ptQ&oh=00_AfjJGGbTds1fWtp0997nZkn-f841ewXYAPo5te9QGZUl-g&oe=69250CE9');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-2.fna.fbcdn.net/v/t39.30808-6/476159816_122218897844157169_3900929231001105782_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHqgiLEO1WGZ21NovvmkszgI_42y1FXX5kj_jbLUVdfmZvBE4bms3G1KJyhjbmdK_LgOGDjsuoxSyw9g_f8SRfJ&_nc_ohc=yF2LI_H7I9QQ7kNvwGfD6t0&_nc_oc=AdkYrdMvXFoqHvLPjvPMggfYjzBHzvMQl6oXBRG4dbg7YmSS6vLsXIFGQeH6mRydxl8&_nc_zt=23&_nc_ht=scontent.fmnl9-2.fna&_nc_gid=rTh7R0cKzNz31g9u-12ptQ&oh=00_AfjJGGbTds1fWtp0997nZkn-f841ewXYAPo5te9QGZUl-g&oe=69250CE9');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-2 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/476792421_122218898654157169_6621288624292314674_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeFS_VQlV-caHG63MYDQX6MTId6isE52u_Yh3qKwTna79qiYf4dRbXYW8F3uswbaX2Nhds9Oq_lefnqS8ZbK6ctd&_nc_ohc=WFFgRWyfR1AQ7kNvwH3n4zh&_nc_oc=AdlCI5Q1GUyVdv3uINDvajPAsOYV9XE5SR6D_SVj7LJ8YbBC-5S54k7FXAcHgNtTxw8&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=fP5Lga_LV_OPxKmW-q155g&oh=00_AfgWMR5iZnOchJ2RAM5KWtBsFsbfOkn9bbV2T8mEsMYlEA&oe=6924FB7E');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-6.fna.fbcdn.net/v/t39.30808-6/476792421_122218898654157169_6621288624292314674_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeFS_VQlV-caHG63MYDQX6MTId6isE52u_Yh3qKwTna79qiYf4dRbXYW8F3uswbaX2Nhds9Oq_lefnqS8ZbK6ctd&_nc_ohc=WFFgRWyfR1AQ7kNvwH3n4zh&_nc_oc=AdlCI5Q1GUyVdv3uINDvajPAsOYV9XE5SR6D_SVj7LJ8YbBC-5S54k7FXAcHgNtTxw8&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&_nc_gid=fP5Lga_LV_OPxKmW-q155g&oh=00_AfgWMR5iZnOchJ2RAM5KWtBsFsbfOkn9bbV2T8mEsMYlEA&oe=6924FB7E');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-3 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/476162862_122218897832157169_8384899722571671443_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeFTN1o0DH8Rl9W-WrgPdTIKS3lhK9O8JgRLeWEr07wmBA8oc5H7TYnh7wDUEutEnPBIANM97kBR_hXlGO2p1wek&_nc_ohc=ioBO1yyHUdoQ7kNvwE_agy4&_nc_oc=AdmvEOUjLz11Is5ZXrWY8NY5Q88s1LCa0aP5JHgdSF9Sj2Jfiu8HUncRXzoFF5umYJs&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=iCJQzAPWYIVtx33aTr351g&oh=00_AfjAAFkuvRn-g83EiMwT856_0HpccMtbqat9GI0R-nFlaw&oe=69250B10');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/476162862_122218897832157169_8384899722571671443_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeFTN1o0DH8Rl9W-WrgPdTIKS3lhK9O8JgRLeWEr07wmBA8oc5H7TYnh7wDUEutEnPBIANM97kBR_hXlGO2p1wek&_nc_ohc=ioBO1yyHUdoQ7kNvwE_agy4&_nc_oc=AdmvEOUjLz11Is5ZXrWY8NY5Q88s1LCa0aP5JHgdSF9Sj2Jfiu8HUncRXzoFF5umYJs&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=iCJQzAPWYIVtx33aTr351g&oh=00_AfjAAFkuvRn-g83EiMwT856_0HpccMtbqat9GI0R-nFlaw&oe=69250B10');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-4 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/474127346_122215213364157169_3899476283698164769_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeERDWb2iyvCdaCQ7iaVDQZlfGFsQvpr-F98YWxC-mv4X4oeFbcB1MX2ZMpG630Ugnxm6eBhumQ4GoY1ZaLXiR20&_nc_ohc=kKLHPmuNLOEQ7kNvwFghlSo&_nc_oc=Adnek-DvPDofNpTass79epWq0OkAhLf4CTvJA9AazgDpy6emmhmFpBW23H_bS0mpXcA&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=0Kh4qgocOP2Vi_nJTtdtsg&oh=00_AfjXoPbM-HgtBIQcEB-3BFK3SMpSx52CFQhjmoja6GICwg&oe=69250069');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/474127346_122215213364157169_3899476283698164769_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeERDWb2iyvCdaCQ7iaVDQZlfGFsQvpr-F98YWxC-mv4X4oeFbcB1MX2ZMpG630Ugnxm6eBhumQ4GoY1ZaLXiR20&_nc_ohc=kKLHPmuNLOEQ7kNvwFghlSo&_nc_oc=Adnek-DvPDofNpTass79epWq0OkAhLf4CTvJA9AazgDpy6emmhmFpBW23H_bS0mpXcA&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=0Kh4qgocOP2Vi_nJTtdtsg&oh=00_AfjXoPbM-HgtBIQcEB-3BFK3SMpSx52CFQhjmoja6GICwg&oe=69250069');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-5 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/471818728_122210176610157169_8698920469515100328_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeFGX1mEGPk8PXKLwrBERRaV85G2JFaJwEXzkbYkVonARdDdKf6o-K0XhbtOScH98ooDp0JoH-b6d9ER_ggslSRp&_nc_ohc=1fjxdJPcOYwQ7kNvwEOXZjg&_nc_oc=AdlAgKz1EFQLPFbpH96GH6gYM5LnISnFbgKeQ59DzxgleA8xXyg6uyKYvGGg6cndxc4&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=y-6JcchsEsF8qDBh1SJ8xA&oh=00_AfjcZk9usbM20jasrvyD0f7mmNL2A1nE6u-gsTxDPh41Ew&oe=6924EF9B');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/471818728_122210176610157169_8698920469515100328_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeFGX1mEGPk8PXKLwrBERRaV85G2JFaJwEXzkbYkVonARdDdKf6o-K0XhbtOScH98ooDp0JoH-b6d9ER_ggslSRp&_nc_ohc=1fjxdJPcOYwQ7kNvwEOXZjg&_nc_oc=AdlAgKz1EFQLPFbpH96GH6gYM5LnISnFbgKeQ59DzxgleA8xXyg6uyKYvGGg6cndxc4&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=y-6JcchsEsF8qDBh1SJ8xA&oh=00_AfjcZk9usbM20jasrvyD0f7mmNL2A1nE6u-gsTxDPh41Ew&oe=6924EF9B');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-6 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-2.fna.fbcdn.net/v/t39.30808-6/471510287_122210176856157169_586841149741395636_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeH3l3KhuvNS4yR_mIRdbf-69aLz2euA4Tv1ovPZ64DhO05YFTApXID-BbSbVdNOM9BqFH9cp6VD75tqaqxBQ-hH&_nc_ohc=r90C-iURJ_EQ7kNvwFLsHdr&_nc_oc=AdlqJLLrgSk6UJiGNXwaZLk9ElGKUHcFomuvnJ6Tmc8wwH12OTd25GLVXD9xA_n2Bvg&_nc_zt=23&_nc_ht=scontent.fmnl9-2.fna&_nc_gid=DWgpfdPhSKB-ZXuvNNiFsA&oh=00_Afg9KOyj2rwvzXtpSj3sN4R4IYAhMIP5bSKWvt741vjQhg&oe=6925056F');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-2.fna.fbcdn.net/v/t39.30808-6/471510287_122210176856157169_586841149741395636_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeH3l3KhuvNS4yR_mIRdbf-69aLz2euA4Tv1ovPZ64DhO05YFTApXID-BbSbVdNOM9BqFH9cp6VD75tqaqxBQ-hH&_nc_ohc=r90C-iURJ_EQ7kNvwFLsHdr&_nc_oc=AdlqJLLrgSk6UJiGNXwaZLk9ElGKUHcFomuvnJ6Tmc8wwH12OTd25GLVXD9xA_n2Bvg&_nc_zt=23&_nc_ht=scontent.fmnl9-2.fna&_nc_gid=DWgpfdPhSKB-ZXuvNNiFsA&oh=00_Afg9KOyj2rwvzXtpSj3sN4R4IYAhMIP5bSKWvt741vjQhg&oe=6925056F');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-7 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-5.fna.fbcdn.net/v/t39.30808-6/471424650_122210176670157169_5373146868184186103_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeGytalYthc3PN2SF4gvX3hyiVuA9sTVLXCJW4D2xNUtcHc9AGixnRZH8xiT_mMkIg5ocI8GPY6f6djXvbL8oxxk&_nc_ohc=eZHokiec_iQQ7kNvwEmKza9&_nc_oc=AdkCagGbhD2xkBfp975NNCeFHoaubAwwdptv7NQKZWLj2VEuA1Rk4FbvZdJF5RGcq3o&_nc_zt=23&_nc_ht=scontent.fmnl9-5.fna&_nc_gid=EqMki891OX68xaOQa3yifA&oh=00_AfjoGs72wYeoIr5JIC8PNBCbZS7HVeOknBe8FbflIohC6Q&oe=6924FF2B');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-5.fna.fbcdn.net/v/t39.30808-6/471424650_122210176670157169_5373146868184186103_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeGytalYthc3PN2SF4gvX3hyiVuA9sTVLXCJW4D2xNUtcHc9AGixnRZH8xiT_mMkIg5ocI8GPY6f6djXvbL8oxxk&_nc_ohc=eZHokiec_iQQ7kNvwEmKza9&_nc_oc=AdkCagGbhD2xkBfp975NNCeFHoaubAwwdptv7NQKZWLj2VEuA1Rk4FbvZdJF5RGcq3o&_nc_zt=23&_nc_ht=scontent.fmnl9-5.fna&_nc_gid=EqMki891OX68xaOQa3yifA&oh=00_AfjoGs72wYeoIr5JIC8PNBCbZS7HVeOknBe8FbflIohC6Q&oe=6924FF2B');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-8 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/469337314_122206139852157169_2367911385109348591_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeE__A2DziXyqFphCsPDysnMQrNMX4yvTXVCs0xfjK9NdVa1oSaDMtJqLdwd_AtUdVwEFXcYZHomiGyv26J_uVAO&_nc_ohc=KxNU9KQMjtcQ7kNvwFRYC55&_nc_oc=Adk1a7IhWQrgKkBRM3yWDbCneMx3w2ewuyR7hoW6xe1WROXp2YwSyY78ire_JQKgFcw&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=rC0feR1LWXR7lY92gmukwQ&oh=00_AfiQvd-BDAm2JsnvfXbPQsAGAmIDbQXF25ua5UClaU07FQ&oe=6924E46D');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/469337314_122206139852157169_2367911385109348591_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeE__A2DziXyqFphCsPDysnMQrNMX4yvTXVCs0xfjK9NdVa1oSaDMtJqLdwd_AtUdVwEFXcYZHomiGyv26J_uVAO&_nc_ohc=KxNU9KQMjtcQ7kNvwFRYC55&_nc_oc=Adk1a7IhWQrgKkBRM3yWDbCneMx3w2ewuyR7hoW6xe1WROXp2YwSyY78ire_JQKgFcw&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=rC0feR1LWXR7lY92gmukwQ&oh=00_AfiQvd-BDAm2JsnvfXbPQsAGAmIDbQXF25ua5UClaU07FQ&oe=6924E46D');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-9 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/469315849_122206140368157169_8010680512638426925_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeFPk5n62lpbtscmHSSa7X_intf_o8LEd7ae1_-jwsR3tjgthB7f4BYG3abeOHOdjEiioqMYpijo12sOPL_35ny3&_nc_ohc=d5uRnxAYZHcQ7kNvwH-z4yK&_nc_oc=AdlZa2lqyvJNyKLZ3-bgPcKP-_sQihqOpq8kBILznOeeKDbTs63lCQKl-eeNCaRCNus&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=REV8SYEzK6uTumqAVbH5-g&oh=00_AfgVmqeHtxWANEGOyRqd2iTXcz12IPyAxo7oj5wkmA--xA&oe=69250CAE');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/469315849_122206140368157169_8010680512638426925_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeFPk5n62lpbtscmHSSa7X_intf_o8LEd7ae1_-jwsR3tjgthB7f4BYG3abeOHOdjEiioqMYpijo12sOPL_35ny3&_nc_ohc=d5uRnxAYZHcQ7kNvwH-z4yK&_nc_oc=AdlZa2lqyvJNyKLZ3-bgPcKP-_sQihqOpq8kBILznOeeKDbTs63lCQKl-eeNCaRCNus&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=REV8SYEzK6uTumqAVbH5-g&oh=00_AfgVmqeHtxWANEGOyRqd2iTXcz12IPyAxo7oj5wkmA--xA&oe=69250CAE');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-10 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/469314696_122206140584157169_7985994588844106905_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeG-i4rbs6WbIgKB0Qkp5j5EWLZdNATP7OFYtl00BM_s4VKgh4oi9Xp9EDOk7LGXDR9-0akK23oA1rvAp65iFxcq&_nc_ohc=r5XX9U8fZ_wQ7kNvwF4LO6_&_nc_oc=AdkuIOvEO1kEwcecGAFV_Wvs7iyoFQ3SyJ-7SXnnMKJCT_i6ichN30SQXMYoeffuhi8&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=uhPhJA3GMWv3xjjk3SwQHg&oh=00_AfiLwkzSCT2KKVYjh4f6EPrpWhx3-DCFqEvB9qRO9yx4oQ&oe=69250CE2');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-4.fna.fbcdn.net/v/t39.30808-6/469314696_122206140584157169_7985994588844106905_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeG-i4rbs6WbIgKB0Qkp5j5EWLZdNATP7OFYtl00BM_s4VKgh4oi9Xp9EDOk7LGXDR9-0akK23oA1rvAp65iFxcq&_nc_ohc=r5XX9U8fZ_wQ7kNvwF4LO6_&_nc_oc=AdkuIOvEO1kEwcecGAFV_Wvs7iyoFQ3SyJ-7SXnnMKJCT_i6ichN30SQXMYoeffuhi8&_nc_zt=23&_nc_ht=scontent.fmnl9-4.fna&_nc_gid=uhPhJA3GMWv3xjjk3SwQHg&oh=00_AfiLwkzSCT2KKVYjh4f6EPrpWhx3-DCFqEvB9qRO9yx4oQ&oe=69250CE2');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-11 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/469126274_122206139768157169_3678941204544984229_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFv7I3L6C6GQ2pr93mF7emPEZ2HWsUQpooRnYdaxRCmisxXwg6wMBTRSJAlQmpuEHbnxxC9EYeF0WaSTXD_N3zJ&_nc_ohc=IGECelGe0WUQ7kNvwFajlNP&_nc_oc=AdmyuOWv4c2TQc8x7hJKnxBAyhwr3_gHeG9Ur_Y1zPi0VhZM-JrbWTvuSuj3bLNOKlU&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=He9nuGyT3CFA_TtoDodXAA&oh=00_Afge9HANU2_l2gZAt4XGJE6dRK3Fc3mVRV_A5Tx1QqgeZQ&oe=692507F5');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/469126274_122206139768157169_3678941204544984229_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeFv7I3L6C6GQ2pr93mF7emPEZ2HWsUQpooRnYdaxRCmisxXwg6wMBTRSJAlQmpuEHbnxxC9EYeF0WaSTXD_N3zJ&_nc_ohc=IGECelGe0WUQ7kNvwFajlNP&_nc_oc=AdmyuOWv4c2TQc8x7hJKnxBAyhwr3_gHeG9Ur_Y1zPi0VhZM-JrbWTvuSuj3bLNOKlU&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=He9nuGyT3CFA_TtoDodXAA&oh=00_Afge9HANU2_l2gZAt4XGJE6dRK3Fc3mVRV_A5Tx1QqgeZQ&oe=692507F5');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-12 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/485005948_122230426652157169_332020579217258619_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGu9-A27dpeWAF24cGu-FePeyPZvrNQLdh7I9m-s1At2AZB3jI9rcxmj93ytsLj6J_YwwtjtKjDVIfRjmnGXO5L&_nc_ohc=Db3soSc3ivcQ7kNvwG4-vIJ&_nc_oc=AdkbbSVknjBMQIMG0Qog4A1lb1cJPTE81OsIjc4uHrFDyjGUeBIoKjX3WyK3ftTGS8o&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=6Sldrh3Y8SUR3pEWKBwk1w&oh=00_AfjCdDpFBw2KsFRvfDykekb0DbHM_hYl-ztx4MeMlt1M-Q&oe=692511E9');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/485005948_122230426652157169_332020579217258619_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGu9-A27dpeWAF24cGu-FePeyPZvrNQLdh7I9m-s1At2AZB3jI9rcxmj93ytsLj6J_YwwtjtKjDVIfRjmnGXO5L&_nc_ohc=Db3soSc3ivcQ7kNvwG4-vIJ&_nc_oc=AdkbbSVknjBMQIMG0Qog4A1lb1cJPTE81OsIjc4uHrFDyjGUeBIoKjX3WyK3ftTGS8o&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=6Sldrh3Y8SUR3pEWKBwk1w&oh=00_AfjCdDpFBw2KsFRvfDykekb0DbHM_hYl-ztx4MeMlt1M-Q&oe=692511E9');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-13 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/482274898_122227336862157169_336758078300805290_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeE2JnUoNELR2DF7XHARJvlzygHAPR1OcInKAcA9HU5wiUnlfaLs6-VhUjWBInb6FgtEhEpnZxiooVMy2C4nSqBp&_nc_ohc=p7Wjz2pP3FEQ7kNvwH2tEAc&_nc_oc=AdlYp3gtgMABxeA8ZHABYmDk17idWRt-igRyYj1OcIi60oifxiMvwuFLv0d6TcOip-Y&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=ADmjSaXCA3VZp0udf4u4cg&oh=00_AfhuFkxUN9jPpGR62ZkKI2O0PM6s9w-Jupc-g3tXGk-S4Q&oe=6924F9F0');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/482274898_122227336862157169_336758078300805290_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeE2JnUoNELR2DF7XHARJvlzygHAPR1OcInKAcA9HU5wiUnlfaLs6-VhUjWBInb6FgtEhEpnZxiooVMy2C4nSqBp&_nc_ohc=p7Wjz2pP3FEQ7kNvwH2tEAc&_nc_oc=AdlYp3gtgMABxeA8ZHABYmDk17idWRt-igRyYj1OcIi60oifxiMvwuFLv0d6TcOip-Y&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=ADmjSaXCA3VZp0udf4u4cg&oh=00_AfhuFkxUN9jPpGR62ZkKI2O0PM6s9w-Jupc-g3tXGk-S4Q&oe=6924F9F0');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-14 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/474514017_122216063582157169_810531130042970567_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHvoXtrds_Rtu9K1GHD6nlx1LsKYpCmBjLUuwpikKYGMsVue4ohcdWfuBY3a-oGybVP_O71B8Pr-B9Gl9Badk4G&_nc_ohc=StKjwvvU0fEQ7kNvwEZ16XW&_nc_oc=AdkdpNroZlOiqGcb13nei4LazRiCRing107aj060yDd6LNodDfXQMrbY8AV7SddFX4A&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=FWnC2Mt2U0kOgGAyyi0QYg&oh=00_AfjOISC50ir98CwZVKnNQ3rsvtrjattyOy6mvccXGFKgKQ&oe=6924FE3F');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-3.fna.fbcdn.net/v/t39.30808-6/474514017_122216063582157169_810531130042970567_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeHvoXtrds_Rtu9K1GHD6nlx1LsKYpCmBjLUuwpikKYGMsVue4ohcdWfuBY3a-oGybVP_O71B8Pr-B9Gl9Badk4G&_nc_ohc=StKjwvvU0fEQ7kNvwEZ16XW&_nc_oc=AdkdpNroZlOiqGcb13nei4LazRiCRing107aj060yDd6LNodDfXQMrbY8AV7SddFX4A&_nc_zt=23&_nc_ht=scontent.fmnl9-3.fna&_nc_gid=FWnC2Mt2U0kOgGAyyi0QYg&oh=00_AfjOISC50ir98CwZVKnNQ3rsvtrjattyOy6mvccXGFKgKQ&oe=6924FE3F');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-15 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-2.fna.fbcdn.net/v/t39.30808-6/504380170_1051256417164399_1000025233891346355_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFBIQaX8rnPB5F5Q1YWK_egqYaE6U9iasKphoTpT2JqwkoXzeKxZeNQhOf4r7vSRG46xE43nnhZmrDBUohrCzty&_nc_ohc=SeG0cZqUiU0Q7kNvwFCXJV4&_nc_oc=AdmytuHamCpAn7zWT29HrtzL1bbGh1-MNYzFdmJgAqr9SjWJYCRaNutKz-lS4ReWmMA&_nc_zt=23&_nc_ht=scontent.fmnl9-2.fna&_nc_gid=ThVtgZGDMhKMT7xHw8EmUw&oh=00_Afgn2psAbxSM_wHZSd5wjP03JAo5jEWl9W5xZMjT9eZrMA&oe=69251635');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-2.fna.fbcdn.net/v/t39.30808-6/504380170_1051256417164399_1000025233891346355_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFBIQaX8rnPB5F5Q1YWK_egqYaE6U9iasKphoTpT2JqwkoXzeKxZeNQhOf4r7vSRG46xE43nnhZmrDBUohrCzty&_nc_ohc=SeG0cZqUiU0Q7kNvwFCXJV4&_nc_oc=AdmytuHamCpAn7zWT29HrtzL1bbGh1-MNYzFdmJgAqr9SjWJYCRaNutKz-lS4ReWmMA&_nc_zt=23&_nc_ht=scontent.fmnl9-2.fna&_nc_gid=ThVtgZGDMhKMT7xHw8EmUw&oh=00_Afgn2psAbxSM_wHZSd5wjP03JAo5jEWl9W5xZMjT9eZrMA&oe=69251635');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-16 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/518299016_1051256490497725_1702872142015523075_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGe0-MBmiqVaHY23CR8J7ouV4PnXkuMNqFXg-deS4w2oX3MvRK55PARCdkq60YFui6i5vEfIl7L68QizpKW4zoL&_nc_ohc=HKQgr6G-3pcQ7kNvwHYk4I_&_nc_oc=AdnymgofYmdHZEDwRekjfnJrrENHubE5eQN0L79Sg_QHfzcOvNq53Y6tpbJepg6yONU&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=50VnETOA1V1TZxdoUZvNiA&oh=00_AfjdDa7Thwwm23tsDtrkrWI2fdrNK3-4qlMuc6D-fKBfmQ&oe=692500D1');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/518299016_1051256490497725_1702872142015523075_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGe0-MBmiqVaHY23CR8J7ouV4PnXkuMNqFXg-deS4w2oX3MvRK55PARCdkq60YFui6i5vEfIl7L68QizpKW4zoL&_nc_ohc=HKQgr6G-3pcQ7kNvwHYk4I_&_nc_oc=AdnymgofYmdHZEDwRekjfnJrrENHubE5eQN0L79Sg_QHfzcOvNq53Y6tpbJepg6yONU&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=50VnETOA1V1TZxdoUZvNiA&oh=00_AfjdDa7Thwwm23tsDtrkrWI2fdrNK3-4qlMuc6D-fKBfmQ&oe=692500D1');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-17 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/518290540_1051256530497721_3239328526763927794_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGXzGzSS7IkTvuoqv2eN53037v4GRFczfvfu_gZEVzN-1GQz37YqEDQg2AAqciipRYSjHCzjmig0F7andjDMk8t&_nc_ohc=n8abynCl70MQ7kNvwEEolKS&_nc_oc=AdlReiBna9f2OJC-d50JAldyKkVQt-iW8eLBW7LzXsvqxwJxdYg3AhryhFYrkUBN3Vc&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=ezulmcXKL4X3srHd3FaKSQ&oh=00_Afij9P5Xwz36LYGzMkgWCVZ-Bv5LODiP8IhM-sjKgS0p7w&oe=6924E5FF');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-7.fna.fbcdn.net/v/t39.30808-6/518290540_1051256530497721_3239328526763927794_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGXzGzSS7IkTvuoqv2eN53037v4GRFczfvfu_gZEVzN-1GQz37YqEDQg2AAqciipRYSjHCzjmig0F7andjDMk8t&_nc_ohc=n8abynCl70MQ7kNvwEEolKS&_nc_oc=AdlReiBna9f2OJC-d50JAldyKkVQt-iW8eLBW7LzXsvqxwJxdYg3AhryhFYrkUBN3Vc&_nc_zt=23&_nc_ht=scontent.fmnl9-7.fna&_nc_gid=ezulmcXKL4X3srHd3FaKSQ&oh=00_Afij9P5Xwz36LYGzMkgWCVZ-Bv5LODiP8IhM-sjKgS0p7w&oe=6924E5FF');
             background-size: cover;
             background-position: center;
         }
         
         .slide-bg-18 {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/504381944_1051256473831060_7720071443618092482_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGLFTdmUjUZ4dgSTFUVzb9iO_BvSrhFRV478G9KuEVFXhw9JN_eX-1rdg5dZVDNUV9JnQjaHi5Btk_5mWTBrwjl&_nc_ohc=ykCEzjXAfjUQ7kNvwEHrguU&_nc_oc=AdnVx5HyJHQCX73drwj1BnBYaHzTpZLDLusq5ouo8_mFKkRGHkpA350Uv41kDXekhW8&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=k-0O1naqEIfRrEXdH1DGfw&oh=00_AfhdVsqUIXx0dab94dfj0Uh1gHgaly_NLpsJO1ndILrLvg&oe=6924EE4B');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('https://scontent.fmnl9-1.fna.fbcdn.net/v/t39.30808-6/504381944_1051256473831060_7720071443618092482_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeGLFTdmUjUZ4dgSTFUVzb9iO_BvSrhFRV478G9KuEVFXhw9JN_eX-1rdg5dZVDNUV9JnQjaHi5Btk_5mWTBrwjl&_nc_ohc=ykCEzjXAfjUQ7kNvwEHrguU&_nc_oc=AdnVx5HyJHQCX73drwj1BnBYaHzTpZLDLusq5ouo8_mFKkRGHkpA350Uv41kDXekhW8&_nc_zt=23&_nc_ht=scontent.fmnl9-1.fna&_nc_gid=k-0O1naqEIfRrEXdH1DGfw&oh=00_AfhdVsqUIXx0dab94dfj0Uh1gHgaly_NLpsJO1ndILrLvg&oe=6924EE4B');
             background-size: cover;
             background-position: center;
         }
@@ -676,7 +676,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Revocation of Nominee Agreement</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=184LQrXgQgW3KauhBbYd4fOFXL860J4Hd" alt="Nominee Agreement Document" class="document-image">
+                                    <img src="https://imgur.com/1EEVm5B" alt="Revocation of Nominee" class="document-image">
                                     <p class="document-caption">Sample Notice of Revocation of Agreement</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -704,8 +704,8 @@
                         <div class="py-6">
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Resignation</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=1WfA4dorZWh28LzagbfiaFPwq9cMxI2RB" alt="Resignation Letter" class="document-image">
+                                <div class="document-container" alt="Notice of Resignation" class="document-image">
+                                    <img src="https://imgur.com/aaDe524">
                                     <p class="document-caption">Sample Resignation Letter</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -734,7 +734,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Nominee Agreement</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=1MTEVMJtwZCQHhgrB4Vqx6VhFy9jh2PLp" alt="Nominee Agreement Document" class="document-image">
+                                    <img src="https://imgur.com/egJDP2Q" alt="Nominee Agreement" class="document-image">
                                     <p class="document-caption">Sample Nominee Agreement</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -763,7 +763,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Board's Acceptance and Nomination</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=11HLY79J5HMmSjiSILln-gAmhWH7VP3Jb" alt="Board Resolution" class="document-image">
+                                    <img src="https://imgur.com/soFcxDQ" alt="Board Resolution" class="document-image">
                                     <p class="document-caption">Sample Board Resolution</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -793,7 +793,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Issuance of Secretary's Certificate</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=1nP8cT9TgQcRNDTCUDsbu3CjmrltQ_Vv8" alt="Secretary's Certificate" class="document-image">
+                                    <img src="https://imgur.com/0OtNgQJ" alt="Secretary's Certificate" class="document-image">
                                     <p class="document-caption">Sample Secretary's Certificate</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -822,7 +822,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Updating General Information Sheet (GIS)</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=1CUAfkgyyfI4sWPbO0BC8WUlrL35Qo6WF" alt="General Information Sheet" class="document-image">
+                                    <img src="https://imgur.com/PsjsndK" alt="General Information Sheet" class="document-image">
                                     <p class="document-caption">Sample General Information Sheet (GIS)</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -851,7 +851,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Execution of Deed of Assignment/Deed of Sale</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=1h462yVpjaYVQcp2c16jJgl_vbs3jA9fi" alt="Deed of Assignment" class="document-image">
+                                    <img src="https://imgur.com/ZXKE1NR" alt="Deed of Assignment" class="document-image">
                                     <p class="document-caption">Sample Deed of Assignment</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -881,7 +881,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Stock Certificate(s)</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=19VsFKBs0OYxJIRfbH2eIAeilNDkzwx9Q" alt="Stock Certificate" class="document-image">
+                                    <img src="https://imgur.com/k9s3yVs" alt="Stock Certificate" class="document-image">
                                     <p class="document-caption">Sample Stock Certificate</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -909,7 +909,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Audited Financial Statement (AFS)</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=1SQwDpABc9iswMGCpvAX086xsuPqcX0TW" alt="Audited Financial Statement" class="document-image">
+                                    <img src="https://imgur.com/EPw6pLh" alt="Audited Financial Statement" class="document-image">
                                     <p class="document-caption">Sample Audited Financial Statement</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -937,7 +937,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">BIR Form 1707 (Capital Gains Tax)</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=1JZzpXNFih6xVZfW06L9W4-8URyeCupGB" alt="BIR Form 1707" class="document-image">
+                                    <img src="https://imgur.com/5A1AaFG" alt="BIR Form 1707" class="document-image">
                                     <p class="document-caption">Sample BIR Form 1707</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -965,7 +965,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">BIR Form 2000 (Documentary Stamp Tax)</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=16mvBj8newwU5jWwuNWKOyvcoMQu47v1S" alt="BIR Form 2000" class="document-image">
+                                    <img src="https://imgur.com/T8pvYjQ" alt="BIR Form 2000" class="document-image">
                                     <p class="document-caption">Sample BIR Form 2000</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
@@ -993,7 +993,7 @@
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Proof of Full Tax Payment</h2>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                                 <div class="document-container">
-                                    <img src="https://drive.google.com/uc?export=view&id=1iq4biRTrdl68670o5g9q-pkB8d5kJLvZ" alt="Proof of Payment" class="document-image">
+                                    <img src="https://imgur.com/pBFbWAh" alt="Proof of Payment" class="document-image">
                                     <p class="document-caption">Sample Deposit Slip as Proof of Payment</p>
                                     <div class="magnifier-hint">Hover over image to magnify</div>
                                 </div>
