@@ -1111,45 +1111,45 @@
         const fullscreenSlideContent = document.getElementById('fullscreenSlideContent');
         const exitFullscreenBtn = document.getElementById('exitFullscreenBtn');
 
-        // Magnifier functionality
-        function initializeMagnifier() {
-            const documentImages = document.querySelectorAll('.document-image');
+// Magnifier functionality
+function initializeMagnifier() {
+    const documentImages = document.querySelectorAll('.document-image');
+    
+    documentImages.forEach(img => {
+        const container = img.parentElement;
+        const magnifier = document.createElement('div');
+        magnifier.className = 'magnifier';
+        container.appendChild(magnifier);
+
+        img.addEventListener('mousemove', (e) => {
+            const rect = img.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
             
-            documentImages.forEach(img => {
-                const container = img.parentElement;
-                const magnifier = document.createElement('div');
-                magnifier.className = 'magnifier';
-                container.appendChild(magnifier);
+            // Calculate position for magnifier (centered on cursor)
+            const magnifierSize = 150; // ← CHANGE THIS LINE
+            const magnifierX = x - magnifierSize / 2;
+            const magnifierY = y - magnifierSize / 2;
+            
+            // Set magnifier position
+            magnifier.style.left = `${magnifierX}px`;
+            magnifier.style.top = `${magnifierY}px`;
+            
+            // Calculate background position for 300% zoom
+            const bgX = (x / img.width) * 100;
+            const bgY = (y / img.height) * 100;
+            
+            // Set magnifier background
+            magnifier.style.backgroundImage = `url('${img.src}')`;
+            magnifier.style.backgroundPosition = `${bgX}% ${bgY}%`;
+            magnifier.classList.add('active');
+        });
 
-                img.addEventListener('mousemove', (e) => {
-                    const rect = img.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    
-                    // Calculate position for magnifier (centered on cursor)
-                    const magnifierSize = 150;
-                    const magnifierX = x - magnifierSize / 2;
-                    const magnifierY = y - magnifierSize / 2;
-                    
-                    // Set magnifier position
-                    magnifier.style.left = `${magnifierX}px`;
-                    magnifier.style.top = `${magnifierY}px`;
-                    
-                    // Calculate background position for 300% zoom
-                    const bgX = (x / img.width) * 100;
-                    const bgY = (y / img.height) * 100;
-                    
-                    // Set magnifier background
-                    magnifier.style.backgroundImage = `url('${img.src}')`;
-                    magnifier.style.backgroundPosition = `${bgX}% ${bgY}%`;
-                    magnifier.classList.add('active');
-                });
-
-                img.addEventListener('mouseleave', () => {
-                    magnifier.classList.remove('active');
-                });
-            });
-        }
+        img.addEventListener('mouseleave', () => {
+            magnifier.classList.remove('active');
+        });
+    });
+}
 
         // Initialize presentation
         function initPresentation() {
