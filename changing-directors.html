@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changing Directors & Shareholders - Tier One Advisory</title>
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .company-gradient {
+            background: linear-gradient(135deg, #0056a3 0%, #003d75 100%);
+        }
+        .main-background {
+            background-image: url('https://www.bworldonline.com/wp-content/uploads/2022/12/BGC-_BB20891.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            position: relative;
+        }
+        .slide-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            min-height: 70vh;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        }
+        .slide-content {
+            background: transparent;
+            border-radius: 0.75rem;
+        }
+        .progress-bar {
+            background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+            height: 4px;
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        .slide-nav-btn {
+            transition: all 0.3s ease;
+        }
+        .slide-nav-btn:hover:not(:disabled) {
+            transform: scale(1.1);
+            background-color: #3b82f6;
+        }
+        .slide-number {
+            background: rgba(0, 86, 163, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        .slide-indicator {
+            transition: all 0.3s ease;
+        }
+        .slide-indicator.active {
+            background-color: #3b82f6;
+            transform: scale(1.1);
+        }
+        .agenda-item {
+            transition: all 0.3s ease;
+        }
+        .agenda-item:hover {
+            transform: translateX(5px);
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .card-image-overlay {
+            background: rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Hero Section with BGC Background -->
+    <section class="main-background">
+        <div class="min-h-screen flex items-center">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left Side - Welcome Text -->
+                    <div class="text-white">
+                        <h1 class="text-5xl lg:text-6xl font-bold leading-tight mb-6">
+                            Corporate Compliance<br>
+                            <span class="text-yellow-500">Made Simple</span>
+                        </h1>
+                        <p class="text-xl lg:text-2xl mb-8 leading-relaxed">
+                            Complete guide to changing directors, shareholders<br>
+                            and eCAR filing in the Philippines.
+                        </p>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-2 h-16 bg-yellow-300"></div>
+                            <p class="text-lg opacity-90">
+                                Trusted by corporations across the Philippines for<br>
+                                comprehensive compliance solutions and expert guidance.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Right Side - Presentation Box -->
+                    <div class="flex justify-center lg:justify-end">
+                        <div class="slide-container w-full max-w-4xl rounded-2xl overflow-hidden">
+                            <div class="slide-content p-8 h-full">
+                                <!-- Presentation Header -->
+                                <div class="text-center mb-8">
+                                    <div class="flex items-center justify-center space-x-3 mb-4">
+                                        <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                                            <span class="text-white font-bold text-xl">T1</span>
+                                        </div>
+                                        <h1 class="text-2xl font-bold text-gray-800">Tier One Advisory</h1>
+                                    </div>
+                                    <p class="text-gray-600">Philippines Inc.</p>
+                                    <h2 class="text-2xl font-bold text-gray-800 mt-4">Changing Directors & Shareholders</h2>
+                                    <p class="text-gray-600 mt-2">Complete guide with eCAR filing process</p>
+                                </div>
+
+                                <!-- Slides Navigation & Controls -->
+                                <div class="bg-gray-100 py-4 px-6 rounded-lg mb-6">
+                                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                                        <!-- Progress Bar -->
+                                        <div class="w-full md:w-1/3">
+                                            <div class="flex justify-between text-sm text-gray-600 mb-1">
+                                                <span>Slide <span id="currentSlide">1</span> of <span id="totalSlides">12</span></span>
+                                                <span id="progressPercentage">8%</span>
+                                            </div>
+                                            <div class="w-full bg-gray-300 rounded-full h-2">
+                                                <div id="progressBar" class="progress-bar h-2 rounded-full" style="width: 8%"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Navigation Controls -->
+                                        <div class="flex items-center space-x-4">
+                                            <button id="prevSlide" class="slide-nav-btn bg-white text-gray-700 p-3 rounded-full shadow hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            
+                                            <div class="flex space-x-1">
+                                                <button class="slide-nav-btn bg-white text-gray-700 px-4 py-2 rounded-lg shadow hover:shadow-md">
+                                                    <i class="fas fa-expand"></i>
+                                                </button>
+                                                <button class="slide-nav-btn bg-white text-gray-700 px-4 py-2 rounded-lg shadow hover:shadow-md">
+                                                    <i class="fas fa-print"></i>
+                                                </button>
+                                                <button class="slide-nav-btn bg-white text-gray-700 px-4 py-2 rounded-lg shadow hover:shadow-md">
+                                                    <i class="fas fa-share-alt"></i>
+                                                </button>
+                                            </div>
+                                            
+                                            <button id="nextSlide" class="slide-nav-btn bg-blue-600 text-white p-3 rounded-full shadow hover:shadow-md">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Main Slide Content -->
+                                <div class="mb-6">
+                                    <div id="currentSlideContent" class="min-h-96">
+                                        <!-- Slide content will be dynamically loaded here -->
+                                    </div>
+                                    
+                                    <!-- Slide Number -->
+                                    <div class="flex justify-center mt-4">
+                                        <div class="slide-number px-4 py-2 rounded-full text-white text-sm font-medium">
+                                            Slide <span id="slideNumber">1</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Slide Notes -->
+                                <div class="bg-white rounded-lg p-4 border border-gray-200">
+                                    <h4 class="font-bold text-gray-800 mb-2 flex items-center text-sm">
+                                        <i class="fas fa-sticky-note text-blue-500 mr-2"></i>
+                                        Speaker Notes
+                                    </h4>
+                                    <div id="slideNotes" class="text-gray-600 text-xs leading-relaxed">
+                                        <!-- Speaker notes will be loaded here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-800 mb-4">Related Resources</h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Explore more compliance resources and corporate services
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Compliance Card -->
+                <a href="presentation-compliance.html" class="feature-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:border-blue-200">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="card-image-overlay h-full flex items-center justify-center">
+                            <i class="fas fa-balance-scale text-white text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Corporate Compliance 2024</h3>
+                        <p class="text-gray-600 mb-4">
+                            Latest regulatory changes and compliance requirements for Philippine corporations.
+                        </p>
+                        <div class="flex items-center text-blue-600 font-semibold">
+                            <span>View Presentation</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- SEC Guide Card -->
+                <a href="#" class="feature-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:border-green-200">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="card-image-overlay h-full flex items-center justify-center">
+                            <i class="fas fa-file-contract text-white text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">SEC Compliance Guide</h3>
+                        <p class="text-gray-600 mb-4">
+                            Complete guide to SEC reporting, corporate governance, and filing requirements.
+                        </p>
+                        <div class="flex items-center text-green-600 font-semibold">
+                            <span>Learn More</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Tax Compliance Card -->
+                <a href="#" class="feature-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:border-purple-200">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')">
+                        <div class="card-image-overlay h-full flex items-center justify-center">
+                            <i class="fas fa-receipt text-white text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Tax Compliance</h3>
+                        <p class="text-gray-600 mb-4">
+                            BIR requirements, tax filing procedures, and compliance strategies for corporations.
+                        </p>
+                        <div class="flex items-center text-purple-600 font-semibold">
+                            <span>Explore Guide</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Library Card -->
+                <a href="library.html" class="feature-card bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100 hover:border-orange-200">
+                    <div class="h-48 bg-cover bg-center" style="background-image: url('https://npr.brightspotcdn.com/dims4/default/2e28cc0/2147483647/strip/true/crop/5616x3744+0+0/resize/1760x1174!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2Flegacy%2Fsites%2Fvpr%2Ffiles%2F201703%2FSeed-iStock-bo1982-20170316.jpg')">
+                        <div class="card-image-overlay h-full flex items-center justify-center">
+                            <i class="fas fa-book text-white text-5xl"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-3">Compliance Library</h3>
+                        <p class="text-gray-600 mb-4">
+                            Access documentation, templates, and resources for corporate compliance services.
+                        </p>
+                        <div class="flex items-center text-orange-600 font-semibold">
+                            <span>Browse Library</span>
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Company</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300 transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Leadership</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">News</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300 transition">All Services</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Industries</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Locations</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300 transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-blue-300 transition">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4">Connect</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="#" class="hover:text-blue-300 transition"><i class="fab fa-facebook text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+                <p>&copy; 2024 Tier One Advisory Philippines Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Presentation data
+        const presentation = {
+            title: "Changing Directors & Shareholders with eCAR Filing",
+            totalSlides: 12,
+            slides: [
+                {
+                    number: 1,
+                    title: "Changing Directors & Shareholders",
+                    subtitle: "Complete Corporate Change Process with eCAR Filing",
+                    content: `
+                        <div class="text-center py-8">
+                            <div class="mb-8">
+                                <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <i class="fas fa-exchange-alt text-white text-2xl"></i>
+                                </div>
+                                <h1 class="text-4xl font-bold text-gray-800 mb-2">Changing Directors & Shareholders</h1>
+                                <p class="text-xl text-gray-600">Complete Corporate Change Process with eCAR Filing</p>
+                            </div>
+                            <div class="border-t pt-8 mt-8">
+                                <p class="text-gray-500">Tier One Advisory Philippines Inc.</p>
+                                <p class="text-gray-500 text-sm mt-2">Compliance Department | March 2024</p>
+                            </div>
+                        </div>
+                    `,
+                    notes: "Welcome everyone. Today we'll cover the complete process for changing directors and shareholders in Philippine corporations, including the crucial eCAR filing requirement with BIR."
+                },
+                {
+                    number: 2,
+                    title: "Presentation Agenda",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Presentation Agenda</h2>
+                            <div class="space-y-4 max-w-3xl mx-auto">
+                                <div class="agenda-item bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                                    <h3 class="font-bold text-blue-800 text-lg mb-2">AGENDA 1: Changing Directors & Shareholders</h3>
+                                    <ul class="text-gray-700 space-y-1 text-sm ml-4">
+                                        <li>• Pre-requisites and By-laws Review</li>
+                                        <li>• Board Meeting Requirements</li>
+                                        <li>• Document Preparation</li>
+                                        <li>• SEC Filing Process</li>
+                                        <li>• Other Agency Updates</li>
+                                    </ul>
+                                </div>
+                                <div class="agenda-item bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                                    <h3 class="font-bold text-green-800 text-lg mb-2">AGENDA 2: eCAR Filing Process</h3>
+                                    <ul class="text-gray-700 space-y-1 text-sm ml-4">
+                                        <li>• What is eCAR?</li>
+                                        <li>• Required Documents</li>
+                                        <li>• Online Filing Steps</li>
+                                        <li>• Common Issues & Solutions</li>
+                                        <li>• Post-Filing Requirements</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "We'll cover two main agendas today: the process for changing directors and shareholders, and the eCAR filing requirements. Each agenda has specific sub-topics we'll explore in detail."
+                },
+                {
+                    number: 3,
+                    title: "Agenda 1: Changing Directors & Shareholders",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Agenda 1: Changing Directors & Shareholders</h2>
+                            <div class="bg-yellow-50 p-6 rounded-lg mb-6">
+                                <h3 class="font-semibold text-yellow-800 mb-3 flex items-center">
+                                    <i class="fas fa-list-ol mr-2"></i>
+                                    Step-by-Step Process
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-2">For Director Changes:</h4>
+                                        <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                                            <li>Review By-laws & Articles</li>
+                                            <li>Hold Board Meeting</li>
+                                            <li>Prepare Resignation/Acceptance</li>
+                                            <li>Elect New Director</li>
+                                            <li>Update SEC Records</li>
+                                        </ol>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-2">For Shareholder Changes:</h4>
+                                        <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
+                                            <li>Stock Transfer Approval</li>
+                                            <li>Deed of Assignment</li>
+                                            <li>Update Stock and Transfer Book</li>
+                                            <li>Board Resolution for Transfer</li>
+                                            <li>SEC GIS Update</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "The process involves careful review of corporate documents, proper board meetings, and comprehensive documentation. Both director and shareholder changes require specific steps and documents."
+                },
+                {
+                    number: 4,
+                    title: "Sub-Agenda 1.1: Pre-requisites & Board Meeting",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 1.1: Pre-requisites & Board Meeting</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-green-800 mb-3 flex items-center">
+                                        <i class="fas fa-file-contract mr-2"></i>
+                                        Pre-requisites
+                                    </h3>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                            <span>Review Articles of Incorporation and By-laws</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                            <span>Verify director/shareholder qualifications</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
+                                            <span>Check for any transfer restrictions</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="bg-purple-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-purple-800 mb-3 flex items-center">
+                                        <i class="fas fa-users mr-2"></i>
+                                        Board Meeting Requirements
+                                    </h3>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li class="flex items-start">
+                                            <i class="fas fa-bell text-purple-500 mt-1 mr-2 flex-shrink-0"></i>
+                                            <span>Proper notice to all directors</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-clipboard-list text-purple-500 mt-1 mr-2 flex-shrink-0"></i>
+                                            <span>Clear agenda for changes</span>
+                                        </li>
+                                        <li class="flex items-start">
+                                            <i class="fas fa-file-signature text-purple-500 mt-1 mr-2 flex-shrink-0"></i>
+                                            <span>Document meeting minutes</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "Proper preparation is crucial. Review all corporate documents and ensure the board meeting follows proper procedures with clear documentation of all resolutions."
+                },
+                {
+                    number: 5,
+                    title: "Sub-Agenda 1.2: Document Preparation",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 1.2: Document Preparation</h2>
+                            <div class="space-y-6">
+                                <div class="bg-red-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-red-800 mb-4 flex items-center">
+                                        <i class="fas fa-file-export mr-2"></i>
+                                        SEC Filing Documents
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-2">Mandatory Documents:</h4>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-file-alt text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>Notarized Board Resolution</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-file-alt text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>Updated General Information Sheet (GIS)</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-file-alt text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>Director's Information Sheet</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-2">Additional for Shareholders:</h4>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-file-contract text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>Deed of Assignment</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-certificate text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>Stock Certificates (old & new)</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-book text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>Updated Stock & Transfer Book</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "Document preparation requires attention to detail. Ensure all documents are properly notarized, consistent in information, and prepared in multiple copies for different agencies."
+                },
+                {
+                    number: 6,
+                    title: "Sub-Agenda 1.3: SEC Filing & Other Agencies",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 1.3: SEC Filing & Other Agencies</h2>
+                            <div class="space-y-6">
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                        <i class="fas fa-building mr-2"></i>
+                                        SEC Filing Process
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                                <i class="fas fa-upload"></i>
+                                            </div>
+                                            <p class="text-sm font-medium">Step 1: Online Submission</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                                <i class="fas fa-money-bill-wave"></i>
+                                            </div>
+                                            <p class="text-sm font-medium">Step 2: Pay Fees</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-2">
+                                                <i class="fas fa-file-certificate"></i>
+                                            </div>
+                                            <p class="text-sm font-medium">Step 3: Receive Certificate</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "SEC filing is now mostly online through i-Report. After SEC approval, remember to update BIR, SSS, PhilHealth, and Pag-IBIG. Banks and other business partners should also be notified."
+                },
+                {
+                    number: 7,
+                    title: "Agenda 2: eCAR Filing Process",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Agenda 2: eCAR Filing Process</h2>
+                            <div class="bg-blue-50 p-6 rounded-lg mb-6">
+                                <h3 class="font-semibold text-blue-800 mb-3 flex items-center">
+                                    <i class="fas fa-certificate mr-2"></i>
+                                    What is eCAR?
+                                </h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-2">Electronic Certificate of Authority to Report</h4>
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-blue-500 mt-1 mr-2 flex-shrink-0"></i>
+                                                <span>Mandatory for corporate changes</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-check text-blue-500 mt-1 mr-2 flex-shrink-0"></i>
+                                                <span>Electronic replacement of manual registration</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-medium text-gray-800 mb-2">Purpose:</h4>
+                                        <ul class="space-y-2 text-sm text-gray-700">
+                                            <li class="flex items-start">
+                                                <i class="fas fa-bullseye text-blue-500 mt-1 mr-2 flex-shrink-0"></i>
+                                                <span>Update BIR records electronically</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <i class="fas fa-bullseye text-blue-500 mt-1 mr-2 flex-shrink-0"></i>
+                                                <span>Maintain tax compliance status</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "eCAR is BIR's electronic system for updating corporate information. It's mandatory and must be filed within 10 days after SEC approval of director/shareholder changes."
+                },
+                {
+                    number: 8,
+                    title: "Sub-Agenda 2.1: eCAR Required Documents",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 2.1: eCAR Required Documents</h2>
+                            <div class="space-y-6">
+                                <div class="bg-red-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-red-800 mb-4 flex items-center">
+                                        <i class="fas fa-file-upload mr-2"></i>
+                                        Documents for eCAR Filing
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-2">Mandatory Documents:</h4>
+                                            <ul class="space-y-3 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">1</div>
+                                                    <div>
+                                                        <span class="font-medium">SEC Certificate of Filing</span>
+                                                    </div>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">2</div>
+                                                    <div>
+                                                        <span class="font-medium">Notarized Board Resolution</span>
+                                                    </div>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">3</div>
+                                                    <div>
+                                                        <span class="font-medium">BIR Form 1905</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-2">Supporting Documents:</h4>
+                                            <ul class="space-y-3 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">4</div>
+                                                    <div>
+                                                        <span class="font-medium">Valid IDs</span>
+                                                    </div>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">5</div>
+                                                    <div>
+                                                        <span class="font-medium">TIN Documents</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "Prepare digital copies of all required documents before starting eCAR filing. Ensure files are in PDF format, under 2MB, and all text is clearly readable."
+                },
+                {
+                    number: 9,
+                    title: "Sub-Agenda 2.2: Online Filing Steps",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 2.2: Online Filing Steps</h2>
+                            <div class="space-y-6">
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                        <i class="fas fa-desktop mr-2"></i>
+                                        Step-by-Step eCAR Process
+                                    </h3>
+                                    <div class="space-y-4">
+                                        <div class="flex items-start">
+                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">1</div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">Access BIR eServices</h4>
+                                                <p class="text-sm text-gray-600 mt-1">Go to https://eservices.bir.gov.ph</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">2</div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">Navigate to eREGISTRATION</h4>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">3</div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">Upload Documents</h4>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">4</div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">Submit Application</h4>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-start">
+                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">5</div>
+                                            <div>
+                                                <h4 class="font-medium text-gray-800">Receive eCAR</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "The eCAR process is entirely online. Ensure you have stable internet, updated browser, and all documents scanned properly before starting the application."
+                },
+                {
+                    number: 10,
+                    title: "Sub-Agenda 2.3: Common Issues & Solutions",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 2.3: Common Issues & Solutions</h2>
+                            <div class="space-y-6">
+                                <div class="bg-red-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-red-800 mb-4 flex items-center">
+                                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                                        Common eCAR Filing Issues
+                                    </h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-2">Technical Issues:</h4>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>System login problems</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>Document upload failures</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-medium text-gray-800 mb-2">Document Issues:</h4>
+                                            <ul class="space-y-2 text-sm text-gray-700">
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>Incomplete document submission</span>
+                                                </li>
+                                                <li class="flex items-start">
+                                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2 flex-shrink-0"></i>
+                                                    <span>Poor quality scans</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "Common issues include technical problems with the BIR system and document quality issues. Prepare everything in advance and use recommended browsers to minimize problems."
+                },
+                {
+                    number: 11,
+                    title: "Timeline & Cost Overview",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Timeline & Cost Overview</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div class="bg-blue-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
+                                        <i class="fas fa-calendar-alt mr-2"></i>
+                                        Compliance Timeline
+                                    </h3>
+                                    <div class="space-y-3">
+                                        <div class="flex justify-between items-center border-b pb-2">
+                                            <span class="text-sm text-gray-700">Board Meeting & Resolution</span>
+                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Days 1-2</span>
+                                        </div>
+                                        <div class="flex justify-between items-center border-b pb-2">
+                                            <span class="text-sm text-gray-700">SEC GIS Filing</span>
+                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Days 3-5</span>
+                                        </div>
+                                        <div class="flex justify-between items-center border-b pb-2">
+                                            <span class="text-sm text-gray-700">BIR eCAR Filing</span>
+                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Days 6-8</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                        <i class="fas fa-money-bill-wave mr-2"></i>
+                                        Cost Breakdown
+                                    </h3>
+                                    <div class="space-y-3">
+                                        <div class="flex justify-between items-center border-b pb-2">
+                                            <span class="text-sm text-gray-700">SEC Filing Fees</span>
+                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">₱210 - ₱1,130</span>
+                                        </div>
+                                        <div class="flex justify-between items-center border-b pb-2">
+                                            <span class="text-sm text-gray-700">Notarization</span>
+                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">₱100 - ₱500</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-sm text-gray-700">BIR eCAR</span>
+                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">No Fee</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "The entire process should take about 15 days. Costs vary based on authorized capital stock. Remember the strict deadlines to avoid penalties."
+                },
+                {
+                    number: 12,
+                    title: "Summary & Professional Tips",
+                    content: `
+                        <div class="py-6 text-center">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-8">Summary & Professional Tips</h2>
+                            <div class="max-w-4xl mx-auto">
+                                <div class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl mb-6">
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Key Takeaways</h3>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs mr-3 mt-1 flex-shrink-0">✓</div>
+                                                <div>
+                                                    <p class="font-medium text-gray-800">Two Main Processes</p>
+                                                    <p class="text-sm text-gray-600">Director/Shareholder change + eCAR filing</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs mr-3 mt-1 flex-shrink-0">✓</div>
+                                                <div>
+                                                    <p class="font-medium text-gray-800">Strict Deadlines</p>
+                                                    <p class="text-sm text-gray-600">SEC: 30 days, BIR: 10 days from SEC</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <div class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs mr-3 mt-1 flex-shrink-0">✓</div>
+                                                <div>
+                                                    <p class="font-medium text-gray-800">Digital Process</p>
+                                                    <p class="text-sm text-gray-600">Both SEC and BIR filings are online</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <div class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs mr-3 mt-1 flex-shrink-0">✓</div>
+                                                <div>
+                                                    <p class="font-medium text-gray-800">Professional Help</p>
+                                                    <p class="text-sm text-gray-600">Recommended for complex changes</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "In summary, plan for both processes with adequate time, use professional help when needed, and maintain meticulous documentation throughout the compliance journey."
+                }
+            ]
+        };
+
+        // Current slide state
+        let currentSlideIndex = 0;
+
+        // DOM Elements
+        const currentSlideElement = document.getElementById('currentSlide');
+        const totalSlidesElement = document.getElementById('totalSlides');
+        const progressBar = document.getElementById('progressBar');
+        const progressPercentage = document.getElementById('progressPercentage');
+        const slideNumber = document.getElementById('slideNumber');
+        const currentSlideContent = document.getElementById('currentSlideContent');
+        const slideNotes = document.getElementById('slideNotes');
+        const prevButton = document.getElementById('prevSlide');
+        const nextButton = document.getElementById('nextSlide');
+
+        // Initialize presentation
+        function initPresentation() {
+            totalSlidesElement.textContent = presentation.totalSlides;
+            loadSlide(currentSlideIndex);
+            updateNavigation();
+        }
+
+        // Load slide content
+        function loadSlide(index) {
+            const slide = presentation.slides[index];
+            
+            currentSlideElement.textContent = slide.number;
+            slideNumber.textContent = slide.number;
+            currentSlideContent.innerHTML = slide.content;
+            slideNotes.textContent = slide.notes;
+            
+            // Update progress
+            const progress = ((index + 1) / presentation.totalSlides) * 100;
+            progressBar.style.width = `${progress}%`;
+            progressPercentage.textContent = `${Math.round(progress)}%`;
+            
+            updateNavigation();
+        }
+
+        // Update navigation buttons
+        function updateNavigation() {
+            prevButton.disabled = currentSlideIndex === 0;
+            nextButton.disabled = currentSlideIndex === presentation.slides.length - 1;
+        }
+
+        // Event listeners
+        prevButton.addEventListener('click', () => {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                loadSlide(currentSlideIndex);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentSlideIndex < presentation.slides.length - 1) {
+                currentSlideIndex++;
+                loadSlide(currentSlideIndex);
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft' && currentSlideIndex > 0) {
+                currentSlideIndex--;
+                loadSlide(currentSlideIndex);
+            } else if (e.key === 'ArrowRight' && currentSlideIndex < presentation.slides.length - 1) {
+                currentSlideIndex++;
+                loadSlide(currentSlideIndex);
+            }
+        });
+
+        // Initialize the presentation
+        document.addEventListener('DOMContentLoaded', initPresentation);
+    </script>
+</body>
+</html>
