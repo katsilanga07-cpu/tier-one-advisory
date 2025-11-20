@@ -85,11 +85,13 @@
         .fullscreen-slide-content {
             max-width: 1200px;
             margin: 0 auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
             border-radius: 1rem;
             padding: 3rem;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
             min-height: calc(100vh - 4rem);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .exit-fullscreen-btn {
@@ -154,6 +156,136 @@
             margin-right: 8px;
             font-size: 0.8rem;
         }
+        
+        .document-image {
+            max-width: 100%;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .document-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .document-caption {
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+            text-align: center;
+        }
+        
+        /* Background images for fullscreen slides */
+        .slide-bg-1 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1597047084897-51e81819a112?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-2 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438323-37cd8c9b3b41?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-3 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-4 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-5 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-6 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-7 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-8 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-9 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-10 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-11 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-12 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-13 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-14 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-15 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-16 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-17 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .slide-bg-18 {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1591824438746-2d4d0c4fb4f9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -210,11 +342,11 @@
                                         <!-- Progress Bar -->
                                         <div class="w-full md:w-1/3">
                                             <div class="flex justify-between text-sm text-gray-600 mb-1">
-                                                <span>Slide <span id="currentSlide">1</span> of <span id="totalSlides">12</span></span>
-                                                <span id="progressPercentage">8%</span>
+                                                <span>Slide <span id="currentSlide">1</span> of <span id="totalSlides">18</span></span>
+                                                <span id="progressPercentage">6%</span>
                                             </div>
                                             <div class="w-full bg-gray-300 rounded-full h-2">
-                                                <div id="progressBar" class="progress-bar h-2 rounded-full" style="width: 8%"></div>
+                                                <div id="progressBar" class="progress-bar h-2 rounded-full" style="width: 6%"></div>
                                             </div>
                                         </div>
 
@@ -425,7 +557,7 @@
         // Presentation data
         const presentation = {
             title: "Changing Directors & Shareholders with eCAR Filing",
-            totalSlides: 12,
+            totalSlides: 18,
             slides: [
                 {
                     number: 1,
@@ -493,187 +625,340 @@
                 },
                 {
                     number: 4,
-                    title: "How to change company shareholders, directors and corporate officers",
+                    title: "Revocation of Nominee Agreement",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">How to change company shareholders, directors and corporate officers</h2>
-                            <div class="bg-yellow-50 p-6 rounded-lg mb-6">
-                                <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
-                                    <i class="fas fa-users mr-2"></i>
-                                    FOR DIRECTORSHIP WITH SHARE(S) INVOLVED
-                                </h3>
-                                <div class="space-y-4">
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <h4 class="font-medium text-gray-800 mb-2">Revocation of the Nominee Agreement</h4>
-                                        <p class="text-sm text-gray-700">The resignation may be done voluntarily or through management's decision. To revoke the shares nominated under his/her name, the company will issue a "Notice of Revocation of Agreement and all related documents."</p>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <h4 class="font-medium text-gray-800 mb-2">Resignation</h4>
-                                        <p class="text-sm text-gray-700">Once the "Notice of Revocation" was countersigned by the outgoing shareholder/director/officer, he/she will tender his/her resignation to the Board.</p>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <h4 class="font-medium text-gray-800 mb-2">Nominee Agreement</h4>
-                                        <p class="text-sm text-gray-700">The shareholder/ officer/director to – be can be nominated by the Company. A "Nominee Agreement" will be executed by the incoming shareholder/officer/ director with the company.</p>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Revocation of Nominee Agreement</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nominee Agreement Document" class="document-image">
+                                    <p class="document-caption">Sample Notice of Revocation of Agreement</p>
+                                </div>
+                                <div>
+                                    <div class="bg-yellow-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
+                                            <i class="fas fa-file-contract mr-2"></i>
+                                            Revocation of the Nominee Agreement
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">The resignation may be done voluntarily or through management's decision. To revoke the shares nominated under his/her name, the company will issue a "Notice of Revocation of Agreement and all related documents."</p>
+                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample notice.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "This slide outlines the initial steps for changing directors with shares involved, including revocation, resignation, and nomination."
+                    notes: "This slide shows the Notice of Revocation of Agreement document and explains its purpose in the director change process."
                 },
                 {
                     number: 5,
-                    title: "Board's Acceptance and Issuance of Certificates",
+                    title: "Resignation",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Board's Acceptance and Issuance of Certificates</h2>
-                            <div class="bg-green-50 p-6 rounded-lg mb-6">
-                                <h3 class="font-semibold text-green-800 mb-4 flex items-center">
-                                    <i class="fas fa-users mr-2"></i>
-                                    FOR DIRECTORSHIP WITH SHARE(S) INVOLVED
-                                </h3>
-                                <div class="space-y-4">
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <h4 class="font-medium text-gray-800 mb-2">Board's acceptance of the resignation and nomination of a new director/ officer/ shareholder</h4>
-                                        <p class="text-sm text-gray-700">The Board, upon learning of the resignation, will conduct a Special Meeting duly called for accepting the resignation of the outgoing shareholder/ officer/director and nominating a replacement. To confirm, the Board will issue a Board Resolution.</p>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <h4 class="font-medium text-gray-800 mb-2">Issuance of a Secretary's Certificate</h4>
-                                        <p class="text-sm text-gray-700">Upon the directive of the Board, the Corporate Secretary will issue the Secretary's Certificate and begin updating the banks, government office etc.</p>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <h4 class="font-medium text-gray-800 mb-2">Updating the company's General Information Sheet (GIS)</h4>
-                                        <p class="text-sm text-gray-700">The Corporate Secretary will submit an amended General Information Sheet (GIS) reflecting the updates of the company director composition and shareholding components.</p>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Resignation</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Resignation Letter" class="document-image">
+                                    <p class="document-caption">Sample Resignation Letter</p>
+                                </div>
+                                <div>
+                                    <div class="bg-blue-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
+                                            <i class="fas fa-signature mr-2"></i>
+                                            Resignation
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">Once the "Notice of Revocation" was countersigned by the outgoing shareholder/director/officer, he/she will tender his/her resignation to the Board.</p>
+                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample notice.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "This slide covers the board's role in accepting resignations and nominating replacements, along with the necessary documentation."
+                    notes: "This slide shows a sample resignation letter and explains the resignation process after the Notice of Revocation is signed."
                 },
                 {
                     number: 6,
-                    title: "TRANSFER OF SHARE(S) - BIR ELECTRONIC CERTIFICATE AUTHORIZING REGISTRATION (E-CAR)",
+                    title: "Nominee Agreement",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">TRANSFER OF SHARE(S)</h2>
-                            <h3 class="text-2xl font-bold text-gray-700 mb-6 text-center">BIR ELECTRONIC CERTIFICATE AUTHORIZING REGISTRATION (E-CAR)</h3>
-                            <div class="bg-blue-50 p-6 rounded-lg">
-                                <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
-                                    <i class="fas fa-file-alt mr-2"></i>
-                                    Transfer of share(s) registration with BIR
-                                </h3>
-                                <div class="bg-white p-4 rounded-lg">
-                                    <h4 class="font-medium text-gray-800 mb-3">BIR Check list for e-CAR of the share(s)</h4>
-                                    <h5 class="font-medium text-gray-700 mb-2">Key Requirements:</h5>
-                                    <ul class="requirements-list text-sm text-gray-700">
-                                        <li>Notarized Deed of Sale/Assignment</li>
-                                        <li>Original Stock Certificate(s)</li>
-                                        <li>Latest Audited Financial Statements (for valuation)</li>
-                                        <li>Duly filed BIR Forms 1707 (Capital Gains Tax) and 2000-OT (Documentary Stamp Tax)</li>
-                                        <li>Proof of Full Tax Payment</li>
-                                        <li>Special Power of Attorney (individual seller)</li>
-                                        <li>Secretary's Certificate (seller is a corporation)</li>
-                                        <li>Valid government issued ID of the Seller and the authorized representative.</li>
-                                    </ul>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Nominee Agreement</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nominee Agreement Document" class="document-image">
+                                    <p class="document-caption">Sample Nominee Agreement</p>
+                                </div>
+                                <div>
+                                    <div class="bg-green-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                            <i class="fas fa-handshake mr-2"></i>
+                                            Nominee Agreement
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">The shareholder/ officer/director to – be can be nominated by the Company. A "Nominee Agreement" will be executed by the incoming shareholder/officer/ director with the company.</p>
+                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample Agreement.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "This slide outlines the BIR requirements for e-CAR application when transferring shares."
+                    notes: "This slide shows a sample Nominee Agreement document and explains its role in appointing new directors."
                 },
                 {
                     number: 7,
-                    title: "Execution of the Deed of Assignment/Deed of Sale",
+                    title: "Board's Acceptance and Nomination",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
-                            <div class="bg-red-50 p-6 rounded-lg">
-                                <h3 class="font-semibold text-red-800 mb-4 flex items-center">
-                                    <i class="fas fa-file-signature mr-2"></i>
-                                    Execution of the Deed of Assignment/Deed of Sale
-                                </h3>
-                                <div class="bg-white p-4 rounded-lg">
-                                    <p class="text-sm text-gray-700">A "Deed of Assignment/Deed of Sale" will be executed between the resigned director/officer/shareholder and the incoming shareholder/director/officer.</p>
-                                    <p class="text-sm text-gray-700 mt-2">The instrument needs to be notarized and submitted one (1) original copy and two (2) photocopy.</p>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Board's Acceptance and Nomination</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Board Resolution" class="document-image">
+                                    <p class="document-caption">Sample Board Resolution</p>
+                                </div>
+                                <div>
+                                    <div class="bg-purple-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-purple-800 mb-4 flex items-center">
+                                            <i class="fas fa-users mr-2"></i>
+                                            Board's Acceptance and Nomination
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">The Board, upon learning of the resignation, will conduct a Special Meeting duly called for accepting the resignation of the outgoing shareholder/ officer/director and nominating a replacement.</p>
+                                            <p class="text-sm text-gray-700">To confirm, the Board will issue a Board Resolution.</p>
+                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample Board Resolution.</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "This slide focuses on the Deed of Assignment/Deed of Sale requirement for share transfer."
+                    notes: "This slide shows a sample Board Resolution and explains the board's role in accepting resignations and nominating replacements."
                 },
                 {
                     number: 8,
-                    title: "Stock Certificate(s) and Audited Financial Statement",
+                    title: "Issuance of Secretary's Certificate",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="bg-purple-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-purple-800 mb-4 flex items-center">
-                                        <i class="fas fa-certificate mr-2"></i>
-                                        Stock Certificate(s)
-                                    </h3>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700">The original Stock Certificate issued by the company's Corporate Secretary needs to be presented to the BIR officer and two (2) photocopy.</p>
-                                    </div>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Issuance of Secretary's Certificate</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Secretary's Certificate" class="document-image">
+                                    <p class="document-caption">Sample Secretary's Certificate</p>
                                 </div>
-                                <div class="bg-green-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
-                                        <i class="fas fa-chart-line mr-2"></i>
-                                        Audited Financial Statement (AFS)
-                                    </h3>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700">The certified true copy of AFS prepared by the Finance team, duly submitted to the Bureau of Internal Revenue (BIR) and accepted by the Securities and Exchange Commission (SEC) needs to be submitted in three (3) copies.</p>
+                                <div>
+                                    <div class="bg-red-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-red-800 mb-4 flex items-center">
+                                            <i class="fas fa-certificate mr-2"></i>
+                                            Secretary's Certificate
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">Upon the directive of the Board, the Corporate Secretary will issue the Secretary's Certificate and begin updating the banks, government office etc.</p>
+                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample Secretary's Certificate.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "This slide covers the Stock Certificate and Audited Financial Statement requirements."
+                    notes: "This slide shows a sample Secretary's Certificate and explains its purpose in formalizing corporate changes."
                 },
                 {
                     number: 9,
-                    title: "BIR Forms and Proof of Payment",
+                    title: "Updating General Information Sheet (GIS)",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div class="bg-blue-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
-                                        <i class="fas fa-file-invoice-dollar mr-2"></i>
-                                        Duly filed BIR Forms 1707 (Capital Gains Tax)
-                                    </h3>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700">The duly filed Capital Gains Tax – BIR Form 1707 should be submitted in three (3) copies.</p>
-                                    </div>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Updating General Information Sheet (GIS)</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="General Information Sheet" class="document-image">
+                                    <p class="document-caption">Sample General Information Sheet (GIS)</p>
                                 </div>
-                                <div class="bg-yellow-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
-                                        <i class="fas fa-receipt mr-2"></i>
-                                        Duly filed BIR Forms 2000 (Documentary Stamp Tax)
-                                    </h3>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700">The duly filed Documentary Stamp Tax– BIR Form 2000 should be submitted in three (3) copies.</p>
-                                    </div>
-                                </div>
-                                <div class="bg-green-50 p-6 rounded-lg md:col-span-2">
-                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
-                                        <i class="fas fa-money-check mr-2"></i>
-                                        Proof of full tax payment
-                                    </h3>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700">The original deposit slip that serves as a proof of payment must be submitted together with two (2) photocopy.</p>
+                                <div>
+                                    <div class="bg-indigo-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-indigo-800 mb-4 flex items-center">
+                                            <i class="fas fa-file-alt mr-2"></i>
+                                            General Information Sheet (GIS)
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">The Corporate Secretary will submit an amended General Information Sheet (GIS) reflecting the updates of the company director composition and shareholding components.</p>
+                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample General Information Sheet (GIS).</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "This slide details the BIR forms and proof of payment requirements for share transfer."
+                    notes: "This slide shows a sample GIS document and explains its importance in updating SEC records."
                 },
                 {
                     number: 10,
-                    title: "Step-by-step process: Submission and Assessment",
+                    title: "Execution of Deed of Assignment/Deed of Sale",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Execution of Deed of Assignment/Deed of Sale</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Deed of Assignment" class="document-image">
+                                    <p class="document-caption">Sample Deed of Assignment</p>
+                                </div>
+                                <div>
+                                    <div class="bg-orange-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-orange-800 mb-4 flex items-center">
+                                            <i class="fas fa-file-signature mr-2"></i>
+                                            Deed of Assignment/Deed of Sale
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">A "Deed of Assignment/Deed of Sale" will be executed between the resigned director/officer/shareholder and the incoming shareholder/director/officer.</p>
+                                            <p class="text-sm text-gray-700">The instrument needs to be notarized and submitted one (1) original copy and two (2) photocopy.</p>
+                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample Deed of Assignment.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "This slide shows a sample Deed of Assignment and explains its role in transferring shares between parties."
+                },
+                {
+                    number: 11,
+                    title: "Stock Certificate(s)",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Stock Certificate(s)</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Stock Certificate" class="document-image">
+                                    <p class="document-caption">Sample Stock Certificate</p>
+                                </div>
+                                <div>
+                                    <div class="bg-teal-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-teal-800 mb-4 flex items-center">
+                                            <i class="fas fa-certificate mr-2"></i>
+                                            Stock Certificate(s)
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">The original Stock Certificate issued by the company's Corporate Secretary needs to be presented to the BIR officer and two (2) photocopy.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "This slide shows a sample Stock Certificate and explains its requirement for BIR registration."
+                },
+                {
+                    number: 12,
+                    title: "Audited Financial Statement (AFS)",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Audited Financial Statement (AFS)</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Audited Financial Statement" class="document-image">
+                                    <p class="document-caption">Sample Audited Financial Statement</p>
+                                </div>
+                                <div>
+                                    <div class="bg-pink-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-pink-800 mb-4 flex items-center">
+                                            <i class="fas fa-chart-line mr-2"></i>
+                                            Audited Financial Statement (AFS)
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">The certified true copy of AFS prepared by the Finance team, duly submitted to the Bureau of Internal Revenue (BIR) and accepted by the Securities and Exchange Commission (SEC) needs to be submitted in three (3) copies.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "This slide shows a sample Audited Financial Statement and explains its requirement for BIR valuation purposes."
+                },
+                {
+                    number: 13,
+                    title: "BIR Form 1707 (Capital Gains Tax)",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">BIR Form 1707 (Capital Gains Tax)</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BIR Form 1707" class="document-image">
+                                    <p class="document-caption">Sample BIR Form 1707</p>
+                                </div>
+                                <div>
+                                    <div class="bg-blue-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
+                                            <i class="fas fa-file-invoice-dollar mr-2"></i>
+                                            BIR Form 1707 (Capital Gains Tax)
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">The duly filed Capital Gains Tax – BIR Form 1707 should be submitted in three (3) copies.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "This slide shows a sample BIR Form 1707 for Capital Gains Tax and explains its submission requirement."
+                },
+                {
+                    number: 14,
+                    title: "BIR Form 2000 (Documentary Stamp Tax)",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">BIR Form 2000 (Documentary Stamp Tax)</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="BIR Form 2000" class="document-image">
+                                    <p class="document-caption">Sample BIR Form 2000</p>
+                                </div>
+                                <div>
+                                    <div class="bg-green-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                            <i class="fas fa-receipt mr-2"></i>
+                                            BIR Form 2000 (Documentary Stamp Tax)
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">The duly filed Documentary Stamp Tax– BIR Form 2000 should be submitted in three (3) copies.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "This slide shows a sample BIR Form 2000 for Documentary Stamp Tax and explains its submission requirement."
+                },
+                {
+                    number: 15,
+                    title: "Proof of Full Tax Payment",
+                    content: `
+                        <div class="py-6">
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Proof of Full Tax Payment</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div class="document-container">
+                                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Proof of Payment" class="document-image">
+                                    <p class="document-caption">Sample Deposit Slip as Proof of Payment</p>
+                                </div>
+                                <div>
+                                    <div class="bg-yellow-50 p-6 rounded-lg">
+                                        <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
+                                            <i class="fas fa-money-check mr-2"></i>
+                                            Proof of Full Tax Payment
+                                        </h3>
+                                        <div class="bg-white p-4 rounded-lg">
+                                            <p class="text-sm text-gray-700">The original deposit slip that serves as a proof of payment must be submitted together with two (2) photocopy.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `,
+                    notes: "This slide shows a sample proof of payment document and explains its requirement for BIR registration."
+                },
+                {
+                    number: 16,
+                    title: "Step-by-step Process: Submission and Assessment",
                     content: `
                         <div class="py-6">
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
@@ -699,8 +984,8 @@
                     notes: "This slide covers the first three steps of the e-CAR process: submission, assessment, and payment."
                 },
                 {
-                    number: 11,
-                    title: "Step-by-step process: Validation and eCAR Issuance",
+                    number: 17,
+                    title: "Step-by-step Process: Validation and eCAR Issuance",
                     content: `
                         <div class="py-6">
                             <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
@@ -723,7 +1008,7 @@
                     notes: "This slide covers the final steps of the e-CAR process: validation and issuance."
                 },
                 {
-                    number: 12,
+                    number: 18,
                     title: "QUESTION & ANSWER PORTION",
                     content: `
                         <div class="py-6 text-center">
@@ -793,6 +1078,12 @@
             progressBar.style.width = `${progress}%`;
             progressPercentage.textContent = `${Math.round(progress)}%`;
             
+            // Update fullscreen background
+            fullscreenContainer.className = `fullscreen-mode slide-bg-${index + 1}`;
+            if (isFullscreen) {
+                fullscreenContainer.classList.remove('hidden');
+            }
+            
             updateNavigation();
         }
 
@@ -807,6 +1098,8 @@
             isFullscreen = true;
             fullscreenContainer.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+            // Set the background for the current slide
+            fullscreenContainer.className = `fullscreen-mode slide-bg-${currentSlideIndex + 1}`;
         }
 
         function exitFullscreen() {
