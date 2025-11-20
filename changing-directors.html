@@ -600,497 +600,512 @@
 
     <script>
         // Presentation data
-        const presentation = {
-            title: "Changing Directors & Shareholders with eCAR Filing",
-            totalSlides: 18,
-            slides: [
-                {
-                    number: 1,
-                    title: "Changing Directors & Shareholders",
-                    subtitle: "Complete Corporate Change Process with eCAR Filing",
-                    content: `
-                        <div class="text-center py-8">
-                            <div class="mb-8">
-                                <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <i class="fas fa-exchange-alt text-white text-2xl"></i>
-                                </div>
-                                <h1 class="text-4xl font-bold text-gray-800 mb-2">Changing company directors/ officers/ shareholders</h1>
-                                <p class="text-xl text-gray-600">and BIR electronic Certificate Authorizing Registration (e-CAR)</p>
-                                <p class="text-lg text-gray-500 mt-4">A walkthrough session</p>
-                            </div>
-                            <div class="border-t pt-8 mt-8">
-                                <p class="text-gray-500">Tier One Advisory Philippines Inc.</p>
-                                <p class="text-gray-500 text-sm mt-2">Private and confidential</p>
-                            </div>
+const presentation = {
+    title: "Changing Directors & Shareholders with eCAR Filing",
+    totalSlides: 18,
+    slides: [
+        {
+            number: 1,
+            title: "Changing Directors & Shareholders",
+            subtitle: "Complete Corporate Change Process with eCAR Filing",
+            content: `
+                <div class="text-center py-8">
+                    <div class="mb-8">
+                        <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-exchange-alt text-white text-2xl"></i>
                         </div>
-                    `,
-                    notes: "Welcome to this walkthrough session on changing company directors, officers, shareholders and the BIR e-CAR process."
-                },
-                {
-                    number: 2,
-                    title: "AGENDA",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">AGENDA</h2>
-                            <div class="space-y-6 max-w-3xl mx-auto">
-                                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
-                                    <h3 class="font-bold text-blue-800 text-lg mb-4">Introduction</h3>
-                                </div>
-                                <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-                                    <h3 class="font-bold text-green-800 text-lg mb-4">Points of discussion:</h3>
-                                    <ul class="text-gray-700 space-y-2 text-sm ml-4">
-                                        <li>• How to change company directors, officer and shareholders</li>
-                                        <li>• Necessary documents</li>
-                                        <li>• Board Special Meeting</li>
-                                        <li>• How to register the transfer of share(s) with the Philippine Bureau of Internal Revenue (BIR) through electronic Certificate Authorizing Registration (e-CAR)</li>
-                                        <li>• Step – step process</li>
-                                        <li>• Q&A portion</li>
-                                    </ul>
-                                </div>
-                            </div>
+                        <h1 class="text-4xl font-bold text-gray-800 mb-2">Changing company directors/ officers/ shareholders</h1>
+                        <p class="text-xl text-gray-600">and BIR electronic Certificate Authorizing Registration (e-CAR)</p>
+                        <p class="text-lg text-gray-500 mt-4">A walkthrough session</p>
+                    </div>
+                    <div class="border-t pt-8 mt-8">
+                        <p class="text-gray-500">Tier One Advisory Philippines Inc.</p>
+                        <p class="text-gray-500 text-sm mt-2">Private and confidential</p>
+                    </div>
+                </div>
+            `,
+            notes: "Welcome to this walkthrough session on changing company directors, officers, shareholders and the BIR e-CAR process."
+        },
+        {
+            number: 2,
+            title: "AGENDA",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">AGENDA</h2>
+                    <div class="space-y-6 max-w-3xl mx-auto">
+                        <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                            <h3 class="font-bold text-blue-800 text-lg mb-4">Introduction</h3>
                         </div>
-                    `,
-                    notes: "Today's agenda covers the complete process for changing directors and shareholders, including the BIR e-CAR requirements."
-                },
-                {
-                    number: 3,
-                    title: "Introduction",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Introduction</h2>
-                            <div class="slide-body">
-                                <p class="mb-4">Let's face the reality that company shareholders, officers and directors come and go especially with the nature of the business set up of BHG and other entities within the group.</p>
-                                <p class="mb-4">It is the prerogative of the management to assign shares to nominee directors/shareholders who will be a holder in trust or sell shares to an investor that will perform corporate functions for and on behalf of the company.</p>
-                                <p class="mb-4">This walkthrough session aims to guide colleagues on how to process the change of directors, company officers and shareholders who will transfer their shares whether it by virtue of an assignment or sale.</p>
-                                <p>This walkthrough likewise aims to educate the process of registering the transfer of shares with the Bureau of Internal Revenue (BIR) from the outgoing shareholder/director/officer to the incoming ones; recoding the transfer to the company's Stocks and Transfer Book and updating the company's General Information Sheet (GIS) submitted to the Philippine Securities and Exchange Commission (SEC).</p>
-                            </div>
+                        <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                            <h3 class="font-bold text-green-800 text-lg mb-4">Points of discussion:</h3>
+                            <ul class="text-gray-700 space-y-2 text-sm ml-4">
+                                <li>• How to change company directors, officer and shareholders</li>
+                                <li>• Necessary documents</li>
+                                <li>• Board Special Meeting</li>
+                                <li>• How to register the transfer of share(s) with the Philippine Bureau of Internal Revenue (BIR) through electronic Certificate Authorizing Registration (e-CAR)</li>
+                                <li>• Step – step process</li>
+                                <li>• Q&A portion</li>
+                            </ul>
                         </div>
-                    `,
-                    notes: "This introduction sets the context for why these changes are necessary and what we aim to accomplish in this session."
-                },
-                {
-                    number: 4,
-                    title: "Revocation of Nominee Agreement",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Revocation of Nominee Agreement</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/1EEVm5B.jpeg" alt="Revocation of Nominee" class="document-image">
-                                    <p class="document-caption">Sample Notice of Revocation of Agreement</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-yellow-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
-                                            <i class="fas fa-file-contract mr-2"></i>
-                                            Revocation of the Nominee Agreement
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">The resignation may be done voluntarily or through management's decision. To revoke the shares nominated under his/her name, the company will issue a "Notice of Revocation of Agreement and all related documents."</p>
-                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample notice.</p>
-                                        </div>
-                                    </div>
+                    </div>
+                </div>
+            `,
+            notes: "Today's agenda covers the complete process for changing directors and shareholders, including the BIR e-CAR requirements."
+        },
+        {
+            number: 3,
+            title: "Introduction",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Introduction</h2>
+                    <div class="slide-body bg-white p-8 rounded-lg">
+                        <p class="mb-4 text-lg">Let's face the reality that company shareholders, officers and directors come and go especially with the nature of the business set up of BHG and other entities within the group.</p>
+                        <p class="mb-4 text-lg">It is the prerogative of the management to assign shares to nominee directors/shareholders who will be a holder in trust or sell shares to an investor that will perform corporate functions for and on behalf of the company.</p>
+                        <p class="mb-4 text-lg">This walkthrough session aims to guide colleagues on how to process the change of directors, company officers and shareholders who will transfer their shares whether it by virtue of an assignment or sale.</p>
+                        <p class="text-lg">This walkthrough likewise aims to educate the process of registering the transfer of shares with the Bureau of Internal Revenue (BIR) from the outgoing shareholder/director/officer to the incoming ones; recoding the transfer to the company's Stocks and Transfer Book and updating the company's General Information Sheet (GIS) submitted to the Philippine Securities and Exchange Commission (SEC).</p>
+                    </div>
+                </div>
+            `,
+            notes: "This introduction sets the context for why these changes are necessary and what we aim to accomplish in this session."
+        },
+        {
+            number: 4,
+            title: "Revocation of Nominee Agreement",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Revocation of Nominee Agreement</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/1EEVm5B.jpeg" alt="Revocation of Nominee" class="document-image">
+                            <p class="document-caption">Sample Notice of Revocation of Agreement</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-yellow-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
+                                    <i class="fas fa-file-contract mr-2"></i>
+                                    Revocation of the Nominee Agreement
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">The resignation may be done voluntarily or through management's decision. To revoke the shares nominated under his/her name, the company will issue a "Notice of Revocation of Agreement and all related documents."</p>
+                                    <p class="text-gray-700 mt-2">For illustration, see sample notice.</p>
                                 </div>
                             </div>
                         </div>
-                    `,
-                    notes: "This slide shows the Notice of Revocation of Agreement document and explains its purpose in the director change process."
-                },
-                {
-                    number: 5,
-                    title: "Resignation",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Resignation</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container" alt="Notice of Resignation" class="document-image">
-                                    <img src="https://imgur.com/aaDe524.jpeg"  alt="Resignation" class="document-image">
-                                    <p class="document-caption">Sample Resignation Letter</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-blue-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
-                                            <i class="fas fa-signature mr-2"></i>
-                                            Resignation
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">Once the "Notice of Revocation" was countersigned by the outgoing shareholder/director/officer, he/she will tender his/her resignation to the Board.</p>
-                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample notice.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows the Notice of Revocation of Agreement document and explains its purpose in the director change process."
+        },
+        {
+            number: 5,
+            title: "Resignation",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Resignation</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/aaDe524.jpeg" alt="Resignation" class="document-image">
+                            <p class="document-caption">Sample Resignation Letter</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
                         </div>
-                    `,
-                    notes: "This slide shows a sample resignation letter and explains the resignation process after the Notice of Revocation is signed."
-                },
-                {
-                    number: 6,
-                    title: "Nominee Agreement",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Nominee Agreement</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/egJDP2Q.jpeg" alt="Nominee Agreement" class="document-image">
-                                    <p class="document-caption">Sample Nominee Agreement</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-green-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-green-800 mb-4 flex items-center">
-                                            <i class="fas fa-handshake mr-2"></i>
-                                            Nominee Agreement
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">The shareholder/ officer/director to – be can be nominated by the Company. A "Nominee Agreement" will be executed by the incoming shareholder/officer/ director with the company.</p>
-                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample Agreement.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample Nominee Agreement document and explains its role in appointing new directors."
-                },
-                {
-                    number: 7,
-                    title: "Board's Acceptance and Nomination",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Board's Acceptance and Nomination</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/soFcxDQ.jpeg" alt="Board Resolution" class="document-image">
-                                    <p class="document-caption">Sample Board Resolution</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-purple-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-purple-800 mb-4 flex items-center">
-                                            <i class="fas fa-users mr-2"></i>
-                                            Board's Acceptance and Nomination
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">The Board, upon learning of the resignation, will conduct a Special Meeting duly called for accepting the resignation of the outgoing shareholder/ officer/director and nominating a replacement.</p>
-                                            <p class="text-sm text-gray-700">To confirm, the Board will issue a Board Resolution.</p>
-                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample Board Resolution.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample Board Resolution and explains the board's role in accepting resignations and nominating replacements."
-                },
-                {
-                    number: 8,
-                    title: "Issuance of Secretary's Certificate",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Issuance of Secretary's Certificate</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/0OtNgQJ.jpeg" alt="Secretary's Certificate" class="document-image">
-                                    <p class="document-caption">Sample Secretary's Certificate</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-red-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-red-800 mb-4 flex items-center">
-                                            <i class="fas fa-certificate mr-2"></i>
-                                            Secretary's Certificate
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">Upon the directive of the Board, the Corporate Secretary will issue the Secretary's Certificate and begin updating the banks, government office etc.</p>
-                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample Secretary's Certificate.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample Secretary's Certificate and explains its purpose in formalizing corporate changes."
-                },
-                {
-                    number: 9,
-                    title: "Updating General Information Sheet (GIS)",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Updating General Information Sheet (GIS)</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/PsjsndK.jpeg" alt="General Information Sheet" class="document-image">
-                                    <p class="document-caption">Sample General Information Sheet (GIS)</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-indigo-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-indigo-800 mb-4 flex items-center">
-                                            <i class="fas fa-file-alt mr-2"></i>
-                                            General Information Sheet (GIS)
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">The Corporate Secretary will submit an amended General Information Sheet (GIS) reflecting the updates of the company director composition and shareholding components.</p>
-                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample General Information Sheet (GIS).</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample GIS document and explains its importance in updating SEC records."
-                },
-                {
-                    number: 10,
-                    title: "Execution of Deed of Assignment/Deed of Sale",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Execution of Deed of Assignment/Deed of Sale</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/ZXKE1NR.jpeg" alt="Deed of Assignment" class="document-image">
-                                    <p class="document-caption">Sample Deed of Assignment</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-orange-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-orange-800 mb-4 flex items-center">
-                                            <i class="fas fa-file-signature mr-2"></i>
-                                            Deed of Assignment/Deed of Sale
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">A "Deed of Assignment/Deed of Sale" will be executed between the resigned director/officer/shareholder and the incoming shareholder/director/officer.</p>
-                                            <p class="text-sm text-gray-700">The instrument needs to be notarized and submitted one (1) original copy and two (2) photocopy.</p>
-                                            <p class="text-sm text-gray-700 mt-2">For illustration, see sample Deed of Assignment.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample Deed of Assignment and explains its role in transferring shares between parties."
-                },
-                {
-                    number: 11,
-                    title: "Stock Certificate(s)",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Stock Certificate(s)</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/k9s3yVs.jpeg" alt="Stock Certificate" class="document-image">
-                                    <p class="document-caption">Sample Stock Certificate</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-teal-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-teal-800 mb-4 flex items-center">
-                                            <i class="fas fa-certificate mr-2"></i>
-                                            Stock Certificate(s)
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">The original Stock Certificate issued by the company's Corporate Secretary needs to be presented to the BIR officer and two (2) photocopy.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample Stock Certificate and explains its requirement for BIR registration."
-                },
-                {
-                    number: 12,
-                    title: "Audited Financial Statement (AFS)",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Audited Financial Statement (AFS)</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/EPw6pLh.jpeg" alt="Audited Financial Statement" class="document-image">
-                                    <p class="document-caption">Sample Audited Financial Statement</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-pink-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-pink-800 mb-4 flex items-center">
-                                            <i class="fas fa-chart-line mr-2"></i>
-                                            Audited Financial Statement (AFS)
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">The certified true copy of AFS prepared by the Finance team, duly submitted to the Bureau of Internal Revenue (BIR) and accepted by the Securities and Exchange Commission (SEC) needs to be submitted in three (3) copies.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample Audited Financial Statement and explains its requirement for BIR valuation purposes."
-                },
-                {
-                    number: 13,
-                    title: "BIR Form 1707 (Capital Gains Tax)",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">BIR Form 1707 (Capital Gains Tax)</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/5A1AaFG.jpeg" alt="BIR Form 1707" class="document-image">
-                                    <p class="document-caption">Sample BIR Form 1707</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-blue-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
-                                            <i class="fas fa-file-invoice-dollar mr-2"></i>
-                                            BIR Form 1707 (Capital Gains Tax)
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">The duly filed Capital Gains Tax – BIR Form 1707 should be submitted in three (3) copies.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample BIR Form 1707 for Capital Gains Tax and explains its submission requirement."
-                },
-                {
-                    number: 14,
-                    title: "BIR Form 2000 (Documentary Stamp Tax)",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">BIR Form 2000 (Documentary Stamp Tax)</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/T8pvYjQ.jpeg" alt="BIR Form 2000" class="document-image">
-                                    <p class="document-caption">Sample BIR Form 2000</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-green-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-green-800 mb-4 flex items-center">
-                                            <i class="fas fa-receipt mr-2"></i>
-                                            BIR Form 2000 (Documentary Stamp Tax)
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">The duly filed Documentary Stamp Tax– BIR Form 2000 should be submitted in three (3) copies.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample BIR Form 2000 for Documentary Stamp Tax and explains its submission requirement."
-                },
-                {
-                    number: 15,
-                    title: "Proof of Full Tax Payment",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Proof of Full Tax Payment</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div class="document-container">
-                                    <img src="https://imgur.com/pBFbWAh.jpeg" alt="Proof of Payment" class="document-image">
-                                    <p class="document-caption">Sample Deposit Slip as Proof of Payment</p>
-                                    <div class="magnifier-hint">Hover over image to magnify</div>
-                                </div>
-                                <div>
-                                    <div class="bg-yellow-50 p-6 rounded-lg">
-                                        <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
-                                            <i class="fas fa-money-check mr-2"></i>
-                                            Proof of Full Tax Payment
-                                        </h3>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <p class="text-sm text-gray-700">The original deposit slip that serves as a proof of payment must be submitted together with two (2) photocopy.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    `,
-                    notes: "This slide shows a sample proof of payment document and explains its requirement for BIR registration."
-                },
-                {
-                    number: 16,
-                    title: "Step-by-step Process: Submission and Assessment",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
-                            <div class="bg-blue-50 p-6 rounded-lg">
+                        <div class="flex items-center">
+                            <div class="bg-blue-50 p-6 rounded-lg w-full">
                                 <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
-                                    <i class="fas fa-list-ol mr-2"></i>
-                                    Step – step process:
+                                    <i class="fas fa-signature mr-2"></i>
+                                    Resignation
                                 </h3>
-                                <div class="space-y-4">
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700"><span class="step-number">1</span>The applicant or authorized representative must submit the complete set of documentary requirements listed in Section IV to the One-Time Transaction (ONETT) Team at the Revenue District Office (RDO) where the seller is registered.</p>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700"><span class="step-number">2</span>A BIR assessing officer will review the submitted documents, validate the computation of the Fair Market Value, and calculate the applicable taxes due: Capital Gains Tax (CGT) on the net gain of the sale, and Documentary Stamp Tax (DST) at 1.5% on the par value or FMV.</p>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700"><span class="step-number">3</span>Upon receiving the assessment, the taxpayer must pay the total computed taxes due through any Authorized Agent Bank (AAB) within the RDO's jurisdiction or via the BIR's electronic payment channels (e.g., GCash, Maya). Ensure to obtain the BIR-stamped tax returns (1707 and/or 2000-OT) and the official bank payment receipt.</p>
-                                    </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">Once the "Notice of Revocation" was countersigned by the outgoing shareholder/director/officer, he/she will tender his/her resignation to the Board.</p>
+                                    <p class="text-gray-700 mt-2">For illustration, see sample notice.</p>
                                 </div>
                             </div>
                         </div>
-                    `,
-                    notes: "This slide covers the first three steps of the e-CAR process: submission, assessment, and payment."
-                },
-                {
-                    number: 17,
-                    title: "Step-by-step Process: Validation and eCAR Issuance",
-                    content: `
-                        <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
-                            <div class="bg-green-50 p-6 rounded-lg">
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample resignation letter and explains the resignation process after the Notice of Revocation is signed."
+        },
+        {
+            number: 6,
+            title: "Nominee Agreement",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Nominee Agreement</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/egJDP2Q.jpeg" alt="Nominee Agreement" class="document-image">
+                            <p class="document-caption">Sample Nominee Agreement</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-green-50 p-6 rounded-lg w-full">
                                 <h3 class="font-semibold text-green-800 mb-4 flex items-center">
-                                    <i class="fas fa-list-ol mr-2"></i>
-                                    Step – step process (continued):
+                                    <i class="fas fa-handshake mr-2"></i>
+                                    Nominee Agreement
                                 </h3>
-                                <div class="space-y-4">
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700"><span class="step-number">4</span>Return to the BIR ONETT section with the stamped tax forms and the official receipt as proof of payment. These documents will be attached to the application file for final validation.</p>
-                                    </div>
-                                    <div class="bg-white p-4 rounded-lg">
-                                        <p class="text-sm text-gray-700"><span class="step-number">5</span>Once the payment is validated, the BIR personnel will encode the details of the transaction into the system, generate the Electronic Certificate Authorizing Registration (eCAR), and have it signed by the authorized revenue official.</p>
-                                    </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">The shareholder/ officer/director to – be can be nominated by the Company. A "Nominee Agreement" will be executed by the incoming shareholder/officer/ director with the company.</p>
+                                    <p class="text-gray-700 mt-2">For illustration, see sample Agreement.</p>
                                 </div>
                             </div>
                         </div>
-                    `,
-                    notes: "This slide covers the final steps of the e-CAR process: validation and issuance."
-                },
-                {
-                    number: 18,
-                    title: "QUESTION & ANSWER PORTION",
-                    content: `
-                        <div class="py-6 text-center">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-8">QUESTION & ANSWER PORTION</h2>
-                            <div class="max-w-4xl mx-auto">
-                                <div class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl mb-6">
-                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Thank You</h3>
-                                    <div class="text-left">
-                                        <p class="font-medium text-gray-800">Atty. Katrina Sanedel C. Silanga</p>
-                                        <p class="text-gray-600">Senior Legal Counsel</p>
-                                        <p class="text-gray-600">Tier One Advisory (PH) Inc.</p>
-                                        <p class="text-gray-600">Unit 1001 One Global Place 5th Ave cor 25th St.</p>
-                                        <p class="text-gray-600">BGC, Fort Bonifacio, Taguig City, Philippines 1635</p>
-                                        <p class="text-gray-600 mt-2">katrina.silanga@t1advisory.com</p>
-                                        <p class="text-gray-600">mobile: 09681614829</p>
-                                    </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample Nominee Agreement document and explains its role in appointing new directors."
+        },
+        {
+            number: 7,
+            title: "Board's Acceptance and Nomination",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Board's Acceptance and Nomination</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/soFcxDQ.jpeg" alt="Board Resolution" class="document-image">
+                            <p class="document-caption">Sample Board Resolution</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-purple-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-purple-800 mb-4 flex items-center">
+                                    <i class="fas fa-users mr-2"></i>
+                                    Board's Acceptance and Nomination
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">The Board, upon learning of the resignation, will conduct a Special Meeting duly called for accepting the resignation of the outgoing shareholder/ officer/director and nominating a replacement.</p>
+                                    <p class="text-gray-700">To confirm, the Board will issue a Board Resolution.</p>
+                                    <p class="text-gray-700 mt-2">For illustration, see sample Board Resolution.</p>
                                 </div>
-                                <p class="text-gray-500 text-sm">Private and confidential</p>
                             </div>
                         </div>
-                    `,
-                    notes: "This is the final slide with contact information and Q&A session announcement."
-                }
-            ]
-        };
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample Board Resolution and explains the board's role in accepting resignations and nominating replacements."
+        },
+        {
+            number: 8,
+            title: "Issuance of Secretary's Certificate",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Issuance of Secretary's Certificate</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/0OtNgQJ.jpeg" alt="Secretary's Certificate" class="document-image">
+                            <p class="document-caption">Sample Secretary's Certificate</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-red-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-red-800 mb-4 flex items-center">
+                                    <i class="fas fa-certificate mr-2"></i>
+                                    Secretary's Certificate
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">Upon the directive of the Board, the Corporate Secretary will issue the Secretary's Certificate and begin updating the banks, government office etc.</p>
+                                    <p class="text-gray-700 mt-2">For illustration, see sample Secretary's Certificate.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample Secretary's Certificate and explains its purpose in formalizing corporate changes."
+        },
+        {
+            number: 9,
+            title: "Updating General Information Sheet (GIS)",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Updating General Information Sheet (GIS)</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/PsjsndK.jpeg" alt="General Information Sheet" class="document-image">
+                            <p class="document-caption">Sample General Information Sheet (GIS)</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-indigo-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-indigo-800 mb-4 flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i>
+                                    General Information Sheet (GIS)
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">The Corporate Secretary will submit an amended General Information Sheet (GIS) reflecting the updates of the company director composition and shareholding components.</p>
+                                    <p class="text-gray-700 mt-2">For illustration, see sample General Information Sheet (GIS).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample GIS document and explains its importance in updating SEC records."
+        },
+        {
+            number: 10,
+            title: "Execution of Deed of Assignment/Deed of Sale",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Execution of Deed of Assignment/Deed of Sale</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/ZXKE1NR.jpeg" alt="Deed of Assignment" class="document-image">
+                            <p class="document-caption">Sample Deed of Assignment</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-orange-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-orange-800 mb-4 flex items-center">
+                                    <i class="fas fa-file-signature mr-2"></i>
+                                    Deed of Assignment/Deed of Sale
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">A "Deed of Assignment/Deed of Sale" will be executed between the resigned director/officer/shareholder and the incoming shareholder/director/officer.</p>
+                                    <p class="text-gray-700">The instrument needs to be notarized and submitted one (1) original copy and two (2) photocopy.</p>
+                                    <p class="text-gray-700 mt-2">For illustration, see sample Deed of Assignment.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample Deed of Assignment and explains its role in transferring shares between parties."
+        },
+        {
+            number: 11,
+            title: "Stock Certificate(s)",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Stock Certificate(s)</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/k9s3yVs.jpeg" alt="Stock Certificate" class="document-image">
+                            <p class="document-caption">Sample Stock Certificate</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-teal-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-teal-800 mb-4 flex items-center">
+                                    <i class="fas fa-certificate mr-2"></i>
+                                    Stock Certificate(s)
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">The original Stock Certificate issued by the company's Corporate Secretary needs to be presented to the BIR officer and two (2) photocopy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample Stock Certificate and explains its requirement for BIR registration."
+        },
+        {
+            number: 12,
+            title: "Audited Financial Statement (AFS)",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Audited Financial Statement (AFS)</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/EPw6pLh.jpeg" alt="Audited Financial Statement" class="document-image">
+                            <p class="document-caption">Sample Audited Financial Statement</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-pink-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-pink-800 mb-4 flex items-center">
+                                    <i class="fas fa-chart-line mr-2"></i>
+                                    Audited Financial Statement (AFS)
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">The certified true copy of AFS prepared by the Finance team, duly submitted to the Bureau of Internal Revenue (BIR) and accepted by the Securities and Exchange Commission (SEC) needs to be submitted in three (3) copies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample Audited Financial Statement and explains its requirement for BIR valuation purposes."
+        },
+        {
+            number: 13,
+            title: "BIR Form 1707 (Capital Gains Tax)",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">BIR Form 1707 (Capital Gains Tax)</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/5A1AaFG.jpeg" alt="BIR Form 1707" class="document-image">
+                            <p class="document-caption">Sample BIR Form 1707</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-blue-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
+                                    <i class="fas fa-file-invoice-dollar mr-2"></i>
+                                    BIR Form 1707 (Capital Gains Tax)
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">The duly filed Capital Gains Tax – BIR Form 1707 should be submitted in three (3) copies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample BIR Form 1707 for Capital Gains Tax and explains its submission requirement."
+        },
+        {
+            number: 14,
+            title: "BIR Form 2000 (Documentary Stamp Tax)",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">BIR Form 2000 (Documentary Stamp Tax)</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/T8pvYjQ.jpeg" alt="BIR Form 2000" class="document-image">
+                            <p class="document-caption">Sample BIR Form 2000</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-green-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                    <i class="fas fa-receipt mr-2"></i>
+                                    BIR Form 2000 (Documentary Stamp Tax)
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">The duly filed Documentary Stamp Tax– BIR Form 2000 should be submitted in three (3) copies.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample BIR Form 2000 for Documentary Stamp Tax and explains its submission requirement."
+        },
+        {
+            number: 15,
+            title: "Proof of Full Tax Payment",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Proof of Full Tax Payment</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="document-container">
+                            <img src="https://i.imgur.com/pBFbWAh.jpeg" alt="Proof of Payment" class="document-image">
+                            <p class="document-caption">Sample Deposit Slip as Proof of Payment</p>
+                            <div class="magnifier-hint">Hover over image to magnify</div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="bg-yellow-50 p-6 rounded-lg w-full">
+                                <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
+                                    <i class="fas fa-money-check mr-2"></i>
+                                    Proof of Full Tax Payment
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-gray-700">The original deposit slip that serves as a proof of payment must be submitted together with two (2) photocopy.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide shows a sample proof of payment document and explains its requirement for BIR registration."
+        },
+        {
+            number: 16,
+            title: "Step-by-step Process: Submission and Assessment",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Transfer of share(s) registration with BIR</h2>
+                    <div class="bg-blue-50 p-8 rounded-lg">
+                        <h3 class="font-semibold text-blue-800 mb-6 flex items-center text-xl">
+                            <i class="fas fa-list-ol mr-3"></i>
+                            Step – step process:
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-lg border-l-4 border-blue-500">
+                                <p class="text-gray-800 flex items-start">
+                                    <span class="step-number">1</span>
+                                    The applicant or authorized representative must submit the complete set of documentary requirements listed in Section IV to the One-Time Transaction (ONETT) Team at the Revenue District Office (RDO) where the seller is registered.
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg border-l-4 border-blue-500">
+                                <p class="text-gray-800 flex items-start">
+                                    <span class="step-number">2</span>
+                                    A BIR assessing officer will review the submitted documents, validate the computation of the Fair Market Value, and calculate the applicable taxes due: Capital Gains Tax (CGT) on the net gain of the sale, and Documentary Stamp Tax (DST) at 1.5% on the par value or FMV.
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg border-l-4 border-blue-500">
+                                <p class="text-gray-800 flex items-start">
+                                    <span class="step-number">3</span>
+                                    Upon receiving the assessment, the taxpayer must pay the total computed taxes due through any Authorized Agent Bank (AAB) within the RDO's jurisdiction or via the BIR's electronic payment channels (e.g., GCash, Maya). Ensure to obtain the BIR-stamped tax returns (1707 and/or 2000-OT) and the official bank payment receipt.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide covers the first three steps of the e-CAR process: submission, assessment, and payment."
+        },
+        {
+            number: 17,
+            title: "Step-by-step Process: Validation and eCAR Issuance",
+            content: `
+                <div class="py-6">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Transfer of share(s) registration with BIR</h2>
+                    <div class="bg-green-50 p-8 rounded-lg">
+                        <h3 class="font-semibold text-green-800 mb-6 flex items-center text-xl">
+                            <i class="fas fa-list-ol mr-3"></i>
+                            Step – step process (continued):
+                        </h3>
+                        <div class="space-y-6">
+                            <div class="bg-white p-6 rounded-lg border-l-4 border-green-500">
+                                <p class="text-gray-800 flex items-start">
+                                    <span class="step-number">4</span>
+                                    Return to the BIR ONETT section with the stamped tax forms and the official receipt as proof of payment. These documents will be attached to the application file for final validation.
+                                </p>
+                            </div>
+                            <div class="bg-white p-6 rounded-lg border-l-4 border-green-500">
+                                <p class="text-gray-800 flex items-start">
+                                    <span class="step-number">5</span>
+                                    Once the payment is validated, the BIR personnel will encode the details of the transaction into the system, generate the Electronic Certificate Authorizing Registration (eCAR), and have it signed by the authorized revenue official.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            notes: "This slide covers the final steps of the e-CAR process: validation and issuance."
+        },
+        {
+            number: 18,
+            title: "QUESTION & ANSWER PORTION",
+            content: `
+                <div class="py-6 text-center">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8">QUESTION & ANSWER PORTION</h2>
+                    <div class="max-w-4xl mx-auto">
+                        <div class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl mb-6">
+                            <h3 class="text-2xl font-semibold text-gray-800 mb-4">Thank You</h3>
+                            <div class="text-left">
+                                <p class="font-medium text-gray-800">Atty. Katrina Sanedel C. Silanga</p>
+                                <p class="text-gray-600">Senior Legal Counsel</p>
+                                <p class="text-gray-600">Tier One Advisory (PH) Inc.</p>
+                                <p class="text-gray-600">Unit 1001 One Global Place 5th Ave cor 25th St.</p>
+                                <p class="text-gray-600">BGC, Fort Bonifacio, Taguig City, Philippines 1635</p>
+                                <p class="text-gray-600 mt-2">katrina.silanga@t1advisory.com</p>
+                                <p class="text-gray-600">mobile: 09681614829</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-500 text-sm">Private and confidential</p>
+                    </div>
+                </div>
+            `,
+            notes: "This is the final slide with contact information and Q&A session announcement."
+        }
+    ]
+};
 
         // Current slide state
         let currentSlideIndex = 0;
