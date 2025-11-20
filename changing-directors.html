@@ -114,6 +114,46 @@
             background: rgba(0, 0, 0, 0.9);
             transform: scale(1.1);
         }
+        
+        .slide-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        
+        .slide-subtitle {
+            font-size: 1.2rem;
+            color: #4b5563;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .slide-body {
+            font-size: 1rem;
+            color: #374151;
+            line-height: 1.6;
+        }
+        
+        .requirements-list {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            background-color: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 24px;
+            margin-right: 8px;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -397,532 +437,315 @@
                                 <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                                     <i class="fas fa-exchange-alt text-white text-2xl"></i>
                                 </div>
-                                <h1 class="text-4xl font-bold text-gray-800 mb-2">Changing Directors & Shareholders</h1>
-                                <p class="text-xl text-gray-600">Complete Corporate Change Process with eCAR Filing</p>
+                                <h1 class="text-4xl font-bold text-gray-800 mb-2">Changing company directors/ officers/ shareholders</h1>
+                                <p class="text-xl text-gray-600">and BIR electronic Certificate Authorizing Registration (e-CAR)</p>
+                                <p class="text-lg text-gray-500 mt-4">A walkthrough session</p>
                             </div>
                             <div class="border-t pt-8 mt-8">
                                 <p class="text-gray-500">Tier One Advisory Philippines Inc.</p>
-                                <p class="text-gray-500 text-sm mt-2">Compliance Department | March 2024</p>
+                                <p class="text-gray-500 text-sm mt-2">Private and confidential</p>
                             </div>
                         </div>
                     `,
-                    notes: "Welcome everyone. Today we'll cover the complete process for changing directors and shareholders in Philippine corporations, including the crucial eCAR filing requirement with BIR."
+                    notes: "Welcome to this walkthrough session on changing company directors, officers, shareholders and the BIR e-CAR process."
                 },
                 {
                     number: 2,
-                    title: "Presentation Agenda",
+                    title: "AGENDA",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Presentation Agenda</h2>
-                            <div class="space-y-4 max-w-3xl mx-auto">
-                                <div class="agenda-item bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
-                                    <h3 class="font-bold text-blue-800 text-lg mb-2">AGENDA 1: Changing Directors & Shareholders</h3>
-                                    <ul class="text-gray-700 space-y-1 text-sm ml-4">
-                                        <li>• Pre-requisites and By-laws Review</li>
-                                        <li>• Board Meeting Requirements</li>
-                                        <li>• Document Preparation</li>
-                                        <li>• SEC Filing Process</li>
-                                        <li>• Other Agency Updates</li>
-                                    </ul>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">AGENDA</h2>
+                            <div class="space-y-6 max-w-3xl mx-auto">
+                                <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
+                                    <h3 class="font-bold text-blue-800 text-lg mb-4">Introduction</h3>
                                 </div>
-                                <div class="agenda-item bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-                                    <h3 class="font-bold text-green-800 text-lg mb-2">AGENDA 2: eCAR Filing Process</h3>
-                                    <ul class="text-gray-700 space-y-1 text-sm ml-4">
-                                        <li>• What is eCAR?</li>
-                                        <li>• Required Documents</li>
-                                        <li>• Online Filing Steps</li>
-                                        <li>• Common Issues & Solutions</li>
-                                        <li>• Post-Filing Requirements</li>
+                                <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
+                                    <h3 class="font-bold text-green-800 text-lg mb-4">Points of discussion:</h3>
+                                    <ul class="text-gray-700 space-y-2 text-sm ml-4">
+                                        <li>• How to change company directors, officer and shareholders</li>
+                                        <li>• Necessary documents</li>
+                                        <li>• Board Special Meeting</li>
+                                        <li>• How to register the transfer of share(s) with the Philippine Bureau of Internal Revenue (BIR) through electronic Certificate Authorizing Registration (e-CAR)</li>
+                                        <li>• Step – step process</li>
+                                        <li>• Q&A portion</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "We'll cover two main agendas today: the process for changing directors and shareholders, and the eCAR filing requirements. Each agenda has specific sub-topics we'll explore in detail."
+                    notes: "Today's agenda covers the complete process for changing directors and shareholders, including the BIR e-CAR requirements."
                 },
                 {
                     number: 3,
-                    title: "Agenda 1: Changing Directors & Shareholders",
+                    title: "Introduction",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Agenda 1: Changing Directors & Shareholders</h2>
-                            <div class="bg-yellow-50 p-6 rounded-lg mb-6">
-                                <h3 class="font-semibold text-yellow-800 mb-3 flex items-center">
-                                    <i class="fas fa-list-ol mr-2"></i>
-                                    Step-by-Step Process
-                                </h3>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <h4 class="font-medium text-gray-800 mb-2">For Director Changes:</h4>
-                                        <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
-                                            <li>Review By-laws & Articles</li>
-                                            <li>Hold Board Meeting</li>
-                                            <li>Prepare Resignation/Acceptance</li>
-                                            <li>Elect New Director</li>
-                                            <li>Update SEC Records</li>
-                                        </ol>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-medium text-gray-800 mb-2">For Shareholder Changes:</h4>
-                                        <ol class="list-decimal list-inside space-y-2 text-sm text-gray-700">
-                                            <li>Stock Transfer Approval</li>
-                                            <li>Deed of Assignment</li>
-                                            <li>Update Stock and Transfer Book</li>
-                                            <li>Board Resolution for Transfer</li>
-                                            <li>SEC GIS Update</li>
-                                        </ol>
-                                    </div>
-                                </div>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Introduction</h2>
+                            <div class="slide-body">
+                                <p class="mb-4">Let's face the reality that company shareholders, officers and directors come and go especially with the nature of the business set up of BHG and other entities within the group.</p>
+                                <p class="mb-4">It is the prerogative of the management to assign shares to nominee directors/shareholders who will be a holder in trust or sell shares to an investor that will perform corporate functions for and on behalf of the company.</p>
+                                <p class="mb-4">This walkthrough session aims to guide colleagues on how to process the change of directors, company officers and shareholders who will transfer their shares whether it by virtue of an assignment or sale.</p>
+                                <p>This walkthrough likewise aims to educate the process of registering the transfer of shares with the Bureau of Internal Revenue (BIR) from the outgoing shareholder/director/officer to the incoming ones; recoding the transfer to the company's Stocks and Transfer Book and updating the company's General Information Sheet (GIS) submitted to the Philippine Securities and Exchange Commission (SEC).</p>
                             </div>
                         </div>
                     `,
-                    notes: "The process involves careful review of corporate documents, proper board meetings, and comprehensive documentation. Both director and shareholder changes require specific steps and documents."
+                    notes: "This introduction sets the context for why these changes are necessary and what we aim to accomplish in this session."
                 },
                 {
                     number: 4,
-                    title: "Sub-Agenda 1.1: Pre-requisites & Board Meeting",
+                    title: "How to change company shareholders, directors and corporate officers",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 1.1: Pre-requisites & Board Meeting</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div class="bg-green-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-green-800 mb-3 flex items-center">
-                                        <i class="fas fa-file-contract mr-2"></i>
-                                        Pre-requisites
-                                    </h3>
-                                    <ul class="space-y-2 text-sm text-gray-700">
-                                        <li class="flex items-start">
-                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
-                                            <span>Review Articles of Incorporation and By-laws</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
-                                            <span>Verify director/shareholder qualifications</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2 flex-shrink-0"></i>
-                                            <span>Check for any transfer restrictions</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="bg-purple-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-purple-800 mb-3 flex items-center">
-                                        <i class="fas fa-users mr-2"></i>
-                                        Board Meeting Requirements
-                                    </h3>
-                                    <ul class="space-y-2 text-sm text-gray-700">
-                                        <li class="flex items-start">
-                                            <i class="fas fa-bell text-purple-500 mt-1 mr-2 flex-shrink-0"></i>
-                                            <span>Proper notice to all directors</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-clipboard-list text-purple-500 mt-1 mr-2 flex-shrink-0"></i>
-                                            <span>Clear agenda for changes</span>
-                                        </li>
-                                        <li class="flex items-start">
-                                            <i class="fas fa-file-signature text-purple-500 mt-1 mr-2 flex-shrink-0"></i>
-                                            <span>Document meeting minutes</span>
-                                        </li>
-                                    </ul>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">How to change company shareholders, directors and corporate officers</h2>
+                            <div class="bg-yellow-50 p-6 rounded-lg mb-6">
+                                <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
+                                    <i class="fas fa-users mr-2"></i>
+                                    FOR DIRECTORSHIP WITH SHARE(S) INVOLVED
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <h4 class="font-medium text-gray-800 mb-2">Revocation of the Nominee Agreement</h4>
+                                        <p class="text-sm text-gray-700">The resignation may be done voluntarily or through management's decision. To revoke the shares nominated under his/her name, the company will issue a "Notice of Revocation of Agreement and all related documents."</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <h4 class="font-medium text-gray-800 mb-2">Resignation</h4>
+                                        <p class="text-sm text-gray-700">Once the "Notice of Revocation" was countersigned by the outgoing shareholder/director/officer, he/she will tender his/her resignation to the Board.</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <h4 class="font-medium text-gray-800 mb-2">Nominee Agreement</h4>
+                                        <p class="text-sm text-gray-700">The shareholder/ officer/director to – be can be nominated by the Company. A "Nominee Agreement" will be executed by the incoming shareholder/officer/ director with the company.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "Proper preparation is crucial. Review all corporate documents and ensure the board meeting follows proper procedures with clear documentation of all resolutions."
+                    notes: "This slide outlines the initial steps for changing directors with shares involved, including revocation, resignation, and nomination."
                 },
                 {
                     number: 5,
-                    title: "Sub-Agenda 1.2: Document Preparation",
+                    title: "Board's Acceptance and Issuance of Certificates",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 1.2: Document Preparation</h2>
-                            <div class="space-y-6">
-                                <div class="bg-red-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-red-800 mb-4 flex items-center">
-                                        <i class="fas fa-file-export mr-2"></i>
-                                        SEC Filing Documents
-                                    </h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <h4 class="font-medium text-gray-800 mb-2">Mandatory Documents:</h4>
-                                            <ul class="space-y-2 text-sm text-gray-700">
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-file-alt text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>Notarized Board Resolution</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-file-alt text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>Updated General Information Sheet (GIS)</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-file-alt text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>Director's Information Sheet</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-gray-800 mb-2">Additional for Shareholders:</h4>
-                                            <ul class="space-y-2 text-sm text-gray-700">
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-file-contract text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>Deed of Assignment</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-certificate text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>Stock Certificates (old & new)</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-book text-red-500 text-xs mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>Updated Stock & Transfer Book</span>
-                                                </li>
-                                            </ul>
-                                        </div>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Board's Acceptance and Issuance of Certificates</h2>
+                            <div class="bg-green-50 p-6 rounded-lg mb-6">
+                                <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                    <i class="fas fa-users mr-2"></i>
+                                    FOR DIRECTORSHIP WITH SHARE(S) INVOLVED
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <h4 class="font-medium text-gray-800 mb-2">Board's acceptance of the resignation and nomination of a new director/ officer/ shareholder</h4>
+                                        <p class="text-sm text-gray-700">The Board, upon learning of the resignation, will conduct a Special Meeting duly called for accepting the resignation of the outgoing shareholder/ officer/director and nominating a replacement. To confirm, the Board will issue a Board Resolution.</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <h4 class="font-medium text-gray-800 mb-2">Issuance of a Secretary's Certificate</h4>
+                                        <p class="text-sm text-gray-700">Upon the directive of the Board, the Corporate Secretary will issue the Secretary's Certificate and begin updating the banks, government office etc.</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <h4 class="font-medium text-gray-800 mb-2">Updating the company's General Information Sheet (GIS)</h4>
+                                        <p class="text-sm text-gray-700">The Corporate Secretary will submit an amended General Information Sheet (GIS) reflecting the updates of the company director composition and shareholding components.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "Document preparation requires attention to detail. Ensure all documents are properly notarized, consistent in information, and prepared in multiple copies for different agencies."
+                    notes: "This slide covers the board's role in accepting resignations and nominating replacements, along with the necessary documentation."
                 },
                 {
                     number: 6,
-                    title: "Sub-Agenda 1.3: SEC Filing & Other Agencies",
+                    title: "TRANSFER OF SHARE(S) - BIR ELECTRONIC CERTIFICATE AUTHORIZING REGISTRATION (E-CAR)",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 1.3: SEC Filing & Other Agencies</h2>
-                            <div class="space-y-6">
-                                <div class="bg-green-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
-                                        <i class="fas fa-building mr-2"></i>
-                                        SEC Filing Process
-                                    </h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                                                <i class="fas fa-upload"></i>
-                                            </div>
-                                            <p class="text-sm font-medium">Step 1: Online Submission</p>
-                                        </div>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                                                <i class="fas fa-money-bill-wave"></i>
-                                            </div>
-                                            <p class="text-sm font-medium">Step 2: Pay Fees</p>
-                                        </div>
-                                        <div class="bg-white p-4 rounded-lg">
-                                            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-2">
-                                                <i class="fas fa-file-certificate"></i>
-                                            </div>
-                                            <p class="text-sm font-medium">Step 3: Receive Certificate</p>
-                                        </div>
-                                    </div>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">TRANSFER OF SHARE(S)</h2>
+                            <h3 class="text-2xl font-bold text-gray-700 mb-6 text-center">BIR ELECTRONIC CERTIFICATE AUTHORIZING REGISTRATION (E-CAR)</h3>
+                            <div class="bg-blue-50 p-6 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
+                                    <i class="fas fa-file-alt mr-2"></i>
+                                    Transfer of share(s) registration with BIR
+                                </h3>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h4 class="font-medium text-gray-800 mb-3">BIR Check list for e-CAR of the share(s)</h4>
+                                    <h5 class="font-medium text-gray-700 mb-2">Key Requirements:</h5>
+                                    <ul class="requirements-list text-sm text-gray-700">
+                                        <li>Notarized Deed of Sale/Assignment</li>
+                                        <li>Original Stock Certificate(s)</li>
+                                        <li>Latest Audited Financial Statements (for valuation)</li>
+                                        <li>Duly filed BIR Forms 1707 (Capital Gains Tax) and 2000-OT (Documentary Stamp Tax)</li>
+                                        <li>Proof of Full Tax Payment</li>
+                                        <li>Special Power of Attorney (individual seller)</li>
+                                        <li>Secretary's Certificate (seller is a corporation)</li>
+                                        <li>Valid government issued ID of the Seller and the authorized representative.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "SEC filing is now mostly online through i-Report. After SEC approval, remember to update BIR, SSS, PhilHealth, and Pag-IBIG. Banks and other business partners should also be notified."
+                    notes: "This slide outlines the BIR requirements for e-CAR application when transferring shares."
                 },
                 {
                     number: 7,
-                    title: "Agenda 2: eCAR Filing Process",
+                    title: "Execution of the Deed of Assignment/Deed of Sale",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Agenda 2: eCAR Filing Process</h2>
-                            <div class="bg-blue-50 p-6 rounded-lg mb-6">
-                                <h3 class="font-semibold text-blue-800 mb-3 flex items-center">
-                                    <i class="fas fa-certificate mr-2"></i>
-                                    What is eCAR?
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
+                            <div class="bg-red-50 p-6 rounded-lg">
+                                <h3 class="font-semibold text-red-800 mb-4 flex items-center">
+                                    <i class="fas fa-file-signature mr-2"></i>
+                                    Execution of the Deed of Assignment/Deed of Sale
                                 </h3>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <h4 class="font-medium text-gray-800 mb-2">Electronic Certificate of Authority to Report</h4>
-                                        <ul class="space-y-2 text-sm text-gray-700">
-                                            <li class="flex items-start">
-                                                <i class="fas fa-check text-blue-500 mt-1 mr-2 flex-shrink-0"></i>
-                                                <span>Mandatory for corporate changes</span>
-                                            </li>
-                                            <li class="flex items-start">
-                                                <i class="fas fa-check text-blue-500 mt-1 mr-2 flex-shrink-0"></i>
-                                                <span>Electronic replacement of manual registration</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <h4 class="font-medium text-gray-800 mb-2">Purpose:</h4>
-                                        <ul class="space-y-2 text-sm text-gray-700">
-                                            <li class="flex items-start">
-                                                <i class="fas fa-bullseye text-blue-500 mt-1 mr-2 flex-shrink-0"></i>
-                                                <span>Update BIR records electronically</span>
-                                            </li>
-                                            <li class="flex items-start">
-                                                <i class="fas fa-bullseye text-blue-500 mt-1 mr-2 flex-shrink-0"></i>
-                                                <span>Maintain tax compliance status</span>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                <div class="bg-white p-4 rounded-lg">
+                                    <p class="text-sm text-gray-700">A "Deed of Assignment/Deed of Sale" will be executed between the resigned director/officer/shareholder and the incoming shareholder/director/officer.</p>
+                                    <p class="text-sm text-gray-700 mt-2">The instrument needs to be notarized and submitted one (1) original copy and two (2) photocopy.</p>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "eCAR is BIR's electronic system for updating corporate information. It's mandatory and must be filed within 10 days after SEC approval of director/shareholder changes."
+                    notes: "This slide focuses on the Deed of Assignment/Deed of Sale requirement for share transfer."
                 },
                 {
                     number: 8,
-                    title: "Sub-Agenda 2.1: eCAR Required Documents",
+                    title: "Stock Certificate(s) and Audited Financial Statement",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 2.1: eCAR Required Documents</h2>
-                            <div class="space-y-6">
-                                <div class="bg-red-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-red-800 mb-4 flex items-center">
-                                        <i class="fas fa-file-upload mr-2"></i>
-                                        Documents for eCAR Filing
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-purple-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-purple-800 mb-4 flex items-center">
+                                        <i class="fas fa-certificate mr-2"></i>
+                                        Stock Certificate(s)
                                     </h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <h4 class="font-medium text-gray-800 mb-2">Mandatory Documents:</h4>
-                                            <ul class="space-y-3 text-sm text-gray-700">
-                                                <li class="flex items-start">
-                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">1</div>
-                                                    <div>
-                                                        <span class="font-medium">SEC Certificate of Filing</span>
-                                                    </div>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">2</div>
-                                                    <div>
-                                                        <span class="font-medium">Notarized Board Resolution</span>
-                                                    </div>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">3</div>
-                                                    <div>
-                                                        <span class="font-medium">BIR Form 1905</span>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-gray-800 mb-2">Supporting Documents:</h4>
-                                            <ul class="space-y-3 text-sm text-gray-700">
-                                                <li class="flex items-start">
-                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">4</div>
-                                                    <div>
-                                                        <span class="font-medium">Valid IDs</span>
-                                                    </div>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <div class="w-6 h-6 bg-red-100 text-red-600 rounded-full flex items-center justify-center text-xs mr-3 mt-0.5 flex-shrink-0">5</div>
-                                                    <div>
-                                                        <span class="font-medium">TIN Documents</span>
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700">The original Stock Certificate issued by the company's Corporate Secretary needs to be presented to the BIR officer and two (2) photocopy.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                        <i class="fas fa-chart-line mr-2"></i>
+                                        Audited Financial Statement (AFS)
+                                    </h3>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700">The certified true copy of AFS prepared by the Finance team, duly submitted to the Bureau of Internal Revenue (BIR) and accepted by the Securities and Exchange Commission (SEC) needs to be submitted in three (3) copies.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "Prepare digital copies of all required documents before starting eCAR filing. Ensure files are in PDF format, under 2MB, and all text is clearly readable."
+                    notes: "This slide covers the Stock Certificate and Audited Financial Statement requirements."
                 },
                 {
                     number: 9,
-                    title: "Sub-Agenda 2.2: Online Filing Steps",
+                    title: "BIR Forms and Proof of Payment",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 2.2: Online Filing Steps</h2>
-                            <div class="space-y-6">
-                                <div class="bg-green-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
-                                        <i class="fas fa-desktop mr-2"></i>
-                                        Step-by-Step eCAR Process
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="bg-blue-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
+                                        <i class="fas fa-file-invoice-dollar mr-2"></i>
+                                        Duly filed BIR Forms 1707 (Capital Gains Tax)
                                     </h3>
-                                    <div class="space-y-4">
-                                        <div class="flex items-start">
-                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">1</div>
-                                            <div>
-                                                <h4 class="font-medium text-gray-800">Access BIR eServices</h4>
-                                                <p class="text-sm text-gray-600 mt-1">Go to https://eservices.bir.gov.ph</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-start">
-                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">2</div>
-                                            <div>
-                                                <h4 class="font-medium text-gray-800">Navigate to eREGISTRATION</h4>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-start">
-                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">3</div>
-                                            <div>
-                                                <h4 class="font-medium text-gray-800">Upload Documents</h4>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-start">
-                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">4</div>
-                                            <div>
-                                                <h4 class="font-medium text-gray-800">Submit Application</h4>
-                                            </div>
-                                        </div>
-                                        <div class="flex items-start">
-                                            <div class="w-8 h-8 bg-green-600 text-white rounded-full flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">5</div>
-                                            <div>
-                                                <h4 class="font-medium text-gray-800">Receive eCAR</h4>
-                                            </div>
-                                        </div>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700">The duly filed Capital Gains Tax – BIR Form 1707 should be submitted in three (3) copies.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-yellow-50 p-6 rounded-lg">
+                                    <h3 class="font-semibold text-yellow-800 mb-4 flex items-center">
+                                        <i class="fas fa-receipt mr-2"></i>
+                                        Duly filed BIR Forms 2000 (Documentary Stamp Tax)
+                                    </h3>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700">The duly filed Documentary Stamp Tax– BIR Form 2000 should be submitted in three (3) copies.</p>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-6 rounded-lg md:col-span-2">
+                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                        <i class="fas fa-money-check mr-2"></i>
+                                        Proof of full tax payment
+                                    </h3>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700">The original deposit slip that serves as a proof of payment must be submitted together with two (2) photocopy.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "The eCAR process is entirely online. Ensure you have stable internet, updated browser, and all documents scanned properly before starting the application."
+                    notes: "This slide details the BIR forms and proof of payment requirements for share transfer."
                 },
                 {
                     number: 10,
-                    title: "Sub-Agenda 2.3: Common Issues & Solutions",
+                    title: "Step-by-step process: Submission and Assessment",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Sub-Agenda 2.3: Common Issues & Solutions</h2>
-                            <div class="space-y-6">
-                                <div class="bg-red-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-red-800 mb-4 flex items-center">
-                                        <i class="fas fa-exclamation-triangle mr-2"></i>
-                                        Common eCAR Filing Issues
-                                    </h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        <div>
-                                            <h4 class="font-medium text-gray-800 mb-2">Technical Issues:</h4>
-                                            <ul class="space-y-2 text-sm text-gray-700">
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>System login problems</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>Document upload failures</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div>
-                                            <h4 class="font-medium text-gray-800 mb-2">Document Issues:</h4>
-                                            <ul class="space-y-2 text-sm text-gray-700">
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>Incomplete document submission</span>
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <i class="fas fa-times-circle text-red-500 mt-1 mr-2 flex-shrink-0"></i>
-                                                    <span>Poor quality scans</span>
-                                                </li>
-                                            </ul>
-                                        </div>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
+                            <div class="bg-blue-50 p-6 rounded-lg">
+                                <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
+                                    <i class="fas fa-list-ol mr-2"></i>
+                                    Step – step process:
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700"><span class="step-number">1</span>The applicant or authorized representative must submit the complete set of documentary requirements listed in Section IV to the One-Time Transaction (ONETT) Team at the Revenue District Office (RDO) where the seller is registered.</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700"><span class="step-number">2</span>A BIR assessing officer will review the submitted documents, validate the computation of the Fair Market Value, and calculate the applicable taxes due: Capital Gains Tax (CGT) on the net gain of the sale, and Documentary Stamp Tax (DST) at 1.5% on the par value or FMV.</p>
+                                    </div>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700"><span class="step-number">3</span>Upon receiving the assessment, the taxpayer must pay the total computed taxes due through any Authorized Agent Bank (AAB) within the RDO's jurisdiction or via the BIR's electronic payment channels (e.g., GCash, Maya). Ensure to obtain the BIR-stamped tax returns (1707 and/or 2000-OT) and the official bank payment receipt.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "Common issues include technical problems with the BIR system and document quality issues. Prepare everything in advance and use recommended browsers to minimize problems."
+                    notes: "This slide covers the first three steps of the e-CAR process: submission, assessment, and payment."
                 },
                 {
                     number: 11,
-                    title: "Timeline & Cost Overview",
+                    title: "Step-by-step process: Validation and eCAR Issuance",
                     content: `
                         <div class="py-6">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Timeline & Cost Overview</h2>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                                <div class="bg-blue-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-blue-800 mb-4 flex items-center">
-                                        <i class="fas fa-calendar-alt mr-2"></i>
-                                        Compliance Timeline
-                                    </h3>
-                                    <div class="space-y-3">
-                                        <div class="flex justify-between items-center border-b pb-2">
-                                            <span class="text-sm text-gray-700">Board Meeting & Resolution</span>
-                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Days 1-2</span>
-                                        </div>
-                                        <div class="flex justify-between items-center border-b pb-2">
-                                            <span class="text-sm text-gray-700">SEC GIS Filing</span>
-                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Days 3-5</span>
-                                        </div>
-                                        <div class="flex justify-between items-center border-b pb-2">
-                                            <span class="text-sm text-gray-700">BIR eCAR Filing</span>
-                                            <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs font-medium">Days 6-8</span>
-                                        </div>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-6">Transfer of share(s) registration with BIR</h2>
+                            <div class="bg-green-50 p-6 rounded-lg">
+                                <h3 class="font-semibold text-green-800 mb-4 flex items-center">
+                                    <i class="fas fa-list-ol mr-2"></i>
+                                    Step – step process (continued):
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700"><span class="step-number">4</span>Return to the BIR ONETT section with the stamped tax forms and the official receipt as proof of payment. These documents will be attached to the application file for final validation.</p>
                                     </div>
-                                </div>
-                                <div class="bg-green-50 p-6 rounded-lg">
-                                    <h3 class="font-semibold text-green-800 mb-4 flex items-center">
-                                        <i class="fas fa-money-bill-wave mr-2"></i>
-                                        Cost Breakdown
-                                    </h3>
-                                    <div class="space-y-3">
-                                        <div class="flex justify-between items-center border-b pb-2">
-                                            <span class="text-sm text-gray-700">SEC Filing Fees</span>
-                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">₱210 - ₱1,130</span>
-                                        </div>
-                                        <div class="flex justify-between items-center border-b pb-2">
-                                            <span class="text-sm text-gray-700">Notarization</span>
-                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">₱100 - ₱500</span>
-                                        </div>
-                                        <div class="flex justify-between items-center">
-                                            <span class="text-sm text-gray-700">BIR eCAR</span>
-                                            <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs font-medium">No Fee</span>
-                                        </div>
+                                    <div class="bg-white p-4 rounded-lg">
+                                        <p class="text-sm text-gray-700"><span class="step-number">5</span>Once the payment is validated, the BIR personnel will encode the details of the transaction into the system, generate the Electronic Certificate Authorizing Registration (eCAR), and have it signed by the authorized revenue official.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     `,
-                    notes: "The entire process should take about 15 days. Costs vary based on authorized capital stock. Remember the strict deadlines to avoid penalties."
+                    notes: "This slide covers the final steps of the e-CAR process: validation and issuance."
                 },
                 {
                     number: 12,
-                    title: "Summary & Professional Tips",
+                    title: "QUESTION & ANSWER PORTION",
                     content: `
                         <div class="py-6 text-center">
-                            <h2 class="text-3xl font-bold text-gray-800 mb-8">Summary & Professional Tips</h2>
+                            <h2 class="text-3xl font-bold text-gray-800 mb-8">QUESTION & ANSWER PORTION</h2>
                             <div class="max-w-4xl mx-auto">
                                 <div class="bg-gradient-to-r from-blue-50 to-green-50 p-8 rounded-xl mb-6">
-                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Key Takeaways</h3>
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
-                                        <div class="space-y-3">
-                                            <div class="flex items-start">
-                                                <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs mr-3 mt-1 flex-shrink-0">✓</div>
-                                                <div>
-                                                    <p class="font-medium text-gray-800">Two Main Processes</p>
-                                                    <p class="text-sm text-gray-600">Director/Shareholder change + eCAR filing</p>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-start">
-                                                <div class="w-6 h-6 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs mr-3 mt-1 flex-shrink-0">✓</div>
-                                                <div>
-                                                    <p class="font-medium text-gray-800">Strict Deadlines</p>
-                                                    <p class="text-sm text-gray-600">SEC: 30 days, BIR: 10 days from SEC</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="space-y-3">
-                                            <div class="flex items-start">
-                                                <div class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs mr-3 mt-1 flex-shrink-0">✓</div>
-                                                <div>
-                                                    <p class="font-medium text-gray-800">Digital Process</p>
-                                                    <p class="text-sm text-gray-600">Both SEC and BIR filings are online</p>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-start">
-                                                <div class="w-6 h-6 bg-green-500 text-white rounded-full flex items-center justify-center text-xs mr-3 mt-1 flex-shrink-0">✓</div>
-                                                <div>
-                                                    <p class="font-medium text-gray-800">Professional Help</p>
-                                                    <p class="text-sm text-gray-600">Recommended for complex changes</p>
-                                                </div>
-                                            </div>
-                                        </div>
+                                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Thank You</h3>
+                                    <div class="text-left">
+                                        <p class="font-medium text-gray-800">Atty. Katrina Sanedel C. Silanga</p>
+                                        <p class="text-gray-600">Senior Legal Counsel</p>
+                                        <p class="text-gray-600">Tier One Advisory (PH) Inc.</p>
+                                        <p class="text-gray-600">Unit 1001 One Global Place 5th Ave cor 25th St.</p>
+                                        <p class="text-gray-600">BGC, Fort Bonifacio, Taguig City, Philippines 1635</p>
+                                        <p class="text-gray-600 mt-2">katrina.silanga@t1advisory.com</p>
+                                        <p class="text-gray-600">mobile: 09681614829</p>
                                     </div>
                                 </div>
+                                <p class="text-gray-500 text-sm">Private and confidential</p>
                             </div>
                         </div>
                     `,
-                    notes: "In summary, plan for both processes with adequate time, use professional help when needed, and maintain meticulous documentation throughout the compliance journey."
+                    notes: "This is the final slide with contact information and Q&A session announcement."
                 }
             ]
         };
