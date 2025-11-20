@@ -1111,7 +1111,7 @@
         const fullscreenSlideContent = document.getElementById('fullscreenSlideContent');
         const exitFullscreenBtn = document.getElementById('exitFullscreenBtn');
 
-// Magnifier functionality
+        // Magnifier functionality - Alternative version
 function initializeMagnifier() {
     const documentImages = document.querySelectorAll('.document-image');
     
@@ -1123,23 +1123,26 @@ function initializeMagnifier() {
 
         img.addEventListener('mousemove', (e) => {
             const rect = img.getBoundingClientRect();
+            
+            // Get cursor position within the image
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
-            // Calculate position for magnifier (centered on cursor)
-            const magnifierSize = 150; // ← CHANGE THIS LINE
-            const magnifierX = x - magnifierSize / 2;
-            const magnifierY = y - magnifierSize / 2;
+            // Make sure we're within image bounds
+            if (x < 0 || y < 0 || x > rect.width || y > rect.height) {
+                magnifier.classList.remove('active');
+                return;
+            }
             
-            // Set magnifier position
-            magnifier.style.left = `${magnifierX}px`;
-            magnifier.style.top = `${magnifierY}px`;
+            // Position magnifier centered on cursor
+            const magnifierSize = 800;
+            magnifier.style.left = `${x - magnifierSize/2}px`;
+            magnifier.style.top = `${y - magnifierSize/2}px`;
             
-            // Calculate background position for 300% zoom
-            const bgX = (x / img.width) * 100;
-            const bgY = (y / img.height) * 100;
+            // Calculate background position (cursor at center of magnifier)
+            const bgX = (x / rect.width) * 100;
+            const bgY = (y / rect.height) * 100;
             
-            // Set magnifier background
             magnifier.style.backgroundImage = `url('${img.src}')`;
             magnifier.style.backgroundPosition = `${bgX}% ${bgY}%`;
             magnifier.classList.add('active');
