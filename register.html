@@ -149,7 +149,7 @@
                     <div class="mt-6 text-center">
                         <p class="text-light-secondary">
                             Already have an account?
-                            <a href="index.html" class="text-blue-300 hover:text-white font-medium underline">Sign In</a>
+                            <a href="login.html" class="text-blue-300 hover:text-white font-medium underline">Sign In</a>
                         </p>
                     </div>
                 </div>
@@ -271,7 +271,7 @@
                     
                     // SUCCESS: User is registered but NOT approved
                     alert('✅ Access request submitted! Your account is pending approval. You will receive an email when an administrator approves your access.');
-                    window.location.href = 'index.html';
+                    window.location.href = 'login.html'; // Changed to login.html
                 }
                 
             } catch (error) {
@@ -282,15 +282,28 @@
             }
         });
 
-        // Check if user is already logged in
+        // OPTIONAL: Only redirect if user is already APPROVED and logged in
+        // Remove or comment out this entire section if you don't want any auto-redirect
+        /*
         async function checkAuth() {
             const { data: { user } } = await supabaseClient.auth.getUser();
             if (user) {
-                window.location.href = 'index.html';
+                // Check if user is approved before redirecting
+                const { data: profile } = await supabaseClient
+                    .from('user_profiles')
+                    .select('status')
+                    .eq('id', user.id)
+                    .single();
+                
+                if (profile && profile.status === 'approved') {
+                    window.location.href = 'dashboard.html';
+                }
+                // If pending or rejected, stay on this page
             }
         }
 
         checkAuth();
+        */
     </script>
 </body>
 </html>
