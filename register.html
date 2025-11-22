@@ -217,12 +217,12 @@
     </footer>
 
     <script>
-        // FIXED: Use supabase.createClient directly instead of destructuring
+        // Initialize Supabase
         const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        // Registration function
+        // Registration function - SIMPLIFIED VERSION
         document.getElementById('registerForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -232,15 +232,18 @@
             const password = document.getElementById('password').value;
             const button = document.getElementById('registerButton');
             
+            // Show loading state
             const originalText = button.innerHTML;
             button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Requesting Access...';
             button.disabled = true;
             
             try {
+                console.log('Starting registration process...');
+                
                 // Sign up with Supabase Auth
                 const { data: authData, error: authError } = await supabaseClient.auth.signUp({
-                    email,
-                    password,
+                    email: email,
+                    password: password,
                     options: {
                         data: {
                             full_name: fullName,
@@ -249,7 +252,12 @@
                     }
                 });
                 
-                if (authError) throw authError;
+                if (authError) {
+                    console.error('Auth error:', authError);
+                    throw authError;
+                }
+                
+                console.log('Auth successful, creating profile...');
                 
                 if (authData.user) {
                     // Create user profile with PENDING status
@@ -261,17 +269,22 @@
                             full_name: fullName,
                             department: department,
                             role: 'requester',
-                            status: 'pending' // 👈 CRITICAL: User starts as pending
+                            status: 'pending'
                         });
                     
                     if (profileError) {
                         console.error('Profile creation error:', profileError);
-                        // Continue anyway - admin can fix this later
+                        // Don't throw error - user can still proceed
                     }
                     
-                    // SUCCESS: User is registered but NOT approved
+                    // SUCCESS - Show message and redirect to login
+                    console.log('Registration successful!');
                     alert('✅ Access request submitted! Your account is pending approval. You will receive an email when an administrator approves your access.');
-                    window.location.href = 'login.html'; // Changed to login.html
+                    
+                    // Wait a moment then redirect to login
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
                 }
                 
             } catch (error) {
@@ -282,28 +295,9 @@
             }
         });
 
-        // OPTIONAL: Only redirect if user is already APPROVED and logged in
-        // Remove or comment out this entire section if you don't want any auto-redirect
-        /*
-        async function checkAuth() {
-            const { data: { user } } = await supabaseClient.auth.getUser();
-            if (user) {
-                // Check if user is approved before redirecting
-                const { data: profile } = await supabaseClient
-                    .from('user_profiles')
-                    .select('status')
-                    .eq('id', user.id)
-                    .single();
-                
-                if (profile && profile.status === 'approved') {
-                    window.location.href = 'dashboard.html';
-                }
-                // If pending or rejected, stay on this page
-            }
-        }
+        // NO AUTO-REDIRECT CODE - Page stays open for registration
+        console.log('Register page loaded successfully - ready for new users');
 
-        checkAuth();
-        */
     </script>
 </body>
 </html>
