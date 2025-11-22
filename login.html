@@ -130,7 +130,7 @@
                                             >
                                             <label for="remember" class="ml-2 text-sm text-gray-600">Remember me</label>
                                         </div>
-                                        <a href="#" class="text-sm text-blue-600 hover:text-blue-500">Forgot password?</a>
+                                        <a href="reset-password.html" class="text-sm text-blue-600 hover:text-blue-500">Forgot password?</a>
                                     </div>
 
                                     <button 
@@ -406,6 +406,96 @@
                 }
             });
         });
+        // DOM Elements for password reset
+const forgotPasswordLink = document.getElementById('forgotPasswordLink');
+const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+const closeForgotPassword = document.getElementById('closeForgotPassword');
+const cancelReset = document.getElementById('cancelReset');
+const forgotPasswordForm = document.getElementById('forgotPasswordForm');
+const resetEmailInput = document.getElementById('resetEmail');
+const sendResetButton = document.getElementById('sendResetButton');
+const resetSuccess = document.getElementById('resetSuccess');
+
+// Forgot Password functionality
+forgotPasswordLink.addEventListener('click', (e) => {
+    e.preventDefault();
+    forgotPasswordModal.classList.remove('hidden');
+    resetSuccess.classList.add('hidden');
+    forgotPasswordForm.classList.remove('hidden');
+    resetEmailInput.value = '';
+});
+
+// Close modal functions
+function closeForgotPasswordModal() {
+    forgotPasswordModal.classList.add('hidden');
+}
+
+closeForgotPassword.addEventListener('click', closeForgotPasswordModal);
+cancelReset.addEventListener('click', closeForgotPasswordModal);
+
+// Close modal when clicking outside
+forgotPasswordModal.addEventListener('click', (e) => {
+    if (e.target === forgotPasswordModal) {
+        closeForgotPasswordModal();
+    }
+});
+
+// Handle password reset request
+forgotPasswordForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const email = resetEmailInput.value.trim();
+    
+    if (!email) {
+        alert('Please enter your email address.');
+        return;
+    }
+
+    await handlePasswordReset(email);
+});
+
+async function handlePasswordReset(email) {
+    showResetLoading();
+    
+    try {
+        const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: `${window.location.origin}/reset-password.html`, // You'll need to create this page
+        });
+
+        if (error) {
+            alert('Error sending reset email: ' + error.message);
+            hideResetLoading();
+            return;
+        }
+
+        // Show success message
+        forgotPasswordForm.classList.add('hidden');
+        resetSuccess.classList.remove('hidden');
+        
+        // Auto-close modal after 3 seconds
+        setTimeout(() => {
+            closeForgotPasswordModal();
+        }, 3000);
+        
+    } catch (err) {
+        console.error('Password reset exception:', err);
+        alert('Failed to send reset email. Please try again.');
+    } finally {
+        hideResetLoading();
+    }
+}
+
+// Loading states for reset button
+function showResetLoading() {
+    sendResetButton.disabled = true;
+    sendResetButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+}
+
+function hideResetLoading() {
+    sendResetButton.disabled = false;
+    sendResetButton.innerHTML = '<i class="fas fa-paper-plane mr-2"></i>Send Reset Link';
+}
+    
     </script>
     <!-- Forgot Password Modal -->
 <div id="forgotPasswordModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
