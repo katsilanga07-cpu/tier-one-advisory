@@ -503,7 +503,7 @@
             
             try {
                 const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-                    redirectTo: `${window.location.origin}/reset-password.html`,
+                    redirectTo: `https://katsilanga07-cpu.github.io/tier-one-advisory/reset-password.html`,
                 });
 
                 if (error) {
