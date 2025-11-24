@@ -17,13 +17,18 @@
         .header-gradient {
             background: linear-gradient(135deg, #0056a3 0%, #003d75 100%);
         }
+        /* Updated glass card with #222222 background and MORE blur */
         .glass-card {
-            background: rgba(255, 255, 255, 0.15);
+            background: rgba(34, 34, 34, 0.85); /* #222222 with transparency */
+            backdrop-filter: blur(16px); /* Increased blur effect */
+            -webkit-backdrop-filter: blur(16px); /* Safari support */
             border: 1px solid rgba(255, 255, 255, 0.2);
             color: #ffffff;
         }
         .feature-card {
-            background: rgba(255, 255, 255, 0.12);
+            background: rgba(34, 34, 34, 0.8); /* #222222 background */
+            backdrop-filter: blur(14px); /* Increased blur effect */
+            -webkit-backdrop-filter: blur(14px); /* Safari support */
             border: 1px solid rgba(255, 255, 255, 0.15);
             color: #ffffff;
         }
