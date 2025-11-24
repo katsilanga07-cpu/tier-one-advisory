@@ -150,6 +150,25 @@
       .quick-action-card {
         padding: 1.5rem;
       }
+      
+      .refresh-spin {
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      
+      .custom-notification {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      
+      .custom-notification.translate-x-0 {
+        transform: translateX(0);
+        opacity: 1;
+      }
     </style>
   </head>
 
@@ -289,44 +308,45 @@
         </button>
       </div>
 
-<!-- Stats Overview - Larger Fonts -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-    <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-red-500">
-        <div class="flex items-center">
-            <div class="p-2 bg-red-100 rounded">
-                <i class="fas fa-clock text-red-600 text-lg"></i>
-            </div>
-            <div class="ml-3 flex-1 min-w-0">
-                <p class="text-xs text-gray-600 truncate">Pending</p>
-                <h3 class="text-3xl font-bold text-gray-800 truncate" id="pendingCount">0</h3>
-            </div>
-        </div>
-    </div>
+      <!-- Stats Overview - Larger Fonts -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+          <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-red-500">
+              <div class="flex items-center">
+                  <div class="p-2 bg-red-100 rounded">
+                      <i class="fas fa-clock text-red-600 text-lg"></i>
+                  </div>
+                  <div class="ml-3 flex-1 min-w-0">
+                      <p class="text-xs text-gray-600 truncate">Pending</p>
+                      <h3 class="text-3xl font-bold text-gray-800 truncate" id="pendingCount">0</h3>
+                  </div>
+              </div>
+          </div>
 
-    <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-yellow-500">
-        <div class="flex items-center">
-            <div class="p-2 bg-yellow-100 rounded">
-                <i class="fas fa-spinner text-yellow-600 text-lg"></i>
-            </div>
-            <div class="ml-3 flex-1 min-w-0">
-                <p class="text-xs text-gray-600 truncate">In Progress</p>
-                <h3 class="text-3xl font-bold text-gray-800 truncate" id="inProgressCount">0</h3>
-            </div>
-        </div>
-    </div>
+          <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-yellow-500">
+              <div class="flex items-center">
+                  <div class="p-2 bg-yellow-100 rounded">
+                      <i class="fas fa-spinner text-yellow-600 text-lg"></i>
+                  </div>
+                  <div class="ml-3 flex-1 min-w-0">
+                      <p class="text-xs text-gray-600 truncate">In Progress</p>
+                      <h3 class="text-3xl font-bold text-gray-800 truncate" id="inProgressCount">0</h3>
+                  </div>
+              </div>
+          </div>
 
-    <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-green-500">
-        <div class="flex items-center">
-            <div class="p-2 bg-green-100 rounded">
-                <i class="fas fa-check-circle text-green-600 text-lg"></i>
-            </div>
-            <div class="ml-3 flex-1 min-w-0">
-                <p class="text-xs text-gray-600 truncate">Completed</p>
-                <h3 class="text-3xl font-bold text-gray-800 truncate" id="completedCount">0</h3>
-            </div>
-        </div>
-    </div>
-</div>
+          <div class="bg-white rounded-lg shadow-sm p-4 border-l-4 border-green-500">
+              <div class="flex items-center">
+                  <div class="p-2 bg-green-100 rounded">
+                      <i class="fas fa-check-circle text-green-600 text-lg"></i>
+                  </div>
+                  <div class="ml-3 flex-1 min-w-0">
+                      <p class="text-xs text-gray-600 truncate">Completed</p>
+                      <h3 class="text-3xl font-bold text-gray-800 truncate" id="completedCount">0</h3>
+                  </div>
+              </div>
+          </div>
+      </div>
+
       <!-- Tasks Container -->
       <div class="bg-white rounded-lg shadow-sm overflow-hidden">
         <div class="px-4 py-3 border-b border-gray-200 flex justify-between items-center">
@@ -614,7 +634,7 @@
         }
       }
 
-      // ===== EXISTING MONITORING FUNCTIONALITY =====
+      // ===== MONITORING FUNCTIONALITY =====
       // Load all tasks with better error handling
       async function loadTasks() {
         try {
@@ -652,7 +672,7 @@
         updatePagination();
       }
 
-      // Display tasks as cards in grid - UPDATED LAYOUT
+      // Display tasks as cards in grid - UPDATED WITH ADMIN-ONLY UPDATE BUTTONS
       function displayTasks(tasks) {
         const container = document.getElementById('tasksContainer');
         
@@ -719,13 +739,15 @@
                 <p class="text-sm line-clamp-3 min-h-[3rem]">${notes}</p>
               </div>
               
-              <!-- UPDATE BUTTON - SAME LOCATION -->
-              <div class="flex justify-end">
-                <button onclick="showStatusUpdate('${task.id}', '${status}')" 
-                        class="bg-white bg-opacity-20 backdrop-blur-sm px-3 py-1 rounded hover:bg-opacity-30 transition text-xs font-medium">
-                  <i class="fas fa-sync-alt mr-1"></i>Update
-                </button>
-              </div>
+              <!-- UPDATE BUTTON - ONLY FOR ADMINS AND NON-COMPLETED TASKS -->
+              ${currentUser && currentUser.role === 'admin' && status !== 'completed' ? `
+                <div class="flex justify-end">
+                  <button onclick="showStatusUpdate('${task.id}', '${status}')" 
+                          class="bg-white bg-opacity-20 backdrop-blur-sm px-3 py-1 rounded hover:bg-opacity-30 transition text-xs font-medium">
+                    <i class="fas fa-sync-alt mr-1"></i>Update
+                  </button>
+                </div>
+              ` : ''}
             </div>
           `;
         });
@@ -807,8 +829,14 @@
         }
       }
 
-      // Show status update lightbox
+      // Show status update lightbox - ADMIN ONLY
       function showStatusUpdate(taskId, currentStatus) {
+        // Check if current user is admin
+        if (!currentUser || currentUser.role !== 'admin') {
+          alert('❌ Access Denied: Only administrators can update request status.');
+          return;
+        }
+        
         currentTaskId = taskId;
         
         let nextStatus, title, message;
@@ -832,12 +860,19 @@
         document.getElementById('statusLightbox').style.display = 'block';
       }
 
-      // Update task status with detailed error handling
+      // Update task status with detailed error handling - ADMIN ONLY
       async function updateTaskStatus() {
         if (!currentTaskId || !currentNewStatus) return;
+        
+        // Double-check admin privileges
+        if (!currentUser || currentUser.role !== 'admin') {
+          alert('❌ Access Denied: Only administrators can update request status.');
+          document.getElementById('statusLightbox').style.display = 'none';
+          return;
+        }
 
         try {
-          console.log('Updating task:', currentTaskId, 'to status:', currentNewStatus);
+          console.log('Admin updating task:', currentTaskId, 'to status:', currentNewStatus);
           
           const { error } = await supabaseClient
             .from('tasks_database')
@@ -854,7 +889,7 @@
 
           // Close lightbox and reload tasks
           document.getElementById('statusLightbox').style.display = 'none';
-          console.log('Task updated successfully, reloading...');
+          console.log('Task updated successfully by admin, reloading...');
           loadTasks();
           
         } catch (error) {
