@@ -70,17 +70,35 @@
             padding-right: 3rem;
         }
         
-        /* Dropdown options styling */
+        /* Dropdown options styling - FIXED FOR ALL BROWSERS */
         select.form-input option {
-            background: #222222;
-            color: white;
+            background: #222222 !important;
+            color: white !important;
             padding: 12px;
         }
         
-        /* For Webkit browsers */
-        select.form-input::-webkit-listbox,
+        /* For Firefox */
+        select.form-input option:checked,
+        select.form-input option:hover {
+            background: #3b82f6 !important;
+            color: white !important;
+        }
+        
+        /* For Webkit browsers (Chrome, Safari, Edge) */
+        select.form-input:focus option:checked {
+            background: #3b82f6 !important;
+            color: white !important;
+        }
+        
+        /* Style the dropdown list itself */
+        select.form-input:focus {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Additional styling for better dropdown appearance */
+        select.form-input::-webkit-list-box,
         select.form-input::-webkit-scrollbar {
-            background: #222222;
+            background: #222222 !important;
         }
         
         select.form-input::-webkit-scrollbar-thumb {
@@ -90,6 +108,24 @@
         
         select.form-input::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* For the dropdown list container */
+        select.form-input option {
+            background-color: #222222 !important;
+            color: white !important;
+        }
+        
+        /* Hover state for options */
+        select.form-input option:hover {
+            background-color: #3b82f6 !important;
+            color: white !important;
+        }
+        
+        /* Selected option styling */
+        select.form-input option:checked {
+            background-color: #3b82f6 !important;
+            color: white !important;
         }
     </style>
 </head>
@@ -215,7 +251,7 @@
                 <div class="glass-card rounded-xl p-6 max-w-2xl mx-auto border-l-4 border-yellow-400">
                     <h3 class="font-semibold text-light mb-3 flex items-center justify-center text-lg">
                         <i class="fas fa-info-circle mr-2 text-yellow-300"></i>Approval Required
-                    </hh3>
+                    </h3>
                     <div class="text-center">
                         <p class="text-light-secondary mb-2">
                             All access requests require administrator approval before you can use the system.
