@@ -17,29 +17,29 @@
         .header-gradient {
             background: linear-gradient(135deg, #0056a3 0%, #003d75 100%);
         }
-        /* Updated glass card with #222222 background and 50% MORE blur */
+        /* Updated glass card with WHITE background and 50% MORE blur */
         .glass-card {
-            background: rgba(34, 34, 34, 0.85); /* #222222 with transparency */
+            background: rgba(255, 255, 255, 0.85); /* WHITE with transparency */
             backdrop-filter: blur(24px); /* Increased by 50% from 16px to 24px */
             -webkit-backdrop-filter: blur(24px); /* Safari support */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #1f2937; /* Dark text for contrast on white */
         }
         .feature-card {
-            background: rgba(34, 34, 34, 0.8); /* #222222 background */
+            background: rgba(255, 255, 255, 0.8); /* WHITE background */
             backdrop-filter: blur(21px); /* Increased by 50% from 14px to 21px */
             -webkit-backdrop-filter: blur(21px); /* Safari support */
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #1f2937; /* Dark text for contrast on white */
         }
         .text-light {
-            color: #ffffff;
+            color: #1f2937; /* Dark text for white background */
         }
         .text-light-secondary {
-            color: rgba(255, 255, 255, 0.9);
+            color: #4b5563; /* Medium gray text */
         }
         .text-light-tertiary {
-            color: rgba(255, 255, 255, 0.8);
+            color: #6b7280; /* Lighter gray text */
         }
         .button-glow:hover {
             box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
@@ -86,7 +86,7 @@
                                 Request Access
                             </a>
                             <a href="login.html" 
-                               class="bg-transparent border-2 border-white hover:bg-white text-white hover:text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                               class="bg-transparent border-2 border-blue-600 hover:bg-blue-600 text-blue-600 hover:text-white px-8 py-4 rounded-xl text-lg font-semibold transition-all duration-200 flex items-center justify-center shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                                 <i class="fas fa-sign-in-alt mr-3"></i>
                                 Existing User Login
                             </a>
@@ -101,21 +101,21 @@
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                         <div class="feature-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
                             <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                                <i class="fas fa-file-alt text-white text-xl"></i>
+                                <i class="fas fa-file-alt text-blue-600 text-xl"></i>
                             </div>
                             <h3 class="font-semibold text-light mb-2 text-lg">Submit Requests</h3>
                             <p class="text-light-secondary text-sm">Easily submit and track document and service requests</p>
                         </div>
                         <div class="feature-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
                             <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                                <i class="fas fa-search text-white text-xl"></i>
+                                <i class="fas fa-search text-green-600 text-xl"></i>
                             </div>
                             <h3 class="font-semibold text-light mb-2 text-lg">Track Progress</h3>
                             <p class="text-light-secondary text-sm">Monitor request status and updates in real-time</p>
                         </div>
                         <div class="feature-card rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 text-center">
                             <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 mx-auto">
-                                <i class="fas fa-chart-line text-white text-xl"></i>
+                                <i class="fas fa-chart-line text-purple-600 text-xl"></i>
                             </div>
                             <h3 class="font-semibold text-light mb-2 text-lg">Manage Workflow</h3>
                             <p class="text-light-secondary text-sm">Streamlined approval and processing workflow</p>
@@ -125,7 +125,7 @@
                     <!-- Info Box -->
                     <div class="glass-card rounded-xl p-6 max-w-2xl mx-auto border-l-4 border-blue-400">
                         <h3 class="font-semibold text-light mb-3 flex items-center justify-center text-lg">
-                            <i class="fas fa-info-circle mr-2"></i>Access Information
+                            <i class="fas fa-info-circle mr-2 text-blue-500"></i>Access Information
                         </h3>
                         <div class="text-center">
                             <p class="text-light-secondary mb-2">
@@ -142,14 +142,14 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
                         <div class="feature-card rounded-xl p-6 text-center">
                             <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-3 mx-auto">
-                                <i class="fas fa-shield-alt text-white text-xl"></i>
+                                <i class="fas fa-shield-alt text-blue-600 text-xl"></i>
                             </div>
                             <h4 class="font-semibold text-light mb-2">Secure & Protected</h4>
                             <p class="text-light-secondary text-sm">Enterprise-grade security for all your data and requests</p>
                         </div>
                         <div class="feature-card rounded-xl p-6 text-center">
                             <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-3 mx-auto">
-                                <i class="fas fa-clock text-white text-xl"></i>
+                                <i class="fas fa-clock text-green-600 text-xl"></i>
                             </div>
                             <h4 class="font-semibold text-light mb-2">24/7 Availability</h4>
                             <p class="text-light-secondary text-sm">Access the system anytime from any device</p>
