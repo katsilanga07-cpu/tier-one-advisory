@@ -21,35 +21,26 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
-        
-        /* Vendor prefixes for better browser support */
         display: -moz-box;
         display: box;
         line-clamp: 2;
         box-orient: vertical;
         text-overflow: ellipsis;
       }
-      /* New background gradient */
       .form-background {
         background: linear-gradient(to right, #CBE5AE, #94B447);
         min-height: 100vh;
       }
-
-      /* Improved Header Styles inspired by SGS */
       .compact-header {
         padding: 0.75rem 0;
       }
-
       .compact-nav {
         padding: 0.5rem 0;
       }
-
       .tighter-margins {
         max-width: 1400px;
         margin: 0 auto;
       }
-
-      /* SGS-inspired navigation */
       .nav-item {
         position: relative;
         padding: 0.5rem 1rem;
@@ -58,45 +49,67 @@
         transition: all 0.2s ease;
         font-size: 0.875rem;
       }
-
       .nav-item:hover {
         background: rgba(255, 255, 255, 0.15);
       }
-
       .nav-item.active {
         background: rgba(255, 255, 255, 0.2);
       }
-
-      /* Compact spacing */
       .compact-spacing {
         margin-bottom: 1.5rem;
       }
-
       .section-padding {
         padding: 1.5rem 0;
       }
 
-      /* Improved mobile responsiveness */
+      /* File upload styles */
+      .file-upload-area {
+        border: 2px dashed #d1d5db;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+      }
+      .file-upload-area:hover {
+        border-color: #3b82f6;
+      }
+      .file-upload-area.dragover {
+        border-color: #3b82f6;
+        background-color: #eff6ff;
+      }
+      .file-item {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.375rem;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .file-progress {
+        background: #e2e8f0;
+        border-radius: 0.25rem;
+        overflow: hidden;
+        height: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      .file-progress-bar {
+        background: #10b981;
+        height: 100%;
+        transition: width 0.3s ease;
+      }
+
       @media (max-width: 768px) {
         .tighter-margins {
           padding: 0 1rem;
         }
-        
         .compact-header {
           padding: 0.5rem 0;
         }
-        
         .nav-item {
           padding: 0.5rem 0.75rem;
           font-size: 0.8rem;
         }
       }
-
-      /* Tighten up existing components */
       .stats-card {
         padding: 1rem;
       }
-
       .quick-action-card {
         padding: 1.5rem;
       }
@@ -117,7 +130,6 @@
               <a href="#" class="hover:text-blue-300 transition flex items-center">
                 <i class="fas fa-phone mr-1 text-xs"></i> Contact Us
               </a>
-              <!-- CHANGED: Removed onclick and added id -->
               <a href="#" id="logoutButton" class="hover:text-blue-300 transition cursor-pointer flex items-center">
                 <i class="fas fa-sign-out-alt mr-1 text-xs"></i> Logout
               </a>
@@ -297,6 +309,41 @@
             />
           </div>
 
+          <!-- File Upload Section -->
+          <div class="mt-6">
+            <label class="block text-gray-700 font-medium mb-2 text-sm">
+              Attach Documents
+            </label>
+            
+            <!-- File Upload Area -->
+            <div 
+              id="fileUploadArea" 
+              class="file-upload-area p-6 text-center cursor-pointer"
+            >
+              <input 
+                type="file" 
+                id="fileInput" 
+                multiple 
+                class="hidden"
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.txt"
+              >
+              <div class="flex flex-col items-center justify-center">
+                <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                <p class="text-sm text-gray-600 mb-1">
+                  <span class="text-blue-600 font-medium">Click to upload</span> or drag and drop
+                </p>
+                <p class="text-xs text-gray-500">
+                  PDF, DOC, DOCX, XLS, XLSX, JPG, PNG, TXT (Max: 10MB per file)
+                </p>
+              </div>
+            </div>
+
+            <!-- Uploaded Files List -->
+            <div id="fileList" class="mt-4 space-y-2 max-h-40 overflow-y-auto">
+              <!-- Files will be listed here -->
+            </div>
+          </div>
+
           <!-- Save button -->
           <div class="mt-6 text-center">
             <button
@@ -395,7 +442,6 @@
           const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
           const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
           
-          // FIXED: Use supabase.createClient directly
           const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
             auth: {
               persistSession: false,
@@ -411,6 +457,198 @@
         localStorage.removeItem('currentUser');
         window.location.href = 'login.html';
       }
+
+      // File upload functionality
+      class FileUploadManager {
+        constructor() {
+          this.files = [];
+          this.maxFileSize = 10 * 1024 * 1024; // 10MB
+          this.allowedTypes = [
+            'application/pdf',
+            'application/msword',
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            'application/vnd.ms-excel',
+            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'image/jpeg',
+            'image/jpg',
+            'image/png',
+            'text/plain'
+          ];
+        }
+
+        init() {
+          this.setupEventListeners();
+        }
+
+        setupEventListeners() {
+          const fileInput = document.getElementById('fileInput');
+          const fileUploadArea = document.getElementById('fileUploadArea');
+
+          // Click to upload
+          fileUploadArea.addEventListener('click', () => {
+            fileInput.click();
+          });
+
+          // File input change
+          fileInput.addEventListener('change', (e) => {
+            this.handleFiles(e.target.files);
+          });
+
+          // Drag and drop
+          fileUploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.add('dragover');
+          });
+
+          fileUploadArea.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('dragover');
+          });
+
+          fileUploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            fileUploadArea.classList.remove('dragover');
+            this.handleFiles(e.dataTransfer.files);
+          });
+        }
+
+        handleFiles(fileList) {
+          for (let file of fileList) {
+            if (this.validateFile(file)) {
+              this.addFile(file);
+            }
+          }
+          this.renderFileList();
+        }
+
+        validateFile(file) {
+          // Check file size
+          if (file.size > this.maxFileSize) {
+            alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+            return false;
+          }
+
+          // Check file type
+          if (!this.allowedTypes.includes(file.type)) {
+            alert(`File "${file.name}" is not a supported file type.`);
+            return false;
+          }
+
+          return true;
+        }
+
+        addFile(file) {
+          const fileId = Date.now() + Math.random().toString(36).substr(2, 9);
+          this.files.push({
+            id: fileId,
+            file: file,
+            progress: 0,
+            status: 'pending' // pending, uploading, completed, error
+          });
+        }
+
+        removeFile(fileId) {
+          this.files = this.files.filter(f => f.id !== fileId);
+          this.renderFileList();
+        }
+
+        renderFileList() {
+          const fileListContainer = document.getElementById('fileList');
+          
+          if (this.files.length === 0) {
+            fileListContainer.innerHTML = '';
+            return;
+          }
+
+          fileListContainer.innerHTML = this.files.map(file => `
+            <div class="file-item" data-file-id="${file.id}">
+              <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                  <i class="fas fa-file text-gray-500"></i>
+                  <span class="text-sm font-medium truncate max-w-xs">${file.file.name}</span>
+                  <span class="text-xs text-gray-500">(${(file.file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                </div>
+                <button 
+                  onclick="fileUploadManager.removeFile('${file.id}')" 
+                  class="text-red-500 hover:text-red-700 text-sm"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+              ${file.status === 'uploading' ? `
+                <div class="file-progress">
+                  <div class="file-progress-bar" style="width: ${file.progress}%"></div>
+                </div>
+              ` : ''}
+              ${file.status === 'completed' ? `
+                <div class="text-xs text-green-600 mt-1">
+                  <i class="fas fa-check-circle"></i> Uploaded successfully
+                </div>
+              ` : ''}
+              ${file.status === 'error' ? `
+                <div class="text-xs text-red-600 mt-1">
+                  <i class="fas fa-exclamation-circle"></i> Upload failed
+                </div>
+              ` : ''}
+            </div>
+          `).join('');
+        }
+
+        async uploadFiles(taskId) {
+          const uploadedFiles = [];
+          
+          for (let fileObj of this.files) {
+            try {
+              fileObj.status = 'uploading';
+              this.renderFileList();
+
+              const filePath = `tasks/${taskId}/${fileObj.file.name}`;
+              
+              const { data, error } = await supabase.storage
+                .from('task-documents')
+                .upload(filePath, fileObj.file, {
+                  cacheControl: '3600',
+                  upsert: false
+                });
+
+              if (error) throw error;
+
+              // Get public URL
+              const { data: urlData } = supabase.storage
+                .from('task-documents')
+                .getPublicUrl(filePath);
+
+              uploadedFiles.push({
+                name: fileObj.file.name,
+                path: filePath,
+                url: urlData.publicUrl,
+                size: fileObj.file.size,
+                type: fileObj.file.type
+              });
+
+              fileObj.status = 'completed';
+              fileObj.progress = 100;
+
+            } catch (error) {
+              console.error('Error uploading file:', error);
+              fileObj.status = 'error';
+            }
+            
+            this.renderFileList();
+          }
+          
+          return uploadedFiles;
+        }
+
+        clearFiles() {
+          this.files = [];
+          this.renderFileList();
+          document.getElementById('fileInput').value = '';
+        }
+      }
+
+      // Initialize file upload manager
+      const fileUploadManager = new FileUploadManager();
 
       // Wait for DOM to be fully loaded
       document.addEventListener('DOMContentLoaded', function() {
@@ -428,7 +666,10 @@
           closeSearch: document.getElementById('closeSearch'),
           searchInput: document.getElementById('searchInput'),
           searchResults: document.getElementById('searchResults'),
-          logoutButton: document.getElementById('logoutButton') // ADDED: Logout button
+          logoutButton: document.getElementById('logoutButton'),
+          fileInput: document.getElementById('fileInput'),
+          fileUploadArea: document.getElementById('fileUploadArea'),
+          fileList: document.getElementById('fileList')
         };
 
         console.log('All form elements:', elements);
@@ -441,7 +682,6 @@
         if (missingElements.length > 0) {
           console.error('Missing elements:', missingElements);
           
-          // Check if critical form elements exist
           if (!elements.clientDropdown || !elements.saveButton) {
             console.error('Required form elements not found');
             return;
@@ -452,7 +692,6 @@
         const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
         
-        // FIXED: Use supabase.createClient directly
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
           auth: {
             persistSession: false,
@@ -647,7 +886,7 @@
           }
         }
 
-        // 💾 Save task - SIMPLIFIED SINGLE-TABLE APPROACH
+        // 💾 Save task - ENHANCED WITH FILE UPLOAD
         async function saveTask() {
           const client = elements.clientDropdown.value;
           const subClient = elements.subClientDropdown.value;
@@ -672,7 +911,7 @@
 
             const user = JSON.parse(userData);
 
-            // SINGLE-TABLE APPROACH: Everyone saves directly to tasks_database
+            // First, save the task to get an ID
             const taskData = {
               client: client,
               subClient: subClient || null,
@@ -680,22 +919,50 @@
               documentType: documentType,
               notes: notes || null,
               date: date,
-              status: 'pending', // Everyone starts as pending
+              status: 'pending',
               created_at: new Date().toISOString(),
               requester_id: user.id,
               requester: user.full_name,
-              approved_by: null // No approval needed in single-table workflow
+              approved_by: null,
+              attachments: [] // Will be populated with file URLs
             };
 
-            const { error } = await supabase.from("tasks_database").insert([taskData]);
+            const { data: insertedTask, error: insertError } = await supabase
+              .from("tasks_database")
+              .insert([taskData])
+              .select();
 
-            if (error) {
-              console.error('Error saving to tasks_database:', error);
-              alert("❌ Error saving task: " + error.message);
-            } else {
-              alert("✅ Request submitted successfully!");
-              resetForm();
+            if (insertError) {
+              console.error('Error saving to tasks_database:', insertError);
+              alert("❌ Error saving task: " + insertError.message);
+              return;
             }
+
+            const taskId = insertedTask[0].id;
+            console.log('Task saved with ID:', taskId);
+
+            // Upload files if any
+            if (fileUploadManager.files.length > 0) {
+              const uploadedFiles = await fileUploadManager.uploadFiles(taskId);
+              
+              // Update task with file URLs
+              const { error: updateError } = await supabase
+                .from("tasks_database")
+                .update({ 
+                  attachments: uploadedFiles,
+                  updated_at: new Date().toISOString()
+                })
+                .eq('id', taskId);
+
+              if (updateError) {
+                console.error('Error updating task with attachments:', updateError);
+              }
+            }
+
+            alert("✅ Request submitted successfully!");
+            resetForm();
+            fileUploadManager.clearFiles();
+
           } catch (err) {
             console.error("Exception in saveTask:", err);
             alert("❌ Error saving task. Please check console for details.");
@@ -872,6 +1139,18 @@
                     <p class="text-xs text-gray-800 line-clamp-2">${task.notes}</p>
                   </div>
                 ` : ''}
+                ${task.attachments && task.attachments.length > 0 ? `
+                  <div class="mt-2">
+                    <p class="text-xs text-gray-600">Attachments:</p>
+                    <div class="flex flex-wrap gap-1 mt-1">
+                      ${task.attachments.map(att => `
+                        <a href="${att.url}" target="_blank" class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200 transition">
+                          <i class="fas fa-file mr-1"></i>${att.name}
+                        </a>
+                      `).join('')}
+                    </div>
+                  </div>
+                ` : ''}
               </div>
             `;
           });
@@ -898,6 +1177,9 @@
 
           console.log("User logged in:", user.full_name, "Role:", user.role);
           displayWelcomeMessage();
+          
+          // Initialize file upload manager
+          fileUploadManager.init();
           
           // Test Supabase connection but don't block if it fails
           try {
