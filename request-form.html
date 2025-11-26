@@ -433,791 +433,815 @@
         </div>
       </div>
     </footer>
-
-    <!-- JavaScript -->
     <script>
-      // Global logout function
-      async function logout() {
-        try {
-          const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
-          const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
-          
-          const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-            auth: {
-              persistSession: false,
-              autoRefreshToken: false,
-              detectSessionInUrl: false
-            }
-          });
-          
-          await supabase.auth.signOut();
-        } catch (error) {
-          console.log('Logout error:', error);
+  // Global logout function
+  async function logout() {
+    try {
+      const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
+      const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
+      
+      const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+        auth: {
+          persistSession: false,
+          autoRefreshToken: false,
+          detectSessionInUrl: false
         }
-        localStorage.removeItem('currentUser');
-        window.location.href = 'login.html';
+      });
+      
+      await supabase.auth.signOut();
+    } catch (error) {
+      console.log('Logout error:', error);
+    }
+    localStorage.removeItem('currentUser');
+    window.location.href = 'login.html';
+  }
+
+  // Initialize Supabase globally
+  const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
+  const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
+  
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: {
+      persistSession: false,
+      autoRefreshToken: false,
+      detectSessionInUrl: false
+    }
+  });
+
+  // File upload functionality
+  class FileUploadManager {
+    constructor(supabaseClient) {
+      this.files = [];
+      this.maxFileSize = 10 * 1024 * 1024; // 10MB
+      this.allowedTypes = [
+        'application/pdf',
+        'application/msword',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        'application/vnd.ms-excel',
+        'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        'image/jpeg',
+        'image/jpg',
+        'image/png',
+        'text/plain'
+      ];
+      this.supabase = supabaseClient; // Store Supabase client
+    }
+
+    init() {
+      this.setupEventListeners();
+    }
+
+    setupEventListeners() {
+      const fileInput = document.getElementById('fileInput');
+      const fileUploadArea = document.getElementById('fileUploadArea');
+
+      // Click to upload
+      fileUploadArea.addEventListener('click', () => {
+        fileInput.click();
+      });
+
+      // File input change
+      fileInput.addEventListener('change', (e) => {
+        this.handleFiles(e.target.files);
+      });
+
+      // Drag and drop
+      fileUploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        fileUploadArea.classList.add('dragover');
+      });
+
+      fileUploadArea.addEventListener('dragleave', (e) => {
+        e.preventDefault();
+        fileUploadArea.classList.remove('dragover');
+      });
+
+      fileUploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        fileUploadArea.classList.remove('dragover');
+        this.handleFiles(e.dataTransfer.files);
+      });
+    }
+
+    handleFiles(fileList) {
+      for (let file of fileList) {
+        if (this.validateFile(file)) {
+          this.addFile(file);
+        }
+      }
+      this.renderFileList();
+    }
+
+    validateFile(file) {
+      // Check file size
+      if (file.size > this.maxFileSize) {
+        alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
+        return false;
       }
 
-      // File upload functionality
-      class FileUploadManager {
-        constructor() {
-          this.files = [];
-          this.maxFileSize = 10 * 1024 * 1024; // 10MB
-          this.allowedTypes = [
-            'application/pdf',
-            'application/msword',
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            'application/vnd.ms-excel',
-            'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-            'image/jpeg',
-            'image/jpg',
-            'image/png',
-            'text/plain'
-          ];
-        }
+      // Check file type
+      if (!this.allowedTypes.includes(file.type)) {
+        alert(`File "${file.name}" is not a supported file type.`);
+        return false;
+      }
 
-        init() {
-          this.setupEventListeners();
-        }
+      return true;
+    }
 
-        setupEventListeners() {
-          const fileInput = document.getElementById('fileInput');
-          const fileUploadArea = document.getElementById('fileUploadArea');
+    addFile(file) {
+      const fileId = Date.now() + Math.random().toString(36).substr(2, 9);
+      this.files.push({
+        id: fileId,
+        file: file,
+        progress: 0,
+        status: 'pending' // pending, uploading, completed, error
+      });
+    }
 
-          // Click to upload
-          fileUploadArea.addEventListener('click', () => {
-            fileInput.click();
-          });
+    removeFile(fileId) {
+      this.files = this.files.filter(f => f.id !== fileId);
+      this.renderFileList();
+    }
 
-          // File input change
-          fileInput.addEventListener('change', (e) => {
-            this.handleFiles(e.target.files);
-          });
+    renderFileList() {
+      const fileListContainer = document.getElementById('fileList');
+      
+      if (this.files.length === 0) {
+        fileListContainer.innerHTML = '';
+        return;
+      }
 
-          // Drag and drop
-          fileUploadArea.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            fileUploadArea.classList.add('dragover');
-          });
-
-          fileUploadArea.addEventListener('dragleave', (e) => {
-            e.preventDefault();
-            fileUploadArea.classList.remove('dragover');
-          });
-
-          fileUploadArea.addEventListener('drop', (e) => {
-            e.preventDefault();
-            fileUploadArea.classList.remove('dragover');
-            this.handleFiles(e.dataTransfer.files);
-          });
-        }
-
-        handleFiles(fileList) {
-          for (let file of fileList) {
-            if (this.validateFile(file)) {
-              this.addFile(file);
-            }
-          }
-          this.renderFileList();
-        }
-
-        validateFile(file) {
-          // Check file size
-          if (file.size > this.maxFileSize) {
-            alert(`File "${file.name}" is too large. Maximum size is 10MB.`);
-            return false;
-          }
-
-          // Check file type
-          if (!this.allowedTypes.includes(file.type)) {
-            alert(`File "${file.name}" is not a supported file type.`);
-            return false;
-          }
-
-          return true;
-        }
-
-        addFile(file) {
-          const fileId = Date.now() + Math.random().toString(36).substr(2, 9);
-          this.files.push({
-            id: fileId,
-            file: file,
-            progress: 0,
-            status: 'pending' // pending, uploading, completed, error
-          });
-        }
-
-        removeFile(fileId) {
-          this.files = this.files.filter(f => f.id !== fileId);
-          this.renderFileList();
-        }
-
-        renderFileList() {
-          const fileListContainer = document.getElementById('fileList');
-          
-          if (this.files.length === 0) {
-            fileListContainer.innerHTML = '';
-            return;
-          }
-
-          fileListContainer.innerHTML = this.files.map(file => `
-            <div class="file-item" data-file-id="${file.id}">
-              <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                  <i class="fas fa-file text-gray-500"></i>
-                  <span class="text-sm font-medium truncate max-w-xs">${file.file.name}</span>
-                  <span class="text-xs text-gray-500">(${(file.file.size / 1024 / 1024).toFixed(2)} MB)</span>
-                </div>
-                <button 
-                  onclick="fileUploadManager.removeFile('${file.id}')" 
-                  class="text-red-500 hover:text-red-700 text-sm"
-                >
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
-              ${file.status === 'uploading' ? `
-                <div class="file-progress">
-                  <div class="file-progress-bar" style="width: ${file.progress}%"></div>
-                </div>
-              ` : ''}
-              ${file.status === 'completed' ? `
-                <div class="text-xs text-green-600 mt-1">
-                  <i class="fas fa-check-circle"></i> Uploaded successfully
-                </div>
-              ` : ''}
-              ${file.status === 'error' ? `
-                <div class="text-xs text-red-600 mt-1">
-                  <i class="fas fa-exclamation-circle"></i> Upload failed
-                </div>
-              ` : ''}
+      fileListContainer.innerHTML = this.files.map(file => `
+        <div class="file-item" data-file-id="${file.id}">
+          <div class="flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+              <i class="fas fa-file text-gray-500"></i>
+              <span class="text-sm font-medium truncate max-w-xs">${file.file.name}</span>
+              <span class="text-xs text-gray-500">(${(file.file.size / 1024 / 1024).toFixed(2)} MB)</span>
             </div>
-          `).join('');
-        }
+            <button 
+              onclick="fileUploadManager.removeFile('${file.id}')" 
+              class="text-red-500 hover:text-red-700 text-sm"
+            >
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          ${file.status === 'uploading' ? `
+            <div class="file-progress">
+              <div class="file-progress-bar" style="width: ${file.progress}%"></div>
+            </div>
+          ` : ''}
+          ${file.status === 'completed' ? `
+            <div class="text-xs text-green-600 mt-1">
+              <i class="fas fa-check-circle"></i> Uploaded successfully
+            </div>
+          ` : ''}
+          ${file.status === 'error' ? `
+            <div class="text-xs text-red-600 mt-1">
+              <i class="fas fa-exclamation-circle"></i> Upload failed
+            </div>
+          ` : ''}
+        </div>
+      `).join('');
+    }
 
-        async uploadFiles(taskId) {
-          const uploadedFiles = [];
-          
-          for (let fileObj of this.files) {
-            try {
-              fileObj.status = 'uploading';
-              this.renderFileList();
-
-              const filePath = `tasks/${taskId}/${fileObj.file.name}`;
-              
-              const { data, error } = await supabase.storage
-                .from('task-documents')
-                .upload(filePath, fileObj.file, {
-                  cacheControl: '3600',
-                  upsert: false
-                });
-
-              if (error) throw error;
-
-              // Get public URL
-              const { data: urlData } = supabase.storage
-                .from('task-documents')
-                .getPublicUrl(filePath);
-
-              uploadedFiles.push({
-                name: fileObj.file.name,
-                path: filePath,
-                url: urlData.publicUrl,
-                size: fileObj.file.size,
-                type: fileObj.file.type
-              });
-
-              fileObj.status = 'completed';
-              fileObj.progress = 100;
-
-            } catch (error) {
-              console.error('Error uploading file:', error);
-              fileObj.status = 'error';
-            }
-            
-            this.renderFileList();
-          }
-          
-          return uploadedFiles;
-        }
-
-        clearFiles() {
-          this.files = [];
+    async uploadFiles(taskId) {
+      const uploadedFiles = [];
+      
+      for (let fileObj of this.files) {
+        try {
+          console.log('Uploading file:', fileObj.file.name);
+          fileObj.status = 'uploading';
           this.renderFileList();
-          document.getElementById('fileInput').value = '';
-        }
-      }
 
-      // Initialize file upload manager
-      const fileUploadManager = new FileUploadManager();
-
-      // Wait for DOM to be fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        // ✅ Elements - check each one individually
-        const elements = {
-          clientDropdown: document.getElementById("clientDropdown"),
-          subClientDropdown: document.getElementById("subClientDropdown"),
-          categoryDropdown: document.getElementById("categoryDropdown"),
-          documentDropdown: document.getElementById("documentDropdown"),
-          notesInput: document.getElementById("notes"),
-          dateInput: document.getElementById("date"),
-          saveButton: document.getElementById("saveButton"),
-          searchButton: document.getElementById('searchButton'),
-          searchModal: document.getElementById('searchModal'),
-          closeSearch: document.getElementById('closeSearch'),
-          searchInput: document.getElementById('searchInput'),
-          searchResults: document.getElementById('searchResults'),
-          logoutButton: document.getElementById('logoutButton'),
-          fileInput: document.getElementById('fileInput'),
-          fileUploadArea: document.getElementById('fileUploadArea'),
-          fileList: document.getElementById('fileList')
-        };
-
-        console.log('All form elements:', elements);
-
-        // Check which elements are missing
-        const missingElements = Object.entries(elements)
-          .filter(([name, element]) => !element)
-          .map(([name]) => name);
-
-        if (missingElements.length > 0) {
-          console.error('Missing elements:', missingElements);
+          const filePath = `tasks/${taskId}/${fileObj.file.name}`;
+          console.log('File path:', filePath);
           
-          if (!elements.clientDropdown || !elements.saveButton) {
-            console.error('Required form elements not found');
-            return;
+          const { data, error } = await this.supabase.storage
+            .from('task-documents')
+            .upload(filePath, fileObj.file, {
+              cacheControl: '3600',
+              upsert: false
+            });
+
+          if (error) {
+            console.error('Upload error:', error);
+            throw error;
           }
+
+          console.log('✅ File uploaded successfully:', data);
+
+          // Get public URL
+          const { data: urlData } = this.supabase.storage
+            .from('task-documents')
+            .getPublicUrl(filePath);
+
+          console.log('Public URL:', urlData.publicUrl);
+
+          uploadedFiles.push({
+            name: fileObj.file.name,
+            path: filePath,
+            url: urlData.publicUrl,
+            size: fileObj.file.size,
+            type: fileObj.file.type
+          });
+
+          fileObj.status = 'completed';
+          fileObj.progress = 100;
+
+        } catch (error) {
+          console.error('❌ Error uploading file:', error);
+          fileObj.status = 'error';
         }
-
-        // Initialize Supabase with tracking prevention fixes
-        const SUPABASE_URL = "https://webdmcvcbfeytwhzonem.supabase.co";
-        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYmRtY3ZjYmZleXR3aHpvbmVtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIzMDc5ODYsImV4cCI6MjA3Nzg4Mzk4Nn0.QlZeRqYvbdqNfRKrq_MIB0VBSM4ZcyeVtD_9O9uFAI8";
         
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
-          auth: {
-            persistSession: false,
-            autoRefreshToken: false,
-            detectSessionInUrl: false
-          }
-        });
+        this.renderFileList();
+      }
+      
+      console.log('All files processed. Uploaded:', uploadedFiles.length);
+      return uploadedFiles;
+    }
 
-        // Load user info from localStorage and display in header
-        function loadUserInfo() {
-          const userData = localStorage.getItem('currentUser');
-          if (userData) {
-            try {
-              const user = JSON.parse(userData);
-              document.getElementById('headerUserWelcome').textContent = `Welcome, ${user.full_name}`;
-              return user;
-            } catch (e) {
-              console.error('Error parsing user data:', e);
-              return null;
-            }
-          }
+    clearFiles() {
+      this.files = [];
+      this.renderFileList();
+      document.getElementById('fileInput').value = '';
+    }
+  }
+
+  // Initialize file upload manager with Supabase client
+  const fileUploadManager = new FileUploadManager(supabase);
+
+  // Wait for DOM to be fully loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // ✅ Elements - check each one individually
+    const elements = {
+      clientDropdown: document.getElementById("clientDropdown"),
+      subClientDropdown: document.getElementById("subClientDropdown"),
+      categoryDropdown: document.getElementById("categoryDropdown"),
+      documentDropdown: document.getElementById("documentDropdown"),
+      notesInput: document.getElementById("notes"),
+      dateInput: document.getElementById("date"),
+      saveButton: document.getElementById("saveButton"),
+      searchButton: document.getElementById('searchButton'),
+      searchModal: document.getElementById('searchModal'),
+      closeSearch: document.getElementById('closeSearch'),
+      searchInput: document.getElementById('searchInput'),
+      searchResults: document.getElementById('searchResults'),
+      logoutButton: document.getElementById('logoutButton'),
+      fileInput: document.getElementById('fileInput'),
+      fileUploadArea: document.getElementById('fileUploadArea'),
+      fileList: document.getElementById('fileList')
+    };
+
+    console.log('All form elements:', elements);
+
+    // Check which elements are missing
+    const missingElements = Object.entries(elements)
+      .filter(([name, element]) => !element)
+      .map(([name]) => name);
+
+    if (missingElements.length > 0) {
+      console.error('Missing elements:', missingElements);
+      
+      if (!elements.clientDropdown || !elements.saveButton) {
+        console.error('Required form elements not found');
+        return;
+      }
+    }
+
+    // Load user info from localStorage and display in header
+    function loadUserInfo() {
+      const userData = localStorage.getItem('currentUser');
+      if (userData) {
+        try {
+          const user = JSON.parse(userData);
+          document.getElementById('headerUserWelcome').textContent = `Welcome, ${user.full_name}`;
+          return user;
+        } catch (e) {
+          console.error('Error parsing user data:', e);
           return null;
         }
+      }
+      return null;
+    }
 
-        // Display welcome message with user name
-        function displayWelcomeMessage() {
-          const userData = localStorage.getItem('currentUser');
-          if (userData) {
-            const user = JSON.parse(userData);
-            document.getElementById('welcomeMessage').textContent = `Welcome back, ${user.full_name}`;
-          }
+    // Display welcome message with user name
+    function displayWelcomeMessage() {
+      const userData = localStorage.getItem('currentUser');
+      if (userData) {
+        const user = JSON.parse(userData);
+        document.getElementById('welcomeMessage').textContent = `Welcome back, ${user.full_name}`;
+      }
+    }
+
+    // Check if user is logged in (for page protection)
+    function checkAuth() {
+      const user = loadUserInfo();
+      if (!user) {
+        console.log('No user found in localStorage, redirecting to login...');
+        window.location.href = 'login.html';
+        return false;
+      }
+      console.log('User authenticated:', user.full_name, 'Role:', user.role);
+      return user;
+    }
+
+    // Test Supabase connection
+    async function testConnection() {
+      try {
+        console.log("Testing Supabase connection...");
+        const { data, error } = await supabase.from('sub_client').select('count', { count: 'exact', head: true });
+        
+        if (error) {
+          console.error("❌ Supabase connection failed:", error);
+          return false;
+        }
+        
+        console.log("✅ Supabase connection successful");
+        return true;
+      } catch (err) {
+        console.error("❌ Connection test exception:", err);
+        return false;
+      }
+    }
+
+    // 🟢 Load Clients
+    async function loadClients() {
+      console.log("Fetching clients from Supabase...");
+      try {
+        const { data, error } = await supabase.from("sub_client").select("clientList");
+        
+        if (error) {
+          console.error("Error fetching clients:", error);
+          return;
         }
 
-        // Check if user is logged in (for page protection)
-        function checkAuth() {
-          const user = loadUserInfo();
-          if (!user) {
-            console.log('No user found in localStorage, redirecting to login...');
-            window.location.href = 'login.html';
-            return false;
-          }
-          console.log('User authenticated:', user.full_name, 'Role:', user.role);
-          return user;
+        console.log("Client data:", data);
+        
+        if (!data || data.length === 0) {
+          console.warn("No client data found");
+          return;
         }
 
-        // Test Supabase connection
-        async function testConnection() {
-          try {
-            console.log("Testing Supabase connection...");
-            const { data, error } = await supabase.from('sub_client').select('count', { count: 'exact', head: true });
-            
-            if (error) {
-              console.error("❌ Supabase connection failed:", error);
-              return false;
-            }
-            
-            console.log("✅ Supabase connection successful");
-            return true;
-          } catch (err) {
-            console.error("❌ Connection test exception:", err);
-            return false;
-          }
+        const uniqueClients = [...new Set(data.map((item) => item.clientList))];
+        
+        // Clear existing options first
+        elements.clientDropdown.innerHTML = '<option value="">-- Select Client --</option>';
+        
+        uniqueClients.forEach((client) => {
+          const option = document.createElement("option");
+          option.value = client;
+          option.textContent = client;
+          elements.clientDropdown.appendChild(option);
+        });
+
+        console.log("Dropdown populated with clients.");
+      } catch (err) {
+        console.error("Exception in loadClients:", err);
+      }
+    }
+
+    // 🟡 Load Sub-Clients
+    async function loadSubClients(selectedClient) {
+      try {
+        const { data, error } = await supabase
+          .from("sub_client")
+          .select("subClientList")
+          .eq("clientList", selectedClient);
+          
+        if (error) {
+          console.error("Error loading sub-clients:", error);
+          return;
         }
 
-        // 🟢 Load Clients
-        async function loadClients() {
-          console.log("Fetching clients from Supabase...");
-          try {
-            const { data, error } = await supabase.from("sub_client").select("clientList");
-            
-            if (error) {
-              console.error("Error fetching clients:", error);
-              return;
-            }
+        elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
+        
+        if (data && data.length > 0) {
+          data.forEach((row) => {
+            const option = document.createElement("option");
+            option.value = row.subClientList;
+            option.textContent = row.subClientList;
+            elements.subClientDropdown.appendChild(option);
+          });
+        }
+      } catch (err) {
+        console.error("Exception in loadSubClients:", err);
+      }
+    }
 
-            console.log("Client data:", data);
-            
-            if (!data || data.length === 0) {
-              console.warn("No client data found");
-              return;
-            }
+    // 🟣 Load Categories
+    async function loadCategories() {
+      console.log("Fetching categories from Supabase...");
+      try {
+        const { data, error } = await supabase.from("category").select("categoryList");
+        
+        if (error) {
+          console.error("Error fetching categories:", error);
+          return;
+        }
 
-            const uniqueClients = [...new Set(data.map((item) => item.clientList))];
-            
-            // Clear existing options first
-            elements.clientDropdown.innerHTML = '<option value="">-- Select Client --</option>';
-            
-            uniqueClients.forEach((client) => {
+        console.log("Category data:", data);
+        
+        if (!data || data.length === 0) {
+          console.warn("No category data found");
+          return;
+        }
+
+        const uniqueCategories = [...new Set(data.map((item) => item.categoryList))];
+
+        // Clear existing options first
+        elements.categoryDropdown.innerHTML = '<option value="">-- Select Category --</option>';
+        
+        uniqueCategories.forEach((cat) => {
+          const option = document.createElement("option");
+          option.value = cat;
+          option.textContent = cat;
+          elements.categoryDropdown.appendChild(option);
+        });
+
+        console.log("Dropdown populated with categories.");
+      } catch (err) {
+        console.error("Exception in loadCategories:", err);
+      }
+    }
+
+    // 🔵 Load Documents
+    async function loadDocuments(selectedCategory) {
+      try {
+        const { data, error } = await supabase
+          .from("category")
+          .select("documents")
+          .eq("categoryList", selectedCategory);
+
+        if (error) {
+          console.error("Error loading documents:", error);
+          return;
+        }
+
+        elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
+
+        if (data && data.length > 0) {
+          data.forEach((row) => {
+            if (row.documents) {
               const option = document.createElement("option");
-              option.value = client;
-              option.textContent = client;
-              elements.clientDropdown.appendChild(option);
-            });
+              option.value = row.documents;
+              option.textContent = row.documents;
+              elements.documentDropdown.appendChild(option);
+            }
+          });
+        }
+      } catch (err) {
+        console.error("Exception in loadDocuments:", err);
+      }
+    }
 
-            console.log("Dropdown populated with clients.");
-          } catch (err) {
-            console.error("Exception in loadClients:", err);
-          }
+    // 💾 Save task - ENHANCED WITH BETTER FILE UPLOAD
+    async function saveTask() {
+      const client = elements.clientDropdown.value;
+      const subClient = elements.subClientDropdown.value;
+      const category = elements.categoryDropdown.value;
+      const documentType = elements.documentDropdown.value;
+      const notes = elements.notesInput.value;
+      const date = elements.dateInput.value;
+
+      if (!client || !category || !documentType || !date) {
+        alert("Please select all required fields before saving.");
+        return;
+      }
+
+      try {
+        // Get current user from localStorage
+        const userData = localStorage.getItem('currentUser');
+        if (!userData) {
+          alert("❌ Please log in to submit requests.");
+          window.location.href = 'login.html';
+          return;
         }
 
-        // 🟡 Load Sub-Clients
-        async function loadSubClients(selectedClient) {
-          try {
-            const { data, error } = await supabase
-              .from("sub_client")
-              .select("subClientList")
-              .eq("clientList", selectedClient);
-              
-            if (error) {
-              console.error("Error loading sub-clients:", error);
-              return;
-            }
+        const user = JSON.parse(userData);
 
-            elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
-            
-            if (data && data.length > 0) {
-              data.forEach((row) => {
-                const option = document.createElement("option");
-                option.value = row.subClientList;
-                option.textContent = row.subClientList;
-                elements.subClientDropdown.appendChild(option);
-              });
-            }
-          } catch (err) {
-            console.error("Exception in loadSubClients:", err);
-          }
+        console.log('Starting to save task...');
+        console.log('Files to upload:', fileUploadManager.files.length);
+
+        // First, save the task to get an ID
+        const taskData = {
+          client: client,
+          subClient: subClient || null,
+          category: category,
+          documentType: documentType,
+          notes: notes || null,
+          date: date,
+          status: 'pending',
+          created_at: new Date().toISOString(),
+          requester_id: user.id,
+          requester: user.full_name,
+          approved_by: null,
+          attachments: [] // Start with empty array
+        };
+
+        console.log('Saving task data:', taskData);
+
+        const { data: insertedTask, error: insertError } = await supabase
+          .from("tasks_database")
+          .insert([taskData])
+          .select();
+
+        if (insertError) {
+          console.error('Error saving to tasks_database:', insertError);
+          alert("❌ Error saving task: " + insertError.message);
+          return;
         }
 
-        // 🟣 Load Categories
-        async function loadCategories() {
-          console.log("Fetching categories from Supabase...");
-          try {
-            const { data, error } = await supabase.from("category").select("categoryList");
-            
-            if (error) {
-              console.error("Error fetching categories:", error);
-              return;
-            }
+        const taskId = insertedTask[0].id;
+        console.log('✅ Task saved with ID:', taskId);
 
-            console.log("Category data:", data);
-            
-            if (!data || data.length === 0) {
-              console.warn("No category data found");
-              return;
-            }
+        // Upload files if any
+        if (fileUploadManager.files.length > 0) {
+          console.log('Starting file upload for', fileUploadManager.files.length, 'files');
+          const uploadedFiles = await fileUploadManager.uploadFiles(taskId);
+          console.log('Files uploaded:', uploadedFiles);
 
-            const uniqueCategories = [...new Set(data.map((item) => item.categoryList))];
-
-            // Clear existing options first
-            elements.categoryDropdown.innerHTML = '<option value="">-- Select Category --</option>';
-            
-            uniqueCategories.forEach((cat) => {
-              const option = document.createElement("option");
-              option.value = cat;
-              option.textContent = cat;
-              elements.categoryDropdown.appendChild(option);
-            });
-
-            console.log("Dropdown populated with categories.");
-          } catch (err) {
-            console.error("Exception in loadCategories:", err);
-          }
-        }
-
-        // 🔵 Load Documents
-        async function loadDocuments(selectedCategory) {
-          try {
-            const { data, error } = await supabase
-              .from("category")
-              .select("documents")
-              .eq("categoryList", selectedCategory);
-
-            if (error) {
-              console.error("Error loading documents:", error);
-              return;
-            }
-
-            elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
-
-            if (data && data.length > 0) {
-              data.forEach((row) => {
-                if (row.documents) {
-                  const option = document.createElement("option");
-                  option.value = row.documents;
-                  option.textContent = row.documents;
-                  elements.documentDropdown.appendChild(option);
-                }
-              });
-            }
-          } catch (err) {
-            console.error("Exception in loadDocuments:", err);
-          }
-        }
-
-        // 💾 Save task - ENHANCED WITH FILE UPLOAD
-        async function saveTask() {
-          const client = elements.clientDropdown.value;
-          const subClient = elements.subClientDropdown.value;
-          const category = elements.categoryDropdown.value;
-          const documentType = elements.documentDropdown.value;
-          const notes = elements.notesInput.value;
-          const date = elements.dateInput.value;
-
-          if (!client || !category || !documentType || !date) {
-            alert("Please select all required fields before saving.");
-            return;
-          }
-
-          try {
-            // Get current user from localStorage
-            const userData = localStorage.getItem('currentUser');
-            if (!userData) {
-              alert("❌ Please log in to submit requests.");
-              window.location.href = 'login.html';
-              return;
-            }
-
-            const user = JSON.parse(userData);
-
-            // First, save the task to get an ID
-            const taskData = {
-              client: client,
-              subClient: subClient || null,
-              category: category,
-              documentType: documentType,
-              notes: notes || null,
-              date: date,
-              status: 'pending',
-              created_at: new Date().toISOString(),
-              requester_id: user.id,
-              requester: user.full_name,
-              approved_by: null,
-              attachments: [] // Will be populated with file URLs
-            };
-
-            const { data: insertedTask, error: insertError } = await supabase
+          // Update task with file URLs
+          if (uploadedFiles.length > 0) {
+            const { error: updateError } = await supabase
               .from("tasks_database")
-              .insert([taskData])
-              .select();
+              .update({ 
+                attachments: uploadedFiles,
+                updated_at: new Date().toISOString()
+              })
+              .eq('id', taskId);
 
-            if (insertError) {
-              console.error('Error saving to tasks_database:', insertError);
-              alert("❌ Error saving task: " + insertError.message);
-              return;
+            if (updateError) {
+              console.error('Error updating task with attachments:', updateError);
+              alert("⚠️ Task saved but file links couldn't be updated: " + updateError.message);
+            } else {
+              console.log('✅ Task updated with attachments');
             }
-
-            const taskId = insertedTask[0].id;
-            console.log('Task saved with ID:', taskId);
-
-            // Upload files if any
-            if (fileUploadManager.files.length > 0) {
-              const uploadedFiles = await fileUploadManager.uploadFiles(taskId);
-              
-              // Update task with file URLs
-              const { error: updateError } = await supabase
-                .from("tasks_database")
-                .update({ 
-                  attachments: uploadedFiles,
-                  updated_at: new Date().toISOString()
-                })
-                .eq('id', taskId);
-
-              if (updateError) {
-                console.error('Error updating task with attachments:', updateError);
-              }
-            }
-
-            alert("✅ Request submitted successfully!");
-            resetForm();
-            fileUploadManager.clearFiles();
-
-          } catch (err) {
-            console.error("Exception in saveTask:", err);
-            alert("❌ Error saving task. Please check console for details.");
           }
+        } else {
+          console.log('No files to upload');
         }
 
-        function resetForm() {
-          elements.clientDropdown.value = '';
-          elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
-          elements.categoryDropdown.value = '';
-          elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
-          elements.notesInput.value = '';
+        alert("✅ Request submitted successfully!");
+        resetForm();
+        fileUploadManager.clearFiles();
+
+      } catch (err) {
+        console.error("Exception in saveTask:", err);
+        alert("❌ Error saving task. Please check console for details.");
+      }
+    }
+
+    function resetForm() {
+      elements.clientDropdown.value = '';
+      elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
+      elements.categoryDropdown.value = '';
+      elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
+      elements.notesInput.value = '';
+      
+      // Set default date to today
+      const today = new Date();
+      const formattedDate = today.toISOString().split('T')[0];
+      elements.dateInput.value = formattedDate;
+    }
+
+    // 🧭 Event Listeners for form
+    elements.clientDropdown.addEventListener("change", () => {
+      const selectedClient = elements.clientDropdown.value;
+      elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
+      if (selectedClient) loadSubClients(selectedClient);
+    });
+
+    elements.categoryDropdown.addEventListener("change", () => {
+      const selectedCategory = elements.categoryDropdown.value;
+      elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
+      if (selectedCategory) loadDocuments(selectedCategory);
+    });
+
+    elements.saveButton.addEventListener("click", saveTask);
+
+    // ADDED: Logout button event listener
+    elements.logoutButton.addEventListener('click', logout);
+
+    // Search functionality
+    function initializeSearch() {
+      // Open search modal
+      elements.searchButton.addEventListener('click', function() {
+        elements.searchModal.classList.remove('hidden');
+        elements.searchInput.focus();
+      });
+
+      // Close search modal
+      elements.closeSearch.addEventListener('click', function() {
+        elements.searchModal.classList.add('hidden');
+        elements.searchInput.value = '';
+        elements.searchResults.innerHTML = `
+          <div class="text-center text-gray-500 py-6">
+            <i class="fas fa-search text-2xl mb-2"></i>
+            <p class="text-sm">Enter search terms to find requests</p>
+          </div>
+        `;
+      });
+
+      // Close modal when clicking outside
+      elements.searchModal.addEventListener('click', function(e) {
+        if (e.target === elements.searchModal) {
+          elements.searchModal.classList.add('hidden');
+          elements.searchInput.value = '';
+          elements.searchResults.innerHTML = `
+            <div class="text-center text-gray-500 py-6">
+              <i class="fas fa-search text-2xl mb-2"></i>
+              <p class="text-sm">Enter search terms to find requests</p>
+            </div>
+          `;
+        }
+      });
+
+      // Search functionality
+      elements.searchInput.addEventListener('input', debounce(function(e) {
+        const searchTerm = e.target.value.trim();
+        
+        if (searchTerm.length < 2) {
+          elements.searchResults.innerHTML = `
+            <div class="text-center text-gray-500 py-6">
+              <i class="fas fa-search text-2xl mb-2"></i>
+              <p class="text-sm">Enter at least 2 characters to search</p>
+            </div>
+          `;
+          return;
+        }
+        
+        performSearch(searchTerm);
+      }, 300));
+    }
+
+    // Debounce function to limit API calls
+    function debounce(func, wait) {
+      let timeout;
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout);
+          func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+      };
+    }
+
+    // Perform search in Supabase
+    async function performSearch(searchTerm) {
+      try {
+        elements.searchResults.innerHTML = `
+          <div class="text-center text-gray-500 py-6">
+            <i class="fas fa-spinner fa-spin text-blue-500 text-2xl mb-2"></i>
+            <p class="text-sm">Searching...</p>
+          </div>
+        `;
+
+        const { data: tasks, error } = await supabase
+          .from('tasks_database')
+          .select('*')
+          .or(`client.ilike.%${searchTerm}%,subClient.ilike.%${searchTerm}%,category.ilike.%${searchTerm}%,documentType.ilike.%${searchTerm}%,notes.ilike.%${searchTerm}%`)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        displaySearchResults(tasks, searchTerm);
+      } catch (error) {
+        console.error('Search error:', error);
+        elements.searchResults.innerHTML = `
+          <div class="text-center text-red-500 py-6">
+            <i class="fas fa-exclamation-triangle text-xl mb-2"></i>
+            <p class="text-sm">Error performing search</p>
+          </div>
+        `;
+      }
+    }
+
+    // Display search results
+    function displaySearchResults(tasks, searchTerm) {
+      if (!tasks || tasks.length === 0) {
+        elements.searchResults.innerHTML = `
+          <div class="text-center text-gray-500 py-6">
+            <i class="fas fa-search text-2xl mb-2"></i>
+            <p class="text-sm">No results found for "${searchTerm}"</p>
+          </div>
+        `;
+        return;
+      }
+
+      let resultsHtml = '<div class="space-y-3">';
+      
+      tasks.forEach(task => {
+        const statusColor = getStatusColor(task.status);
+        
+        resultsHtml += `
+          <div class="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition">
+            <div class="flex justify-between items-start mb-2">
+              <div>
+                <h4 class="font-semibold text-gray-800 text-sm">${task.client} - ${task.subClient || 'No Sub-Client'}</h4>
+                <p class="text-xs text-gray-600">${new Date(task.date).toLocaleDateString()}</p>
+              </div>
+              <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">
+                ${task.status}
+              </span>
+            </div>
+            <div class="grid grid-cols-2 gap-2 text-xs">
+              <div>
+                <span class="text-gray-600">Category:</span>
+                <span class="font-medium">${task.category}</span>
+              </div>
+              <div>
+                <span class="text-gray-600">Document:</span>
+                <span class="font-medium">${task.documentType}</span>
+              </div>
+            </div>
+            ${task.notes ? `
+              <div class="mt-2">
+                <p class="text-xs text-gray-600">Notes:</p>
+                <p class="text-xs text-gray-800 line-clamp-2">${task.notes}</p>
+              </div>
+            ` : ''}
+            ${task.attachments && task.attachments.length > 0 ? `
+              <div class="mt-2">
+                <p class="text-xs text-gray-600">Attachments:</p>
+                <div class="flex flex-wrap gap-1 mt-1">
+                  ${task.attachments.map(att => `
+                    <a href="${att.url}" target="_blank" class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200 transition">
+                      <i class="fas fa-file mr-1"></i>${att.name}
+                    </a>
+                  `).join('')}
+                </div>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      });
+      
+      resultsHtml += '</div>';
+      elements.searchResults.innerHTML = resultsHtml;
+    }
+
+    // Get status badge color
+    function getStatusColor(status) {
+      switch(status) {
+        case 'pending': return 'bg-red-100 text-red-800';
+        case 'in-progress': return 'bg-yellow-100 text-yellow-800';
+        case 'completed': return 'bg-green-100 text-green-800';
+        default: return 'bg-red-100 text-red-800';
+      }
+    }
+
+    // Initialize everything
+    async function initializeApp() {
+      // Check if user is logged in using our localStorage method
+      const user = checkAuth(); // This will redirect to login if not authenticated
+      if (!user) return;
+
+      console.log("User logged in:", user.full_name, "Role:", user.role);
+      displayWelcomeMessage();
+      
+      // Initialize file upload manager
+      fileUploadManager.init();
+      
+      // Test Supabase connection but don't block if it fails
+      try {
+        const connectionOk = await testConnection();
+        if (connectionOk) {
+          await loadClients();
+          await loadCategories();
+          initializeSearch();
           
           // Set default date to today
           const today = new Date();
           const formattedDate = today.toISOString().split('T')[0];
           elements.dateInput.value = formattedDate;
-        }
-
-        // 🧭 Event Listeners for form
-        elements.clientDropdown.addEventListener("change", () => {
-          const selectedClient = elements.clientDropdown.value;
-          elements.subClientDropdown.innerHTML = '<option value="">-- Select Sub-Client --</option>';
-          if (selectedClient) loadSubClients(selectedClient);
-        });
-
-        elements.categoryDropdown.addEventListener("change", () => {
-          const selectedCategory = elements.categoryDropdown.value;
-          elements.documentDropdown.innerHTML = '<option value="">-- Select Document Type --</option>';
-          if (selectedCategory) loadDocuments(selectedCategory);
-        });
-
-        elements.saveButton.addEventListener("click", saveTask);
-
-        // ADDED: Logout button event listener
-        elements.logoutButton.addEventListener('click', logout);
-
-        // Search functionality
-        function initializeSearch() {
-          // Open search modal
-          elements.searchButton.addEventListener('click', function() {
-            elements.searchModal.classList.remove('hidden');
-            elements.searchInput.focus();
-          });
-
-          // Close search modal
-          elements.closeSearch.addEventListener('click', function() {
-            elements.searchModal.classList.add('hidden');
-            elements.searchInput.value = '';
-            elements.searchResults.innerHTML = `
-              <div class="text-center text-gray-500 py-6">
-                <i class="fas fa-search text-2xl mb-2"></i>
-                <p class="text-sm">Enter search terms to find requests</p>
-              </div>
-            `;
-          });
-
-          // Close modal when clicking outside
-          elements.searchModal.addEventListener('click', function(e) {
-            if (e.target === elements.searchModal) {
-              elements.searchModal.classList.add('hidden');
-              elements.searchInput.value = '';
-              elements.searchResults.innerHTML = `
-                <div class="text-center text-gray-500 py-6">
-                  <i class="fas fa-search text-2xl mb-2"></i>
-                  <p class="text-sm">Enter search terms to find requests</p>
-                </div>
-              `;
-            }
-          });
-
-          // Search functionality
-          elements.searchInput.addEventListener('input', debounce(function(e) {
-            const searchTerm = e.target.value.trim();
-            
-            if (searchTerm.length < 2) {
-              elements.searchResults.innerHTML = `
-                <div class="text-center text-gray-500 py-6">
-                  <i class="fas fa-search text-2xl mb-2"></i>
-                  <p class="text-sm">Enter at least 2 characters to search</p>
-                </div>
-              `;
-              return;
-            }
-            
-            performSearch(searchTerm);
-          }, 300));
-        }
-
-        // Debounce function to limit API calls
-        function debounce(func, wait) {
-          let timeout;
-          return function executedFunction(...args) {
-            const later = () => {
-              clearTimeout(timeout);
-              func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-          };
-        }
-
-        // Perform search in Supabase
-        async function performSearch(searchTerm) {
-          try {
-            elements.searchResults.innerHTML = `
-              <div class="text-center text-gray-500 py-6">
-                <i class="fas fa-spinner fa-spin text-blue-500 text-2xl mb-2"></i>
-                <p class="text-sm">Searching...</p>
-              </div>
-            `;
-
-            const { data: tasks, error } = await supabase
-              .from('tasks_database')
-              .select('*')
-              .or(`client.ilike.%${searchTerm}%,subClient.ilike.%${searchTerm}%,category.ilike.%${searchTerm}%,documentType.ilike.%${searchTerm}%,notes.ilike.%${searchTerm}%`)
-              .order('created_at', { ascending: false });
-
-            if (error) throw error;
-
-            displaySearchResults(tasks, searchTerm);
-          } catch (error) {
-            console.error('Search error:', error);
-            elements.searchResults.innerHTML = `
-              <div class="text-center text-red-500 py-6">
-                <i class="fas fa-exclamation-triangle text-xl mb-2"></i>
-                <p class="text-sm">Error performing search</p>
-              </div>
-            `;
-          }
-        }
-
-        // Display search results
-        function displaySearchResults(tasks, searchTerm) {
-          if (!tasks || tasks.length === 0) {
-            elements.searchResults.innerHTML = `
-              <div class="text-center text-gray-500 py-6">
-                <i class="fas fa-search text-2xl mb-2"></i>
-                <p class="text-sm">No results found for "${searchTerm}"</p>
-              </div>
-            `;
-            return;
-          }
-
-          let resultsHtml = '<div class="space-y-3">';
           
-          tasks.forEach(task => {
-            const statusColor = getStatusColor(task.status);
-            
-            resultsHtml += `
-              <div class="border border-gray-200 rounded-lg p-3 hover:border-blue-300 transition">
-                <div class="flex justify-between items-start mb-2">
-                  <div>
-                    <h4 class="font-semibold text-gray-800 text-sm">${task.client} - ${task.subClient || 'No Sub-Client'}</h4>
-                    <p class="text-xs text-gray-600">${new Date(task.date).toLocaleDateString()}</p>
-                  </div>
-                  <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">
-                    ${task.status}
-                  </span>
-                </div>
-                <div class="grid grid-cols-2 gap-2 text-xs">
-                  <div>
-                    <span class="text-gray-600">Category:</span>
-                    <span class="font-medium">${task.category}</span>
-                  </div>
-                  <div>
-                    <span class="text-gray-600">Document:</span>
-                    <span class="font-medium">${task.documentType}</span>
-                  </div>
-                </div>
-                ${task.notes ? `
-                  <div class="mt-2">
-                    <p class="text-xs text-gray-600">Notes:</p>
-                    <p class="text-xs text-gray-800 line-clamp-2">${task.notes}</p>
-                  </div>
-                ` : ''}
-                ${task.attachments && task.attachments.length > 0 ? `
-                  <div class="mt-2">
-                    <p class="text-xs text-gray-600">Attachments:</p>
-                    <div class="flex flex-wrap gap-1 mt-1">
-                      ${task.attachments.map(att => `
-                        <a href="${att.url}" target="_blank" class="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200 transition">
-                          <i class="fas fa-file mr-1"></i>${att.name}
-                        </a>
-                      `).join('')}
-                    </div>
-                  </div>
-                ` : ''}
-              </div>
-            `;
-          });
+          console.log("✅ App initialized successfully");
+        } else {
+          console.error("❌ Connection issues, but continuing with limited functionality");
+          // Still allow form access even if DB connection fails
+          await loadClients();
+          await loadCategories();
+          initializeSearch();
           
-          resultsHtml += '</div>';
-          elements.searchResults.innerHTML = resultsHtml;
+          const today = new Date();
+          const formattedDate = today.toISOString().split('T')[0];
+          elements.dateInput.value = formattedDate;
         }
-
-        // Get status badge color
-        function getStatusColor(status) {
-          switch(status) {
-            case 'pending': return 'bg-red-100 text-red-800';
-            case 'in-progress': return 'bg-yellow-100 text-yellow-800';
-            case 'completed': return 'bg-green-100 text-green-800';
-            default: return 'bg-red-100 text-red-800';
-          }
-        }
-
-        // Initialize everything
-        async function initializeApp() {
-          // Check if user is logged in using our localStorage method
-          const user = checkAuth(); // This will redirect to login if not authenticated
-          if (!user) return;
-
-          console.log("User logged in:", user.full_name, "Role:", user.role);
-          displayWelcomeMessage();
-          
-          // Initialize file upload manager
-          fileUploadManager.init();
-          
-          // Test Supabase connection but don't block if it fails
-          try {
-            const connectionOk = await testConnection();
-            if (connectionOk) {
-              await loadClients();
-              await loadCategories();
-              initializeSearch();
-              
-              // Set default date to today
-              const today = new Date();
-              const formattedDate = today.toISOString().split('T')[0];
-              elements.dateInput.value = formattedDate;
-              
-              console.log("✅ App initialized successfully");
-            } else {
-              console.error("❌ Connection issues, but continuing with limited functionality");
-              // Still allow form access even if DB connection fails
-              await loadClients();
-              await loadCategories();
-              initializeSearch();
-              
-              const today = new Date();
-              const formattedDate = today.toISOString().split('T')[0];
-              elements.dateInput.value = formattedDate;
-            }
-          } catch (error) {
-            console.error("Error during initialization:", error);
-            // Still allow form access even if initialization fails
-            const today = new Date();
-            const formattedDate = today.toISOString().split('T')[0];
-            elements.dateInput.value = formattedDate;
-          }
-        }
-        
-        // Initialize the application
-        initializeApp();
-      });
+      } catch (error) {
+        console.error("Error during initialization:", error);
+        // Still allow form access even if initialization fails
+        const today = new Date();
+        const formattedDate = today.toISOString().split('T')[0];
+        elements.dateInput.value = formattedDate;
+      }
+    }
+    
+    // Initialize the application
+    initializeApp();
+  });
     </script>
   </body>
 </html>
+
