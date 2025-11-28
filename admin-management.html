@@ -190,7 +190,7 @@
             }
         }
 
-        // Add new client row - FIXED: Let Supabase auto-generate the ID
+        // Add new client row
         async function addClientRow() {
             try {
                 const { data, error } = await supabase
@@ -200,25 +200,9 @@
                         subClientList: 'New Sub-Client',
                         created_at: new Date().toISOString()
                     }])
-                    .select(); // Add .select() to get the inserted data back
+                    .select();
 
-                if (error) {
-                    if (error.code === '23505') {
-                        // If there's a unique constraint violation, try with different values
-                        const { data: altData, error: altError } = await supabase
-                            .from('sub_client')
-                            .insert([{
-                                clientList: 'New Client ' + Date.now(),
-                                subClientList: 'New Sub-Client ' + Date.now(),
-                                created_at: new Date().toISOString()
-                            }])
-                            .select();
-                        
-                        if (altError) throw altError;
-                    } else {
-                        throw error;
-                    }
-                }
+                if (error) throw error;
                 
                 await loadClients();
                 alert('New client row added!');
@@ -228,36 +212,27 @@
             }
         }
 
-        // Add new category row - FIXED: Let Supabase auto-generate the ID
+        // Add new category row - CLEAN VERSION
         async function addCategoryRow() {
             try {
+                console.log('Adding category row...');
+                
+                // Simple insert - let Supabase handle the ID
                 const { data, error } = await supabase
                     .from('category')
-                    .insert([{
+                    .insert({
                         categoryList: 'New Category',
-                        documents: 'New Document Type',
+                        documents: 'New Document Type', 
                         created_at: new Date().toISOString()
-                    }])
-                    .select(); // Add .select() to get the inserted data back
+                    })
+                    .select();
 
                 if (error) {
-                    if (error.code === '23505') {
-                        // If there's a unique constraint violation, try with different values
-                        const { data: altData, error: altError } = await supabase
-                            .from('category')
-                            .insert([{
-                                categoryList: 'New Category ' + Date.now(),
-                                documents: 'New Document Type ' + Date.now(),
-                                created_at: new Date().toISOString()
-                            }])
-                            .select();
-                        
-                        if (altError) throw altError;
-                    } else {
-                        throw error;
-                    }
+                    console.error('Category insert error:', error);
+                    throw error;
                 }
                 
+                console.log('Category added successfully:', data);
                 await loadCategories();
                 alert('New category row added!');
             } catch (error) {
@@ -280,7 +255,7 @@
             } catch (error) {
                 console.error('Error updating client:', error);
                 alert('Error updating client: ' + error.message);
-                await loadClients(); // Reload to show correct values
+                await loadClients();
             }
         }
 
@@ -298,7 +273,7 @@
             } catch (error) {
                 console.error('Error updating category:', error);
                 alert('Error updating category: ' + error.message);
-                await loadCategories(); // Reload to show correct values
+                await loadCategories();
             }
         }
 
