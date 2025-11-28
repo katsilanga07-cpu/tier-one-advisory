@@ -416,6 +416,82 @@
       </div>
     </div>
 
+    <!-- EDIT TASK LIGHTBOX -->
+    <div id="editTaskLightbox" class="lightbox">
+      <div class="lightbox-content w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-semibold text-gray-800">Edit Request</h3>
+          <button id="closeEditLightbox" class="text-gray-500 hover:text-gray-700">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        
+        <form id="editTaskForm" class="space-y-4">
+          <input type="hidden" id="editTaskId">
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Client</label>
+              <input type="text" id="editClient" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Sub-Client</label>
+              <input type="text" id="editSubClient" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
+              <input type="text" id="editCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+            
+            <div>
+              <label class="block text-sm font-medium text-gray-700 mb-2">Document Type</label>
+              <input type="text" id="editDocumentType" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            </div>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+            <select id="editStatus" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+              <option value="pending">Pending</option>
+              <option value="in-progress">In Progress</option>
+              <option value="completed">Completed</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Date</label>
+            <input type="date" id="editDate" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+          </div>
+          
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-2">Notes</label>
+            <textarea id="editNotes" rows="4" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"></textarea>
+          </div>
+          
+          <!-- Attachments Display -->
+          <div id="editAttachmentsSection" class="hidden">
+            <label class="block text-sm font-medium text-gray-700 mb-2">Attachments</label>
+            <div id="editAttachmentsList" class="space-y-2">
+              <!-- Attachments will be listed here -->
+            </div>
+          </div>
+          
+          <div class="flex justify-end space-x-3 pt-4">
+            <button type="button" id="cancelEditTask" class="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-sm">
+              Cancel
+            </button>
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm">
+              <i class="fas fa-save mr-2"></i>Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <!-- Footer - More compact -->
     <footer class="bg-gray-800 text-white mt-8">
       <div class="tighter-margins px-4 py-6">
@@ -713,6 +789,13 @@
                 <span class="px-2 py-1 rounded-full text-xs font-semibold ${statusColor}">
                   ${status.toUpperCase()}
                 </span>
+                <!-- EDIT BUTTON - ONLY FOR ADMINS -->
+                ${currentUser && currentUser.role === 'admin' ? `
+                  <button onclick="showEditTask('${task.id}')" 
+                          class="bg-white bg-opacity-20 backdrop-blur-sm px-2 py-1 rounded hover:bg-opacity-30 transition text-xs font-medium">
+                    <i class="fas fa-edit mr-1"></i>Edit
+                  </button>
+                ` : ''}
               </div>
               
               <!-- CLIENT & SUBCLIENT - TIGHTER -->
@@ -754,6 +837,175 @@
 
         container.innerHTML = tasksHtml;
       }
+
+      // ===== EDIT TASK FUNCTIONALITY =====
+      // Show edit task lightbox
+      async function showEditTask(taskId) {
+        // Check if current user is admin
+        if (!currentUser || currentUser.role !== 'admin') {
+          alert('❌ Access Denied: Only administrators can edit requests.');
+          return;
+        }
+        
+        try {
+          console.log('Loading task for editing:', taskId);
+          
+          // Get the specific task data
+          const { data: task, error } = await supabaseClient
+            .from('tasks_database')
+            .select('*')
+            .eq('id', taskId)
+            .single();
+
+          if (error) {
+            console.error('Error loading task for edit:', error);
+            alert('Error loading task data: ' + error.message);
+            return;
+          }
+
+          // Populate the edit form
+          document.getElementById('editTaskId').value = task.id;
+          document.getElementById('editClient').value = task.client || '';
+          document.getElementById('editSubClient').value = task.subClient || '';
+          document.getElementById('editCategory').value = task.category || '';
+          document.getElementById('editDocumentType').value = task.documentType || '';
+          document.getElementById('editStatus').value = task.status || 'pending';
+          document.getElementById('editNotes').value = task.notes || '';
+          
+          // Format date for input field
+          if (task.date) {
+            const date = new Date(task.date);
+            if (!isNaN(date.getTime())) {
+              document.getElementById('editDate').value = date.toISOString().split('T')[0];
+            }
+          }
+          
+          // Show attachments if they exist
+          const attachmentsSection = document.getElementById('editAttachmentsSection');
+          const attachmentsList = document.getElementById('editAttachmentsList');
+          
+          if (task.attachments && task.attachments.length > 0) {
+            attachmentsSection.classList.remove('hidden');
+            attachmentsList.innerHTML = task.attachments.map(att => `
+              <div class="flex items-center justify-between p-2 bg-gray-50 rounded">
+                <div class="flex items-center">
+                  <i class="fas fa-file mr-2 text-gray-500"></i>
+                  <span class="text-sm">${att.name}</span>
+                </div>
+                <a href="${att.url}" target="_blank" class="text-blue-600 hover:text-blue-800 text-sm">
+                  <i class="fas fa-external-link-alt"></i>
+                </a>
+              </div>
+            `).join('');
+          } else {
+            attachmentsSection.classList.add('hidden');
+          }
+          
+          // Show the edit lightbox
+          document.getElementById('editTaskLightbox').style.display = 'block';
+          
+        } catch (error) {
+          console.error('Error in showEditTask:', error);
+          alert('Error loading task for editing: ' + error.message);
+        }
+      }
+
+      // Save edited task
+      async function saveEditedTask(taskData) {
+        try {
+          console.log('Saving edited task:', taskData);
+          
+          const { error } = await supabaseClient
+            .from('tasks_database')
+            .update({
+              client: taskData.client,
+              subClient: taskData.subClient,
+              category: taskData.category,
+              documentType: taskData.documentType,
+              status: taskData.status,
+              notes: taskData.notes,
+              date: taskData.date,
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', taskData.id);
+
+          if (error) {
+            console.error('Error saving task:', error);
+            throw new Error(`Database error: ${error.message}`);
+          }
+
+          console.log('Task updated successfully');
+          return true;
+          
+        } catch (error) {
+          console.error('Error in saveEditedTask:', error);
+          throw error;
+        }
+      }
+
+      // Handle edit form submission
+      document.getElementById('editTaskForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Check if current user is admin
+        if (!currentUser || currentUser.role !== 'admin') {
+          alert('❌ Access Denied: Only administrators can edit requests.');
+          return;
+        }
+
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalText = submitButton.innerHTML;
+        
+        submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Saving...';
+        submitButton.disabled = true;
+
+        try {
+          const taskData = {
+            id: document.getElementById('editTaskId').value,
+            client: document.getElementById('editClient').value.trim(),
+            subClient: document.getElementById('editSubClient').value.trim(),
+            category: document.getElementById('editCategory').value.trim(),
+            documentType: document.getElementById('editDocumentType').value.trim(),
+            status: document.getElementById('editStatus').value,
+            notes: document.getElementById('editNotes').value.trim(),
+            date: document.getElementById('editDate').value
+          };
+
+          // Validate required fields
+          if (!taskData.client || !taskData.category || !taskData.documentType || !taskData.date) {
+            throw new Error('Please fill in all required fields: Client, Category, Document Type, and Date');
+          }
+
+          await saveEditedTask(taskData);
+          
+          // Close lightbox and reload tasks
+          document.getElementById('editTaskLightbox').style.display = 'none';
+          showNotification('Task updated successfully!', 'success');
+          loadTasks();
+          
+        } catch (error) {
+          console.error('Error saving task:', error);
+          alert('Error saving task: ' + error.message);
+        } finally {
+          submitButton.innerHTML = originalText;
+          submitButton.disabled = false;
+        }
+      });
+
+      // Close edit lightbox
+      document.getElementById('closeEditLightbox').addEventListener('click', function() {
+        document.getElementById('editTaskLightbox').style.display = 'none';
+      });
+
+      document.getElementById('cancelEditTask').addEventListener('click', function() {
+        document.getElementById('editTaskLightbox').style.display = 'none';
+      });
+
+      document.getElementById('editTaskLightbox').addEventListener('click', function(e) {
+        if (e.target === this) {
+          this.style.display = 'none';
+        }
+      });
 
       // Get random background color class with proper text contrast
       function getRandomBackgroundClass(index) {
