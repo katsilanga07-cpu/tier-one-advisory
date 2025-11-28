@@ -40,6 +40,10 @@
             max-width: 1400px;
             margin: 0 auto;
         }
+        .permission-notice {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+        }
     </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -144,6 +148,17 @@
 
     <main class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">Admin Management</h1>
+        
+        <!-- Permission Notice -->
+        <div class="permission-notice rounded-lg p-4 mb-6">
+            <div class="flex items-center">
+                <i class="fas fa-exclamation-triangle text-yellow-600 text-xl mr-3"></i>
+                <div>
+                    <h3 class="font-semibold text-yellow-800">Database Permissions Required</h3>
+                    <p class="text-yellow-700 text-sm">If you see 403 errors, you need to set up RLS policies in Supabase. Check the console for details.</p>
+                </div>
+            </div>
+        </div>
         
         <!-- Tabs for different tables -->
         <div class="mb-6">
@@ -289,13 +304,23 @@
                     .select('*')
                     .order('created_at', { ascending: false });
 
-                if (error) throw error;
-                
+                if (error) {
+                    console.error('Supabase clients error:', error);
+                    if (error.code === '42501') {
+                        showPermissionError('clients');
+                    }
+                    throw error;
+                }
+
                 console.log('Clients data loaded:', data);
                 displayClientsData(data);
             } catch (error) {
                 console.error('Error loading clients:', error);
-                alert('Error loading clients data: ' + error.message);
+                if (error.code === '42501') {
+                    showPermissionError('clients');
+                } else {
+                    alert('Error loading clients data: ' + error.message);
+                }
             }
         }
 
@@ -308,21 +333,48 @@
                     .select('*')
                     .order('created_at', { ascending: false });
 
-                if (error) throw error;
-                
+                if (error) {
+                    console.error('Supabase categories error:', error);
+                    if (error.code === '42501') {
+                        showPermissionError('categories');
+                    }
+                    throw error;
+                }
+
                 console.log('Categories data loaded:', data);
                 displayCategoriesData(data);
             } catch (error) {
                 console.error('Error loading categories:', error);
-                alert('Error loading categories data: ' + error.message);
+                if (error.code === '42501') {
+                    showPermissionError('categories');
+                } else {
+                    alert('Error loading categories data: ' + error.message);
+                }
             }
+        }
+
+        // Show permission error message
+        function showPermissionError(table) {
+            const container = table === 'clients' ? document.getElementById('clientsList') : document.getElementById('categoriesList');
+            container.innerHTML = `
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
+                    <i class="fas fa-exclamation-circle text-red-500 text-xl mb-2"></i>
+                    <h4 class="font-semibold text-red-800 mb-2">Permission Denied (403 Error)</h4>
+                    <p class="text-red-700 text-sm mb-3">
+                        You need to set up Row Level Security (RLS) policies for the ${table} table in Supabase.
+                    </p>
+                    <div class="text-xs text-red-600 bg-red-100 p-2 rounded">
+                        <strong>Fix:</strong> Run the RLS SQL policies in Supabase SQL Editor
+                    </div>
+                </div>
+            `;
         }
 
         // Display clients data
         function displayClientsData(clients) {
             const container = document.getElementById('clientsList');
             if (!clients || clients.length === 0) {
-                container.innerHTML = '<p class="text-gray-500 text-center py-4">No clients found</p>';
+                container.innerHTML = '<p class="text-gray-500 text-center py-4">No clients found. Add your first client above.</p>';
                 return;
             }
 
@@ -351,7 +403,7 @@
         function displayCategoriesData(categories) {
             const container = document.getElementById('categoriesList');
             if (!categories || categories.length === 0) {
-                container.innerHTML = '<p class="text-gray-500 text-center py-4">No categories found</p>';
+                container.innerHTML = '<p class="text-gray-500 text-center py-4">No categories found. Add your first category above.</p>';
                 return;
             }
 
@@ -395,7 +447,13 @@
                         created_at: new Date().toISOString()
                     }]);
 
-                if (error) throw error;
+                if (error) {
+                    if (error.code === '42501') {
+                        alert('Permission denied. You need to set up RLS policies in Supabase.');
+                        return;
+                    }
+                    throw error;
+                }
 
                 document.getElementById('newClient').value = '';
                 document.getElementById('newSubClient').value = '';
@@ -426,7 +484,13 @@
                         created_at: new Date().toISOString()
                     }]);
 
-                if (error) throw error;
+                if (error) {
+                    if (error.code === '42501') {
+                        alert('Permission denied. You need to set up RLS policies in Supabase.');
+                        return;
+                    }
+                    throw error;
+                }
 
                 document.getElementById('newCategory').value = '';
                 document.getElementById('newDocument').value = '';
@@ -500,7 +564,13 @@
                     .delete()
                     .eq('id', id);
 
-                if (error) throw error;
+                if (error) {
+                    if (error.code === '42501') {
+                        alert('Permission denied. You need to set up RLS policies in Supabase.');
+                        return;
+                    }
+                    throw error;
+                }
 
                 if (table === 'sub_client') {
                     loadClientsData();
@@ -540,7 +610,13 @@
                     .update(updateData)
                     .eq('id', currentEditingItem.id);
 
-                if (error) throw error;
+                if (error) {
+                    if (error.code === '42501') {
+                        alert('Permission denied. You need to set up RLS policies in Supabase.');
+                        return;
+                    }
+                    throw error;
+                }
 
                 document.getElementById('editModal').classList.add('hidden');
                 
