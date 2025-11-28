@@ -40,7 +40,7 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-        .permission-notice {
+        .duplicate-notice {
             background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
             border-left: 4px solid #f59e0b;
         }
@@ -149,13 +149,13 @@
     <main class="container mx-auto px-4 py-8">
         <h1 class="text-3xl font-bold text-gray-800 mb-6">Admin Management</h1>
         
-        <!-- Permission Notice -->
-        <div class="permission-notice rounded-lg p-4 mb-6">
+        <!-- Duplicate Notice -->
+        <div class="duplicate-notice rounded-lg p-4 mb-6">
             <div class="flex items-center">
                 <i class="fas fa-exclamation-triangle text-yellow-600 text-xl mr-3"></i>
                 <div>
-                    <h3 class="font-semibold text-yellow-800">Database Permissions Required</h3>
-                    <p class="text-yellow-700 text-sm">If you see 403 errors, you need to set up RLS policies in Supabase. Check the console for details.</p>
+                    <h3 class="font-semibold text-yellow-800">Duplicate Entry Protection</h3>
+                    <p class="text-yellow-700 text-sm">Your database has unique constraints. The system will check for duplicates before adding new entries.</p>
                 </div>
             </div>
         </div>
@@ -179,11 +179,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Client</label>
-                        <input type="text" id="newClient" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="newClient" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g., Tier One Advisory">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Sub-Client</label>
-                        <input type="text" id="newSubClient" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="newSubClient" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g., CSC Consulting">
                     </div>
                     <div class="flex items-end">
                         <button id="addClientBtn" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition w-full">
@@ -191,6 +191,9 @@
                         </button>
                     </div>
                 </div>
+                <p class="text-xs text-gray-500 mt-2">
+                    <i class="fas fa-info-circle mr-1"></i>Each client + sub-client combination must be unique.
+                </p>
             </div>
 
             <div class="bg-white rounded-lg shadow-md p-6">
@@ -211,11 +214,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Category</label>
-                        <input type="text" id="newCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="newCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g., Contracts & Agreements">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Document Type</label>
-                        <input type="text" id="newDocument" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500">
+                        <input type="text" id="newDocument" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="e.g., Service Agreement">
                     </div>
                     <div class="flex items-end">
                         <button id="addCategoryBtn" class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 transition w-full">
@@ -223,6 +226,9 @@
                         </button>
                     </div>
                 </div>
+                <p class="text-xs text-gray-500 mt-2">
+                    <i class="fas fa-info-circle mr-1"></i>Each category + document type combination must be unique.
+                </p>
             </div>
 
             <div class="bg-white rounded-lg shadow-md p-6">
@@ -304,23 +310,13 @@
                     .select('*')
                     .order('created_at', { ascending: false });
 
-                if (error) {
-                    console.error('Supabase clients error:', error);
-                    if (error.code === '42501') {
-                        showPermissionError('clients');
-                    }
-                    throw error;
-                }
+                if (error) throw error;
 
                 console.log('Clients data loaded:', data);
                 displayClientsData(data);
             } catch (error) {
                 console.error('Error loading clients:', error);
-                if (error.code === '42501') {
-                    showPermissionError('clients');
-                } else {
-                    alert('Error loading clients data: ' + error.message);
-                }
+                alert('Error loading clients data: ' + error.message);
             }
         }
 
@@ -333,41 +329,48 @@
                     .select('*')
                     .order('created_at', { ascending: false });
 
-                if (error) {
-                    console.error('Supabase categories error:', error);
-                    if (error.code === '42501') {
-                        showPermissionError('categories');
-                    }
-                    throw error;
-                }
+                if (error) throw error;
 
                 console.log('Categories data loaded:', data);
                 displayCategoriesData(data);
             } catch (error) {
                 console.error('Error loading categories:', error);
-                if (error.code === '42501') {
-                    showPermissionError('categories');
-                } else {
-                    alert('Error loading categories data: ' + error.message);
-                }
+                alert('Error loading categories data: ' + error.message);
             }
         }
 
-        // Show permission error message
-        function showPermissionError(table) {
-            const container = table === 'clients' ? document.getElementById('clientsList') : document.getElementById('categoriesList');
-            container.innerHTML = `
-                <div class="bg-red-50 border border-red-200 rounded-lg p-4 text-center">
-                    <i class="fas fa-exclamation-circle text-red-500 text-xl mb-2"></i>
-                    <h4 class="font-semibold text-red-800 mb-2">Permission Denied (403 Error)</h4>
-                    <p class="text-red-700 text-sm mb-3">
-                        You need to set up Row Level Security (RLS) policies for the ${table} table in Supabase.
-                    </p>
-                    <div class="text-xs text-red-600 bg-red-100 p-2 rounded">
-                        <strong>Fix:</strong> Run the RLS SQL policies in Supabase SQL Editor
-                    </div>
-                </div>
-            `;
+        // Check if client already exists
+        async function checkClientExists(client, subClient) {
+            try {
+                const { data, error } = await supabase
+                    .from('sub_client')
+                    .select('*')
+                    .eq('clientList', client)
+                    .eq('subClientList', subClient || null);
+
+                if (error) throw error;
+                return data && data.length > 0;
+            } catch (error) {
+                console.error('Error checking client existence:', error);
+                return false;
+            }
+        }
+
+        // Check if category already exists
+        async function checkCategoryExists(category, documentType) {
+            try {
+                const { data, error } = await supabase
+                    .from('category')
+                    .select('*')
+                    .eq('categoryList', category)
+                    .eq('documents', documentType || null);
+
+                if (error) throw error;
+                return data && data.length > 0;
+            } catch (error) {
+                console.error('Error checking category existence:', error);
+                return false;
+            }
         }
 
         // Display clients data
@@ -439,6 +442,13 @@
             }
 
             try {
+                // Check if client already exists
+                const exists = await checkClientExists(client, subClient);
+                if (exists) {
+                    alert('❌ This client + sub-client combination already exists. Please use a different combination.');
+                    return;
+                }
+
                 const { error } = await supabase
                     .from('sub_client')
                     .insert([{
@@ -448,8 +458,8 @@
                     }]);
 
                 if (error) {
-                    if (error.code === '42501') {
-                        alert('Permission denied. You need to set up RLS policies in Supabase.');
+                    if (error.code === '23505') { // Unique violation
+                        alert('❌ This client + sub-client combination already exists. Please use a different combination.');
                         return;
                     }
                     throw error;
@@ -458,10 +468,14 @@
                 document.getElementById('newClient').value = '';
                 document.getElementById('newSubClient').value = '';
                 loadClientsData();
-                alert('Client added successfully!');
+                alert('✅ Client added successfully!');
             } catch (error) {
                 console.error('Error adding client:', error);
-                alert('Error adding client: ' + error.message);
+                if (error.code === '23505') {
+                    alert('❌ This client + sub-client combination already exists. Please use a different combination.');
+                } else {
+                    alert('Error adding client: ' + error.message);
+                }
             }
         });
 
@@ -476,6 +490,13 @@
             }
 
             try {
+                // Check if category already exists
+                const exists = await checkCategoryExists(category, documentType);
+                if (exists) {
+                    alert('❌ This category + document type combination already exists. Please use a different combination.');
+                    return;
+                }
+
                 const { error } = await supabase
                     .from('category')
                     .insert([{
@@ -485,8 +506,8 @@
                     }]);
 
                 if (error) {
-                    if (error.code === '42501') {
-                        alert('Permission denied. You need to set up RLS policies in Supabase.');
+                    if (error.code === '23505') { // Unique violation
+                        alert('❌ This category + document type combination already exists. Please use a different combination.');
                         return;
                     }
                     throw error;
@@ -495,10 +516,14 @@
                 document.getElementById('newCategory').value = '';
                 document.getElementById('newDocument').value = '';
                 loadCategoriesData();
-                alert('Category added successfully!');
+                alert('✅ Category added successfully!');
             } catch (error) {
                 console.error('Error adding category:', error);
-                alert('Error adding category: ' + error.message);
+                if (error.code === '23505') {
+                    alert('❌ This category + document type combination already exists. Please use a different combination.');
+                } else {
+                    alert('Error adding category: ' + error.message);
+                }
             }
         });
 
@@ -564,20 +589,14 @@
                     .delete()
                     .eq('id', id);
 
-                if (error) {
-                    if (error.code === '42501') {
-                        alert('Permission denied. You need to set up RLS policies in Supabase.');
-                        return;
-                    }
-                    throw error;
-                }
+                if (error) throw error;
 
                 if (table === 'sub_client') {
                     loadClientsData();
                 } else {
                     loadCategoriesData();
                 }
-                alert(`${itemType.charAt(0).toUpperCase() + itemType.slice(1)} deleted successfully!`);
+                alert('✅ ' + itemType.charAt(0).toUpperCase() + itemType.slice(1) + ' deleted successfully!');
             } catch (error) {
                 console.error('Error deleting item:', error);
                 alert('Error deleting item: ' + error.message);
@@ -611,8 +630,8 @@
                     .eq('id', currentEditingItem.id);
 
                 if (error) {
-                    if (error.code === '42501') {
-                        alert('Permission denied. You need to set up RLS policies in Supabase.');
+                    if (error.code === '23505') {
+                        alert('❌ This combination already exists. Please use different values.');
                         return;
                     }
                     throw error;
@@ -626,7 +645,7 @@
                     loadCategoriesData();
                 }
 
-                alert('Changes saved successfully!');
+                alert('✅ Changes saved successfully!');
             } catch (error) {
                 console.error('Error saving changes:', error);
                 alert('Error saving changes: ' + error.message);
