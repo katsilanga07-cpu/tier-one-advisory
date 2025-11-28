@@ -190,18 +190,35 @@
             }
         }
 
-        // Add new client row
+        // Add new client row - FIXED: Let Supabase auto-generate the ID
         async function addClientRow() {
             try {
-                const { error } = await supabase
+                const { data, error } = await supabase
                     .from('sub_client')
                     .insert([{
                         clientList: 'New Client',
                         subClientList: 'New Sub-Client',
                         created_at: new Date().toISOString()
-                    }]);
+                    }])
+                    .select(); // Add .select() to get the inserted data back
 
-                if (error) throw error;
+                if (error) {
+                    if (error.code === '23505') {
+                        // If there's a unique constraint violation, try with different values
+                        const { data: altData, error: altError } = await supabase
+                            .from('sub_client')
+                            .insert([{
+                                clientList: 'New Client ' + Date.now(),
+                                subClientList: 'New Sub-Client ' + Date.now(),
+                                created_at: new Date().toISOString()
+                            }])
+                            .select();
+                        
+                        if (altError) throw altError;
+                    } else {
+                        throw error;
+                    }
+                }
                 
                 await loadClients();
                 alert('New client row added!');
@@ -211,18 +228,35 @@
             }
         }
 
-        // Add new category row
+        // Add new category row - FIXED: Let Supabase auto-generate the ID
         async function addCategoryRow() {
             try {
-                const { error } = await supabase
+                const { data, error } = await supabase
                     .from('category')
                     .insert([{
                         categoryList: 'New Category',
                         documents: 'New Document Type',
                         created_at: new Date().toISOString()
-                    }]);
+                    }])
+                    .select(); // Add .select() to get the inserted data back
 
-                if (error) throw error;
+                if (error) {
+                    if (error.code === '23505') {
+                        // If there's a unique constraint violation, try with different values
+                        const { data: altData, error: altError } = await supabase
+                            .from('category')
+                            .insert([{
+                                categoryList: 'New Category ' + Date.now(),
+                                documents: 'New Document Type ' + Date.now(),
+                                created_at: new Date().toISOString()
+                            }])
+                            .select();
+                        
+                        if (altError) throw altError;
+                    } else {
+                        throw error;
+                    }
+                }
                 
                 await loadCategories();
                 alert('New category row added!');
